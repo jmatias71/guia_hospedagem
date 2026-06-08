@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Guia do Hóspede - Meu Lugar Hospedagem</title>
     
+    <!-- Meta tags para PWA (iOS e Android) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-title" content="Guia do Hóspede - Meu Lugar Hospedagem">
+    <meta name="theme-color" content="#090f1d">
     <link rel="apple-touch-icon" href="logo.png">
     
+    <!-- Link para o Manifesto PWA dinâmico -->
     <link id="manifest-placeholder" rel="manifest">
 
+    <!-- Google Fonts & Tailwind CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -21,11 +25,19 @@
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
                     },
+                    colors: {
+                        brand: {
+                            gold: '#dfad51',
+                            dark: '#090f1d',
+                            charcoal: '#151e33'
+                        }
+                    }
                 }
             }
         }
     </script>
     
+    <!-- Font Awesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -87,43 +99,52 @@
 </head>
 <body class="min-h-screen flex justify-center items-start sm:py-8">
 
+    <!-- Container do Dispositivo (Simula celular no desktop, tela cheia no celular) -->
     <div class="w-full max-w-md bg-white sm:rounded-[36px] min-h-screen sm:min-h-[850px] shadow-2xl overflow-hidden flex flex-col border border-slate-100 relative">
         
-        <header class="bg-slate-900 text-white pt-8 pb-6 px-6 relative overflow-hidden shadow-lg shrink-0">
-            <div class="absolute -top-12 -left-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
-            <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
+        <!-- CABEÇALHO BRANDING (Sintonizado com a Paleta do Logotipo: Obsidian, Charcoal e Gold) -->
+        <header class="bg-brand-dark text-white pt-8 pb-6 px-6 relative overflow-hidden shadow-lg shrink-0 border-b border-brand-gold/20">
+            <!-- Detalhes de brilho gradiente simulando ouro luxo e elegância -->
+            <div class="absolute -top-12 -left-12 w-32 h-32 bg-brand-gold/10 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-slate-800/30 rounded-full blur-2xl"></div>
 
             <div class="flex flex-col items-center text-center relative z-10">
+                <!-- Logotipo com borda sutil de ouro champanhe -->
                 <div class="relative w-24 h-24 mb-3 group">
                     <img id="brand-logo" src="logo.png" alt="Meu Lugar Hospedagem" 
-                         class="w-full h-full object-cover rounded-full border-2 border-slate-100 shadow-md bg-white transition-transform duration-300 group-hover:scale-105"
+                         class="w-full h-full object-cover rounded-full border-2 border-brand-gold shadow-lg bg-brand-dark transition-transform duration-300 group-hover:scale-105"
                          onerror="handleLogoError()">
                     
-                    <div id="brand-logo-fallback" class="hidden w-full h-full rounded-full border-2 border-slate-100 bg-gradient-to-tr from-slate-800 to-slate-950 flex flex-col items-center justify-center shadow-md text-white font-extrabold">
-                        <i class="fa-solid fa-house-chimney-window text-amber-400 text-2xl mb-0.5"></i>
+                    <div id="brand-logo-fallback" class="hidden w-full h-full rounded-full border-2 border-brand-gold bg-gradient-to-tr from-brand-dark to-brand-charcoal flex flex-col items-center justify-center shadow-md text-white font-extrabold">
+                        <i class="fa-solid fa-house-chimney-window text-brand-gold text-2xl mb-0.5"></i>
                         <span class="text-[10px] tracking-wider text-slate-300 uppercase">Meu Lugar</span>
                     </div>
                 </div>
 
+                <!-- Título do Portal -->
                 <h1 class="text-xl font-extrabold tracking-tight text-white">Meu Lugar Hospedagem</h1>
-                <p class="text-xs text-slate-400 mt-1 font-medium">Guia Digital do Hóspede</p>
+                <p class="text-xs text-brand-gold/90 mt-1 font-semibold tracking-wider uppercase text-[10px]">Portal de Experiência do Hóspede</p>
 
+                <!-- Link do Instagram -->
                 <a href="https://instagram.com/meulugar.hospedagem" target="_blank" 
-                   class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-purple-600 via-pink-500 to-amber-500 hover:from-purple-700 hover:to-amber-600 text-white text-xs font-bold rounded-full shadow-md transition-all transform hover:scale-105">
-                    <i class="fa-brands fa-instagram text-sm"></i>
+                   class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-brand-charcoal to-brand-dark hover:from-slate-800 hover:to-slate-950 text-brand-gold text-xs font-bold rounded-full shadow-md border border-brand-gold/45 transition-all transform hover:scale-105">
+                    <i class="fa-brands fa-instagram text-sm text-brand-gold"></i>
                     <span>@meulugar.hospedagem</span>
                 </a>
             </div>
 
+            <!-- Botão de Voltar para Seleção de Apartamento (oculto no início) -->
             <div class="w-full flex justify-center mt-4">
-                <button id="btn-change-apartment" class="hidden text-[11px] bg-white/10 hover:bg-white/20 text-slate-200 font-semibold py-1.5 px-3.5 rounded-full transition-all inline-flex items-center gap-1.5 border border-white/5">
+                <button id="btn-change-apartment" class="hidden text-[11px] bg-white/5 hover:bg-white/10 text-slate-200 font-semibold py-1.5 px-3.5 rounded-full transition-all inline-flex items-center gap-1.5 border border-brand-gold/20">
                     <i class="fa-solid fa-arrow-right-to-bracket rotate-180"></i> Escolher Outro Espaço
                 </button>
             </div>
         </header>
 
+        <!-- CONTEÚDO DINÂMICO E TELAS -->
         <main class="flex-1 p-6 overflow-y-auto no-scrollbar flex flex-col">
             
+            <!-- 1. TELA: SELEÇÃO DE APARTAMENTO -->
             <section id="screen-selector" class="fade-in space-y-6 flex-1 flex flex-col justify-between">
                 <div class="space-y-4">
                     <div class="text-center sm:text-left">
@@ -131,12 +152,15 @@
                         <p class="text-xs text-slate-500 mt-1">Selecione abaixo o espaço de sua estadia para carregar as informações do seu apartamento:</p>
                     </div>
                     
+                    <!-- Lista de Alojamentos (Com as capas são paulo, pássaros e azure) -->
                     <div id="apartments-list" class="space-y-4">
-                        </div>
+                        <!-- Gerado dinamicamente via JS -->
+                    </div>
                 </div>
 
+                <!-- Banner de Instalação PWA -->
                 <div id="install-banner" class="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex items-start gap-3.5 mt-6 shadow-sm">
-                    <div class="bg-slate-900 text-amber-400 p-2.5 rounded-xl shrink-0">
+                    <div class="bg-brand-dark text-brand-gold p-2.5 rounded-xl shrink-0 border border-brand-gold/15">
                         <i class="fa-solid fa-mobile-screen-button text-lg"></i>
                     </div>
                     <div class="space-y-1">
@@ -149,15 +173,21 @@
                 </div>
             </section>
 
+            <!-- 2. TELA: MENU PRINCIPAL DO APARTAMENTO -->
             <section id="screen-menu" class="hidden fade-in space-y-6">
+                <!-- Card do Apartamento Selecionado -->
                 <div id="apartment-mini-card" class="rounded-2xl p-4 text-white flex items-center justify-between shadow-sm relative overflow-hidden">
-                    </div>
+                    <!-- Gerado dinamicamente -->
+                </div>
 
                 <div class="grid grid-cols-2 gap-4" id="menu-buttons-grid">
-                    </div>
+                    <!-- Botões dinâmicos gerados baseados no estúdio ativo -->
+                </div>
             </section>
 
+            <!-- 3. TELA: DETALHES DA CATEGORIA -->
             <section id="screen-detail" class="hidden fade-in space-y-6">
+                <!-- Cabeçalho de Detalhes -->
                 <div class="flex items-center gap-3">
                     <button id="btn-back-to-menu" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-3 rounded-xl transition-all">
                         <i class="fa-solid fa-arrow-left"></i>
@@ -168,23 +198,28 @@
                     </div>
                 </div>
 
+                <!-- Conteúdo Dinâmico -->
                 <div id="detail-content" class="space-y-4">
-                    </div>
+                    <!-- JS preenche aqui -->
+                </div>
             </section>
         </main>
 
+        <!-- NOTIFICAÇÃO TOAST CUSTOMIZADA (Feedback limpo de cópia de texto) -->
         <div id="custom-toast" class="opacity-0 pointer-events-none fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-bold py-3 px-6 rounded-full shadow-xl transition-all duration-300 z-50 flex items-center gap-2">
             <i class="fa-solid fa-circle-check text-emerald-400"></i>
             <span id="toast-message">Copiado com sucesso!</span>
         </div>
 
+        <!-- FOOTER COM SUPORTE E INDICADOR DE VERSÃO -->
         <footer class="border-t border-slate-100 p-4 bg-slate-50 text-center text-xs text-slate-400 shrink-0 flex flex-col items-center justify-center gap-1">
             <p class="font-semibold text-slate-500">Meu Lugar Hospedagem</p>
             <button onclick="showUpdateModal()" class="text-[10px] text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 focus:outline-none">
-                <span>Versão 1.2.5</span> • <span class="underline">Verificar atualizações</span>
+                <span>Versão 1.3.0</span> • <span class="underline">Verificar atualizações & histórico</span>
             </button>
         </footer>
 
+        <!-- MODAL DE INSTRUÇÕES DE INSTALAÇÃO DO PWA -->
         <div id="install-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4">
             <div class="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-6 space-y-6 shadow-2xl fade-in">
                 <div class="flex justify-between items-start">
@@ -217,23 +252,65 @@
             </div>
         </div>
 
+        <!-- MODAL DE CONTROLE DE VERSÃO E ATUALIZAÇÕES (Incluindo Histórico) -->
         <div id="update-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4">
-            <div class="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-6 space-y-6 shadow-2xl fade-in max-h-[85vh] overflow-y-auto no-scrollbar">
+            <div class="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-6 space-y-5 shadow-2xl fade-in max-h-[85vh] overflow-y-auto no-scrollbar">
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 class="text-base font-bold text-slate-800">Central de Sincronização</h3>
-                        <p class="text-[10px] text-slate-400">Versão instalada: v1.2.5</p>
+                        <p class="text-[10px] text-slate-400">Versão instalada: v1.3.0</p>
                     </div>
                     <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark text-lg"></i>
                     </button>
                 </div>
                 
+                <!-- Área para o Hóspede -->
                 <div class="space-y-3 border-t border-slate-100 pt-4">
                     <p class="text-[11px] text-slate-600 leading-relaxed font-semibold">Caso alguma informação (como senhas, horários ou regras) tenha sido alterada recentemente pelo anfitrião, clique no botão abaixo para baixar a versão mais recente do guia.</p>
                     <button id="btn-force-update" onclick="forceAppUpdate()" class="w-full bg-slate-900 hover:bg-slate-950 text-white text-xs font-bold py-2.5 rounded-xl transition-all flex items-center justify-center gap-2">
                         <i class="fa-solid fa-rotate"></i> Sincronizar Informações
                     </button>
+                </div>
+
+                <!-- Histórico de Versões / Alterações -->
+                <div class="space-y-3 border-t border-slate-100 pt-4">
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Versões
+                    </span>
+                    <div class="space-y-3 max-h-48 overflow-y-auto pr-1 no-scrollbar text-left">
+                        <!-- v1.3.0 -->
+                        <div class="border-l-2 border-brand-gold pl-3 space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-800">v1.3.0</span>
+                                <span class="text-[9px] bg-amber-50 text-brand-gold px-1.5 py-0.5 rounded-full font-bold">Atual</span>
+                            </div>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Paleta de cores premium integrada baseada no logotipo oficial. Adicionadas capas reais para as unidades (<code class="bg-slate-100 px-0.5 rounded">saoppaulo.png</code>, <code class="bg-slate-100 px-0.5 rounded">passaros.png</code> e <code class="bg-slate-100 px-0.5 rounded">azure.png</code>). Título do PWA de instalação ajustado para melhor legibilidade no celular. Adicionado histórico de alterações interativo.
+                            </p>
+                        </div>
+                        <!-- v1.2.5 -->
+                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
+                            <span class="text-xs font-bold text-slate-700">v1.2.5</span>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Integração oficial da Booking.com e Airbnb nas telas de agradecimento. Ícone PWA configurado com o logo real da Meu Lugar Hospedagem.
+                            </p>
+                        </div>
+                        <!-- v1.2.0 -->
+                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
+                            <span class="text-xs font-bold text-slate-700">v1.2.0</span>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Adicionados recursos de Inteligência Artificial da API do Gemini (Concierge virtual contextualizado e Planejador automático de roteiros por localidade).
+                            </p>
+                        </div>
+                        <!-- v1.1.0 -->
+                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
+                            <span class="text-xs font-bold text-slate-700">v1.1.0</span>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Cadastro completo das regras detalhadas do Brooklin e Moema. Ativação do Studio Azure Pinheiros com credenciais e guias específicos.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <button onclick="closeUpdateModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 rounded-xl transition-all text-xs">
@@ -243,6 +320,7 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT DO SISTEMA -->
     <script>
         // Definição do token do Gemini
         const apiKey = ""; // Chave injetada em tempo de execução no ambiente seguro
@@ -286,6 +364,7 @@
                 tagline: "Estilo industrial e modernidade no coração do Brooklin",
                 color: "gray",
                 bgGradient: "from-slate-700 to-slate-900",
+                image: "saoppaulo.png", // Foto de capa configurada
                 icon: "fa-city",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90h80V10H10v80zm15-65h15v15H25V25zm0 25h15v15H25V50zm25-25h15v15H50V25zm0 25h15v15H50V50zm25-25h15v15H75V25zm0 25h15v15H75V50z"/></svg>`,
                 menu: [
@@ -340,9 +419,9 @@
                         ]
                     },
                     arrival: {
-                        address: "Rua Joaquim Guarani, 63 - Jardim das Acácias, Brooklin - São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo",
-                        instructions: "Aconselhamos o deslocamento por táxi ou veículo de aplicativo (Uber). O ponto de ônibus mais próximo fica a 5 minutes a pé e a Estação Brooklin do Metrô encontra-se a apenas duas quadras de distância. Você encontra facilmente patinetes de aluguel perto da saída do metrô."
+                        address: "Rua Joaquim Guarani, 63 - Jardim das Acacia, Brooklin - São Paulo - SP",
+                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+配套+Sao+Paulo",
+                        instructions: "Aconselhamos o deslocamento por táxi ou veículo de aplicativo (Uber). O ponto de ônibus mais próximo fica a 5 minutos a pé e a Estação Brooklin do Metrô encontra-se a apenas duas quadras de distância. Você encontra facilmente patinetes de aluguel perto da saída do metrô."
                     },
                     checkin: {
                         items: [
@@ -393,6 +472,7 @@
                 tagline: "Praticidade e aconchego em tons de verde no coração de Moema",
                 color: "green",
                 bgGradient: "from-emerald-600 to-emerald-850",
+                image: "passaros.png", // Foto de capa configurada
                 icon: "fa-kiwi-bird",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90l30-50 15 20 25-35 15 65z"/></svg>`,
                 menu: [
@@ -498,6 +578,7 @@
                 tagline: "Estilo moderno, azul e branco no polo cultural de Pinheiros",
                 color: "blue",
                 bgGradient: "from-blue-600 to-blue-800",
+                image: "azure.png", // Foto de capa configurada
                 icon: "fa-water",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M30 20s15 10 30 0 30 10 50 0v50H10V20z"/><circle cx='50' cy='40' r='12'/></svg>`,
                 menu: [
@@ -605,28 +686,39 @@
             setupServiceWorker();
         });
 
-        // TELA 1: Renderizar Lista de Apartamentos para Seleção
+        // TELA 1: Renderizar Lista de Apartamentos para Seleção (Com Capa Premium)
         function renderApartmentSelection() {
             apartmentsList.innerHTML = '';
             APARTMENTS.forEach(apt => {
                 const card = document.createElement('div');
-                card.className = `relative overflow-hidden bg-gradient-to-br ${apt.bgGradient} rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-36`;
+                card.className = `group relative overflow-hidden bg-brand-charcoal rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-500 transform hover:-translate-y-1 flex flex-col justify-between h-40`;
                 card.onclick = () => selectApartment(apt);
                 
+                // Elementos de Capa e Overlay dinâmico
                 card.innerHTML = `
-                    ${apt.svgPattern}
-                    <div class="z-10 flex justify-between items-start">
+                    <!-- Imagem de Capa do Apartamento com efeito Zoom-hover -->
+                    <img src="${apt.image}" alt="Capa do ${apt.name}" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 z-0"
+                         onerror="this.style.display='none';">
+                         
+                    <!-- Overlay de gradiente luxo escuro que garante legibilidade excelente das letras -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent z-10"></div>
+                    
+                    <div class="z-20 flex justify-between items-start">
                         <div>
-                            <span class="text-[9px] uppercase font-bold tracking-wider bg-white/20 px-2 py-0.5 rounded-full">${apt.city}</span>
-                            <h3 class="text-lg font-extrabold mt-1 tracking-tight">${apt.name}</h3>
+                            <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold/80 text-brand-dark px-2 py-0.5 rounded-full shadow-sm">${apt.city}</span>
+                            <h3 class="text-base font-extrabold mt-1.5 tracking-tight text-white group-hover:text-brand-gold transition-colors">${apt.name}</h3>
                         </div>
-                        <div class="bg-white/20 w-8 h-8 rounded-lg flex items-center justify-center">
-                            <i class="fa-solid ${apt.icon} text-sm"></i>
+                        <div class="bg-brand-dark/60 text-brand-gold w-8 h-8 rounded-lg flex items-center justify-center border border-brand-gold/25 backdrop-blur-sm">
+                            <i class="fa-solid ${apt.icon} text-xs"></i>
                         </div>
                     </div>
-                    <div class="z-10 flex items-center justify-between mt-2">
-                        <span class="text-[11px] text-white/80 line-clamp-1 max-w-[80%] font-medium">${apt.tagline}</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    
+                    <div class="z-20 flex items-center justify-between mt-2 pt-2 border-t border-white/10">
+                        <span class="text-[11px] text-slate-200 line-clamp-1 max-w-[80%] font-medium">${apt.tagline}</span>
+                        <span class="bg-brand-gold text-brand-dark w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold group-hover:translate-x-1 transition-transform">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
                     </div>
                 `;
                 apartmentsList.appendChild(card);
@@ -647,13 +739,16 @@
             document.documentElement.style.setProperty('--theme-800', palette[800]);
 
             // Renderizar Mini Card no Menu do Apartamento
-            apartmentMiniCard.className = `relative overflow-hidden bg-gradient-to-r ${apt.bgGradient} rounded-2xl p-4 text-white shadow-sm flex items-center justify-between`;
+            apartmentMiniCard.className = `relative overflow-hidden bg-brand-charcoal rounded-2xl p-4 text-white shadow-sm flex items-center justify-between min-h-[100px]`;
             apartmentMiniCard.innerHTML = `
-                ${apt.svgPattern}
-                <div class="z-10">
-                    <span class="text-[9px] uppercase font-bold tracking-wider bg-white/20 px-2 py-0.5 rounded-full">${apt.city}</span>
-                    <h3 class="text-base font-bold mt-1">${apt.name}</h3>
-                    <p class="text-[10px] text-white/80 mt-0.5 font-medium">${apt.tagline}</p>
+                <!-- Foto de capa no minicard -->
+                <img src="${apt.image}" alt="Capa ${apt.name}" class="absolute inset-0 w-full h-full object-cover opacity-40 z-0" onerror="this.style.display='none';">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/70 to-transparent z-10"></div>
+                
+                <div class="z-20">
+                    <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold text-brand-dark px-2 py-0.5 rounded-full">${apt.city}</span>
+                    <h3 class="text-base font-bold mt-1.5">${apt.name}</h3>
+                    <p class="text-[10px] text-slate-200 mt-0.5 font-medium">${apt.tagline}</p>
                 </div>
             `;
 
@@ -943,6 +1038,7 @@ Diretrizes de Resposta:
             if (catId === 'ai_concierge') {
                 detailContent.innerHTML = `
                     <div class="space-y-4">
+                        <!-- Abas de Navegação -->
                         <div class="flex border-b border-slate-200">
                             <button onclick="switchAITab('chat')" id="tab-ai-chat" class="flex-1 pb-2.5 text-center text-xs font-bold border-b-2 border-slate-900 text-slate-900 transition-all focus:outline-none">
                                 <i class="fa-solid fa-comments mr-1 text-amber-500"></i> Chat Concierge
@@ -952,6 +1048,7 @@ Diretrizes de Resposta:
                             </button>
                         </div>
 
+                        <!-- 1. Conteúdo: CHAT CONCIERGE -->
                         <div id="ai-chat-container" class="space-y-4 fade-in">
                             <div class="bg-amber-50 border border-amber-200/60 p-3.5 rounded-xl text-[11px] font-semibold text-amber-800 leading-relaxed flex items-start gap-2.5">
                                 <i class="fa-solid fa-sparkles text-amber-600 text-sm mt-0.5"></i>
@@ -992,6 +1089,7 @@ Diretrizes de Resposta:
                             </div>
                         </div>
 
+                        <!-- 2. Conteúdo: PLANEJADOR DE ROTEIRO -->
                         <div id="ai-itinerary-container" class="hidden space-y-4 fade-in">
                             <div class="bg-indigo-50 border border-indigo-100 p-3.5 rounded-xl text-[11px] font-semibold text-indigo-800 leading-relaxed flex items-start gap-2.5">
                                 <i class="fa-solid fa-compass text-indigo-500 text-sm mt-0.5"></i>
@@ -1300,17 +1398,17 @@ Diretrizes de Resposta:
             }
         }
 
-        // MONTAGEM DE MANIFESTO DINÂMICO (PWA com Ícone Real baseando-se no logo.png)
+        // MONTAGEM DE MANIFESTO DINÂMICO (PWA com título e ícones oficiais)
         function setupManifestDynamic() {
             const manifest = {
-                name: "Meu Lugar Hospedagem - Guia",
-                short_name: "Meu Lugar",
-                description: "O guia digital dos apartamentos da Meu Lugar Hospedagem.",
+                name: "Guia do Hóspede - Meu Lugar Hospedagem",
+                short_name: "Guia Meu Lugar",
+                description: "O guia digital oficial das acomodações da Meu Lugar Hospedagem.",
                 start_url: window.location.href,
                 display: "standalone",
                 orientation: "portrait",
-                background_color: "#0f172a",
-                theme_color: "#0f172a",
+                background_color: "#090f1d",
+                theme_color: "#090f1d",
                 icons: [
                     {
                         src: "logo.png",
@@ -1334,11 +1432,11 @@ Diretrizes de Resposta:
         function setupServiceWorker() {
             if ('serviceWorker' in navigator) {
                 const swContent = `
-                    const CACHE_NAME = 'meu-lugar-guide-v7';
+                    const CACHE_NAME = 'meu-lugar-guide-v8';
                     self.addEventListener('install', event => {
                         event.waitUntil(
                             caches.open(CACHE_NAME).then(cache => {
-                                return cache.addAll(['/', '/logo.png']);
+                                return cache.addAll(['/', '/logo.png', '/saoppaulo.png', '/passaros.png', '/azure.png']);
                             }).catch(() => {})
                         );
                     });
