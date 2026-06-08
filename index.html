@@ -102,8 +102,8 @@
     <!-- Container do Dispositivo (Simula celular no desktop, tela cheia no celular) -->
     <div class="w-full max-w-md bg-white sm:rounded-[36px] min-h-screen sm:min-h-[850px] shadow-2xl overflow-hidden flex flex-col border border-slate-100 relative">
         
-        <!-- CABEÇALHO BRANDING (Sintonizado com a Paleta do Logotipo: Obsidian, Charcoal e Gold) -->
-        <header class="bg-brand-dark text-white pt-8 pb-6 px-6 relative overflow-hidden shadow-lg shrink-0 border-b border-brand-gold/20">
+        <!-- CABEÇALHO BRANDING (Removido o fundo preto e colocado gradiente que combina com o logotipo) -->
+        <header class="bg-gradient-to-b from-brand-charcoal to-[#0d1321] text-white pt-8 pb-6 px-6 relative overflow-hidden shadow-lg shrink-0 border-b border-brand-gold/25">
             <!-- Detalhes de brilho gradiente simulando ouro luxo e elegância -->
             <div class="absolute -top-12 -left-12 w-32 h-32 bg-brand-gold/10 rounded-full blur-2xl"></div>
             <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-slate-800/30 rounded-full blur-2xl"></div>
@@ -125,10 +125,10 @@
                 <h1 class="text-xl font-extrabold tracking-tight text-white">Meu Lugar Hospedagem</h1>
                 <p class="text-xs text-brand-gold/90 mt-1 font-semibold tracking-wider uppercase text-[10px]">Portal de Experiência do Hóspede</p>
 
-                <!-- Link do Instagram -->
+                <!-- Link do Instagram com as cores oficiais da paleta do Instagram -->
                 <a href="https://instagram.com/meulugar.hospedagem" target="_blank" 
-                   class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-brand-charcoal to-brand-dark hover:from-slate-800 hover:to-slate-950 text-brand-gold text-xs font-bold rounded-full shadow-md border border-brand-gold/45 transition-all transform hover:scale-105">
-                    <i class="fa-brands fa-instagram text-sm text-brand-gold"></i>
+                   class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 text-white text-xs font-bold rounded-full shadow-md transition-all transform hover:scale-105">
+                    <i class="fa-brands fa-instagram text-sm text-white"></i>
                     <span>@meulugar.hospedagem</span>
                 </a>
             </div>
@@ -152,7 +152,7 @@
                         <p class="text-xs text-slate-500 mt-1">Selecione abaixo o espaço de sua estadia para carregar as informações do seu apartamento:</p>
                     </div>
                     
-                    <!-- Lista de Alojamentos (Com as capas são paulo, pássaros e azure) -->
+                    <!-- Lista de Alojamentos (Com as capas saopaulo, passaros e azure) -->
                     <div id="apartments-list" class="space-y-4">
                         <!-- Gerado dinamicamente via JS -->
                     </div>
@@ -215,7 +215,7 @@
         <footer class="border-t border-slate-100 p-4 bg-slate-50 text-center text-xs text-slate-400 shrink-0 flex flex-col items-center justify-center gap-1">
             <p class="font-semibold text-slate-500">Meu Lugar Hospedagem</p>
             <button onclick="showUpdateModal()" class="text-[10px] text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 focus:outline-none">
-                <span>Versão 1.3.0</span> • <span class="underline">Verificar atualizações & histórico</span>
+                <span>Versão 1.4.0</span> • <span class="underline">Verificar atualizações & histórico</span>
             </button>
         </footer>
 
@@ -258,7 +258,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 class="text-base font-bold text-slate-800">Central de Sincronização</h3>
-                        <p class="text-[10px] text-slate-400">Versão instalada: v1.3.0</p>
+                        <p class="text-[10px] text-slate-400">Versão instalada: v1.4.0</p>
                     </div>
                     <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark text-lg"></i>
@@ -279,14 +279,21 @@
                         <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Versões
                     </span>
                     <div class="space-y-3 max-h-48 overflow-y-auto pr-1 no-scrollbar text-left">
-                        <!-- v1.3.0 -->
+                        <!-- v1.4.0 -->
                         <div class="border-l-2 border-brand-gold pl-3 space-y-1">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold text-slate-800">v1.3.0</span>
+                                <span class="text-xs font-bold text-slate-800">v1.4.0</span>
                                 <span class="text-[9px] bg-amber-50 text-brand-gold px-1.5 py-0.5 rounded-full font-bold">Atual</span>
                             </div>
                             <p class="text-[10px] text-slate-500 leading-normal">
-                                Paleta de cores premium integrada baseada no logotipo oficial. Adicionadas capas reais para as unidades (<code class="bg-slate-100 px-0.5 rounded">saoppaulo.png</code>, <code class="bg-slate-100 px-0.5 rounded">passaros.png</code> e <code class="bg-slate-100 px-0.5 rounded">azure.png</code>). Título do PWA de instalação ajustado para melhor legibilidade no celular. Adicionado histórico de alterações interativo.
+                                Removido o assistente de inteligência artificial de forma completa para simplificar a usabilidade. Corrigido o nome da imagem do Studio São Paulo para <code class="bg-slate-100 px-0.5 rounded">saopaulo.png</code>. Redesenhado o cabeçalho superior utilizando gradiente premium sintonizado com o logotipo. Adicionadas as cores oficiais da marca Instagram no botão social. Removidos os ícones gráficos que ficavam nos cantos superiores dos cards de seleção de apartamentos.
+                            </p>
+                        </div>
+                        <!-- v1.3.0 -->
+                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
+                            <span class="text-xs font-bold text-slate-700">v1.3.0</span>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Paleta de cores premium integrada baseada no logotipo oficial. Adicionadas capas reais para as unidades. Título do PWA de instalação ajustado para melhor legibilidade no celular. Adicionado histórico de alterações interativo.
                             </p>
                         </div>
                         <!-- v1.2.5 -->
@@ -303,13 +310,6 @@
                                 Adicionados recursos de Inteligência Artificial da API do Gemini (Concierge virtual contextualizado e Planejador automático de roteiros por localidade).
                             </p>
                         </div>
-                        <!-- v1.1.0 -->
-                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
-                            <span class="text-xs font-bold text-slate-700">v1.1.0</span>
-                            <p class="text-[10px] text-slate-500 leading-normal">
-                                Cadastro completo das regras detalhadas do Brooklin e Moema. Ativação do Studio Azure Pinheiros com credenciais e guias específicos.
-                            </p>
-                        </div>
                     </div>
                 </div>
 
@@ -322,9 +322,6 @@
 
     <!-- JAVASCRIPT DO SISTEMA -->
     <script>
-        // Definição do token do Gemini
-        const apiKey = ""; // Chave injetada em tempo de execução no ambiente seguro
-
         // Definição das paletas para alternar o visual dinamicamente por apartamento
         const THEME_PALETTES = {
             gray: {
@@ -364,11 +361,10 @@
                 tagline: "Estilo industrial e modernidade no coração do Brooklin",
                 color: "gray",
                 bgGradient: "from-slate-700 to-slate-900",
-                image: "saoppaulo.png", // Foto de capa configurada
+                image: "saopaulo.png", // Corrigido de saoppaulo.png para saopaulo.png
                 icon: "fa-city",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90h80V10H10v80zm15-65h15v15H25V25zm0 25h15v15H25V50zm25-25h15v15H50V25zm0 25h15v15H50V50zm25-25h15v15H75V25zm0 25h15v15H75V50z"/></svg>`,
                 menu: [
-                    { id: 'ai_concierge', title: '✨ Assistente de IA', icon: 'fa-wand-magic-sparkles', desc: 'Roteiros e dúvidas locais' },
                     { id: 'wifi', title: 'Senha do Wifi', icon: 'fa-wifi', desc: 'Rede e conexão' },
                     { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes e visitas' },
                     { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
@@ -476,7 +472,6 @@
                 icon: "fa-kiwi-bird",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90l30-50 15 20 25-35 15 65z"/></svg>`,
                 menu: [
-                    { id: 'ai_concierge', title: '✨ Assistente de IA', icon: 'fa-wand-magic-sparkles', desc: 'Roteiros e dúvidas locais' },
                     { id: 'wifi', title: 'Senha do Wifi', icon: 'fa-wifi', desc: 'Rede e conexão' },
                     { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes e visitas' },
                     { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
@@ -582,7 +577,6 @@
                 icon: "fa-water",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M30 20s15 10 30 0 30 10 50 0v50H10V20z"/><circle cx='50' cy='40' r='12'/></svg>`,
                 menu: [
-                    { id: 'ai_concierge', title: '✨ Assistente de IA', icon: 'fa-wand-magic-sparkles', desc: 'Roteiros e dúvidas locais' },
                     { id: 'wifi', title: 'Senha do Wifi', icon: 'fa-wifi', desc: 'Rede e conexão' },
                     { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes básicas' },
                     { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
@@ -662,8 +656,7 @@
         const APP_STATE = {
             currentScreen: 'selection',
             selectedApartment: null,
-            currentCategory: null,
-            activeAITab: 'chat'
+            currentCategory: null
         };
 
         // ELEMENTOS DOM
@@ -686,7 +679,7 @@
             setupServiceWorker();
         });
 
-        // TELA 1: Renderizar Lista de Apartamentos para Seleção (Com Capa Premium)
+        // TELA 1: Renderizar Lista de Apartamentos para Seleção (Com Capa Premium, sem os ícones nos cantos)
         function renderApartmentSelection() {
             apartmentsList.innerHTML = '';
             APARTMENTS.forEach(apt => {
@@ -694,7 +687,6 @@
                 card.className = `group relative overflow-hidden bg-brand-charcoal rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-500 transform hover:-translate-y-1 flex flex-col justify-between h-40`;
                 card.onclick = () => selectApartment(apt);
                 
-                // Elementos de Capa e Overlay dinâmico
                 card.innerHTML = `
                     <!-- Imagem de Capa do Apartamento com efeito Zoom-hover -->
                     <img src="${apt.image}" alt="Capa do ${apt.name}" 
@@ -704,17 +696,14 @@
                     <!-- Overlay de gradiente luxo escuro que garante legibilidade excelente das letras -->
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent z-10"></div>
                     
-                    <div class="z-20 flex justify-between items-start">
+                    <div class="z-20 flex justify-between items-start w-full">
                         <div>
                             <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold/80 text-brand-dark px-2 py-0.5 rounded-full shadow-sm">${apt.city}</span>
                             <h3 class="text-base font-extrabold mt-1.5 tracking-tight text-white group-hover:text-brand-gold transition-colors">${apt.name}</h3>
                         </div>
-                        <div class="bg-brand-dark/60 text-brand-gold w-8 h-8 rounded-lg flex items-center justify-center border border-brand-gold/25 backdrop-blur-sm">
-                            <i class="fa-solid ${apt.icon} text-xs"></i>
-                        </div>
                     </div>
                     
-                    <div class="z-20 flex items-center justify-between mt-2 pt-2 border-t border-white/10">
+                    <div class="z-20 flex items-center justify-between mt-2 pt-2 border-t border-white/10 w-full">
                         <span class="text-[11px] text-slate-200 line-clamp-1 max-w-[80%] font-medium">${apt.tagline}</span>
                         <span class="bg-brand-gold text-brand-dark w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold group-hover:translate-x-1 transition-transform">
                             <i class="fa-solid fa-arrow-right"></i>
@@ -761,22 +750,16 @@
             screenDetail.classList.add('hidden');
         }
 
-        // TELA 2: Renderizar Botões do Menu Principal
+        // TELA 2: Renderizar Botões do Menu Principal (Sem recursos de IA)
         function renderMenuButtons(apt) {
             menuButtonsGrid.innerHTML = '';
             apt.menu.forEach(cat => {
                 const btn = document.createElement('button');
-                
-                const isAI = cat.id === 'ai_concierge';
-                const aiClasses = isAI ? 'border-amber-200 bg-amber-50/40 hover:bg-amber-50' : 'bg-slate-50 border-slate-100 hover:border-slate-200';
-                
-                btn.className = `p-4 flex flex-col justify-between items-start text-left border rounded-2xl hover:shadow-sm transition-all duration-300 h-26 group relative overflow-hidden ${aiClasses}`;
+                btn.className = `p-4 flex flex-col justify-between items-start text-left bg-slate-50 border border-slate-100 rounded-2xl hover:border-slate-200 hover:shadow-sm transition-all duration-300 h-26 group relative overflow-hidden`;
                 btn.onclick = () => openCategory(cat.id);
                 
-                const iconBg = isAI ? 'bg-amber-100 text-amber-600' : 'bg-white text-slate-600 dynamic-icon border border-slate-100';
-                
                 btn.innerHTML = `
-                    <div class="p-2 rounded-lg shadow-sm transition-all ${iconBg}">
+                    <div class="p-2 rounded-lg bg-white text-slate-600 border border-slate-100 shadow-sm transition-all dynamic-icon">
                         <i class="fa-solid ${cat.icon} text-xs"></i>
                     </div>
                     <div class="mt-2">
@@ -796,7 +779,6 @@
             const apt = APP_STATE.selectedApartment;
             
             const subtitles = {
-                ai_concierge: "Inteligência Artificial para roteiros e dúvidas da casa",
                 wifi: "Como se conectar ao sinal de internet local",
                 rules: "Garantindo uma estadia agradável para todos",
                 arrival: "Passo a passo para chegar ao imóvel",
@@ -811,7 +793,7 @@
             };
 
             const catTitles = {
-                ai_concierge: 'Assistente Virtual ✨', wifi: 'Senha do Wifi', rules: 'Regras da Casa', arrival: 'Como Chegar',
+                wifi: 'Senha do Wifi', rules: 'Regras da Casa', arrival: 'Como Chegar',
                 checkin: 'Check-in', restaurants: 'Restaurantes', shopping: 'Compras/Lojas', 
                 leisure: 'Lazer e Passeios', general_info: 'Informações Gerais',
                 emergency: 'Contatos Úteis', info: 'Mais Informações', checkout: 'Check-out',
@@ -827,327 +809,10 @@
             screenDetail.classList.remove('hidden');
         }
 
-        // FUNÇÃO DE BACKOFF EXPONENCIAL PARA CHAMADAS DO GEMINI
-        async function fetchGeminiWithBackoff(userQuery, systemPrompt) {
-            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] }
-            };
-
-            let delay = 1000;
-            for (let i = 0; i < 5; i++) {
-                try {
-                    const response = await fetch(endpoint, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const result = await response.json();
-                    return result.candidates?.[0]?.content?.parts?.[0]?.text;
-                } catch (error) {
-                    if (i === 4) throw error;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    delay *= 2;
-                }
-            }
-        }
-
-        // FORMATADOR DE RESPOSTA DA IA
-        function formatAIResponse(text) {
-            text = text.replace(/### (.*?)\n/g, '<h4 class="font-extrabold text-xs text-slate-800 mt-3 mb-1">$1</h4>');
-            text = text.replace(/## (.*?)\n/g, '<h3 class="font-extrabold text-sm text-slate-900 mt-4 mb-2">$1</h3>');
-            text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-950">$1</strong>');
-            text = text.replace(/^\s*[-*]\s+(.*?)$/gm, '<li class="ml-4 list-disc text-slate-600 mt-1 font-semibold">$1</li>');
-            text = text.replace(/\n\n/g, '</p><p class="text-[11px] text-slate-600 leading-relaxed font-semibold mt-2.5">');
-            return `<p class="text-[11px] text-slate-600 leading-relaxed font-semibold">${text}</p>`;
-        }
-
-        window.switchAITab = function(tabName) {
-            APP_STATE.activeAITab = tabName;
-            const chatBtn = document.getElementById('tab-ai-chat');
-            const itineraryBtn = document.getElementById('tab-ai-itinerary');
-            const chatContainer = document.getElementById('ai-chat-container');
-            const itineraryContainer = document.getElementById('ai-itinerary-container');
-
-            if (tabName === 'chat') {
-                chatBtn.className = "flex-1 pb-2 text-center text-xs font-bold border-b-2 border-slate-900 text-slate-900";
-                itineraryBtn.className = "flex-1 pb-2 text-center text-xs font-bold border-b-2 border-transparent text-slate-400";
-                chatContainer.classList.remove('hidden');
-                itineraryContainer.classList.add('hidden');
-            } else {
-                chatBtn.className = "flex-1 pb-2 text-center text-xs font-bold border-b-2 border-transparent text-slate-400";
-                itineraryBtn.className = "flex-1 pb-2 text-center text-xs font-bold border-b-2 border-slate-900 text-slate-900";
-                chatContainer.classList.add('hidden');
-                itineraryContainer.classList.remove('hidden');
-            }
-        };
-
-        window.sendAIChatMessage = async function() {
-            const input = document.getElementById('ai-chat-input');
-            const query = input.value.trim();
-            if (!query) return;
-
-            input.value = '';
-            appendChatMessage('user', query);
-            await getAIConciergeResponse(query);
-        };
-
-        window.sendPresetAIChat = async function(presetText) {
-            appendChatMessage('user', presetText);
-            await getAIConciergeResponse(presetText);
-        };
-
-        function appendChatMessage(sender, text) {
-            const box = document.getElementById('chat-messages-box');
-            const messageDiv = document.createElement('div');
-            
-            if (sender === 'user') {
-                messageDiv.className = "flex justify-end fade-in";
-                messageDiv.innerHTML = `
-                    <div class="bg-slate-900 text-white rounded-2xl rounded-tr-none px-4 py-2.5 max-w-[85%] shadow-sm">
-                        <p class="text-[11px] font-semibold leading-relaxed">${text}</p>
-                    </div>
-                `;
-            } else {
-                messageDiv.className = "flex justify-start fade-in";
-                messageDiv.innerHTML = `
-                    <div class="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[85%] border border-slate-200/60">
-                        <span class="text-[9px] uppercase font-bold tracking-wider text-amber-500 block mb-1">✨ Assistente Meu Lugar</span>
-                        <div class="text-[11px] font-semibold leading-relaxed space-y-1.5">${text}</div>
-                    </div>
-                `;
-            }
-            box.appendChild(messageDiv);
-            box.scrollTop = box.scrollHeight;
-        }
-
-        async function getAIConciergeResponse(query) {
-            const apt = APP_STATE.selectedApartment;
-            const box = document.getElementById('chat-messages-box');
-            
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = "flex justify-start fade-in";
-            loadingDiv.id = "ai-loading-bubble";
-            loadingDiv.innerHTML = `
-                <div class="bg-amber-50/50 text-amber-700 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[85%] border border-amber-100 flex items-center gap-2">
-                    <i class="fa-solid fa-circle-notch animate-spin text-xs"></i>
-                    <span class="text-[10px] font-bold">✨ Consultando guia...</span>
-                </div>
-            `;
-            box.appendChild(loadingDiv);
-            box.scrollTop = box.scrollHeight;
-
-            const systemPrompt = `
-Você é a IA Concierge ✨ da 'Meu Lugar Hospedagem'. Seu objetivo é acolher e ajudar o hóspede de forma extremamente simpática e educada.
-Você está prestando suporte especificamente para o hóspede do: "${apt.name}" localizado em: "${apt.city}".
-
-Aqui estão todas as informações oficiais do apartamento:
-- Senha do Wifi: Rede "${apt.content.wifi.network}" / Senha "${apt.content.wifi.password}". Instruções adicionais: "${apt.content.wifi.instructions}".
-- Endereço completo do prédio: "${apt.content.arrival.address}". Dicas de trajeto: "${apt.content.arrival.instructions}".
-- Regras de Check-in: "${apt.content.checkin.items.map(i => `${i.title}: ${i.desc}`).join(' | ')}".
-- Horário de Check-out: Limite até "${apt.content.checkout.time}". Regras adicionais: "${apt.content.checkout.rules.map(r => `${r.title}: ${r.desc}`).join(' | ')}".
-- Regras de convivência gerais da casa: "${apt.content.rules.items.join('; ')}". ${apt.content.rules.sections ? JSON.stringify(apt.content.rules.sections) : ''}.
-- Informações gerais e áreas de lazer do condomínio: "${apt.content.general_info.items.map(i => `${i.title}: ${i.desc}`).join(' | ')}".
-- Sugestões de compras e padarias locais: "${apt.content.shopping.items.map(i => `${i.name}: ${i.desc} (Distância indicada: ${i.dist})`).join(' | ')}".
-
-Instruções fundamentais:
-1. Responda SEMPRE em Português do Brasil (PT-BR).
-2. Seja conciso, amigável e direto.
-3. Se o hóspede perguntar algo fora deste escopo, dê sugestões criativas baseando-se especificamente no bairro onde ele está localizado (Brooklin, Moema ou Pinheiros).
-4. Se ele mencionar problemas na estadia ou plataformas, saiba que aceitamos reservas tanto pelo Airbnb quanto pela Booking.com. Oriente-o a chamar o anfitrião no chat oficial da plataforma usada se for necessário um suporte humano.
-            `;
-
-            try {
-                const response = await fetchGeminiWithBackoff(query, systemPrompt);
-                const formatted = formatAIResponse(response);
-                document.getElementById('ai-loading-bubble')?.remove();
-                appendChatMessage('ai', formatted);
-            } catch (error) {
-                document.getElementById('ai-loading-bubble')?.remove();
-                appendChatMessage('ai', '<p class="text-rose-600 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Ocorreu um problema ao processar seu pedido na IA. Por favor, tente novamente.</p>');
-            }
-        }
-
-        window.generateAIItinerary = async function() {
-            const apt = APP_STATE.selectedApartment;
-            const vibe = document.getElementById('itinerary-vibe').value;
-            const duration = document.getElementById('itinerary-duration').value;
-            const companion = document.getElementById('itinerary-companion').value;
-
-            const outputCard = document.getElementById('itinerary-output');
-            const textContainer = document.getElementById('itinerary-text-container');
-            const generateBtn = document.getElementById('btn-itinerary-generate');
-
-            generateBtn.disabled = true;
-            generateBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Planejando sua estadia...';
-
-            outputCard.classList.remove('hidden');
-            textContainer.innerHTML = `
-                <div class="space-y-3 animate-pulse">
-                    <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-                    <div class="h-3 bg-slate-200 rounded"></div>
-                    <div class="h-3 bg-slate-200 rounded w-5/6"></div>
-                </div>
-            `;
-
-            const query = `Crie o roteiro ideal.`;
-            const systemPrompt = `
-Você é o Guia Turístico Inteligente ✨ da 'Meu Lugar Hospedagem'.
-Crie um roteiro de viagem personalizado sensacional para um hóspede hospedado no: "${apt.name}" (localizado no bairro de ${apt.city}).
-
-Perfil do Hóspede Selecionado:
-- Vibração / Foco desejado: ${vibe}
-- Duração da Estadia: ${duration}
-- Estilo do grupo / Companhia: ${companion}
-
-Diretrizes de Resposta:
-1. Monte um itinerário dia a dia de forma super organizada e limpa.
-2. Indique pontos de interesse reais, autênticos e de excelente reputação localizados próximos ou de fácil acesso a partir de ${apt.city}.
-3. Escreva estritamente em Português do Brasil de forma calorosa e acolhedora! Mencione que ele pode aproveitar a estadia sabendo que reservou pelo Airbnb ou Booking.com de maneira totalmente segura e confortável.
-            `;
-
-            try {
-                const response = await fetchGeminiWithBackoff(query, systemPrompt);
-                const formatted = formatAIResponse(response);
-                textContainer.innerHTML = formatted;
-                window.lastGeneratedItineraryText = response;
-            } catch (error) {
-                textContainer.innerHTML = `
-                    <p class="text-rose-600 font-bold text-xs"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Não conseguimos conectar ao planejador. Tente novamente.</p>
-                `;
-            } finally {
-                generateBtn.disabled = false;
-                generateBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Planejar Estadia';
-            }
-        };
-
-        window.copyItineraryToClipboard = function() {
-            if (window.lastGeneratedItineraryText) {
-                copyToClipboard(window.lastGeneratedItineraryText, 'Roteiro de viagem copiado!');
-            }
-        };
-
         // RENDERIZADOR ESPECÍFICO DE CONTEÚDO
         function renderDetailContent(catId, apt) {
             detailContent.innerHTML = '';
             
-            if (catId === 'ai_concierge') {
-                detailContent.innerHTML = `
-                    <div class="space-y-4">
-                        <!-- Abas de Navegação -->
-                        <div class="flex border-b border-slate-200">
-                            <button onclick="switchAITab('chat')" id="tab-ai-chat" class="flex-1 pb-2.5 text-center text-xs font-bold border-b-2 border-slate-900 text-slate-900 transition-all focus:outline-none">
-                                <i class="fa-solid fa-comments mr-1 text-amber-500"></i> Chat Concierge
-                            </button>
-                            <button onclick="switchAITab('itinerary')" id="tab-ai-itinerary" class="flex-1 pb-2.5 text-center text-xs font-bold border-b-2 border-transparent text-slate-400 transition-all focus:outline-none">
-                                <i class="fa-solid fa-compass mr-1 text-indigo-500"></i> Criar Roteiro
-                            </button>
-                        </div>
-
-                        <!-- 1. Conteúdo: CHAT CONCIERGE -->
-                        <div id="ai-chat-container" class="space-y-4 fade-in">
-                            <div class="bg-amber-50 border border-amber-200/60 p-3.5 rounded-xl text-[11px] font-semibold text-amber-800 leading-relaxed flex items-start gap-2.5">
-                                <i class="fa-solid fa-sparkles text-amber-600 text-sm mt-0.5"></i>
-                                <p>Olá! Sou sua inteligência artificial. Pergunte-me qualquer dúvida sobre a rede wifi, regras do condomínio, check-out ou locais legais de São Paulo!</p>
-                            </div>
-
-                            <div id="chat-messages-box" class="h-64 bg-slate-50 border border-slate-100 rounded-2xl p-4 overflow-y-auto no-scrollbar space-y-4">
-                                <div class="flex justify-start">
-                                    <div class="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[85%] border border-slate-200/60">
-                                        <span class="text-[9px] uppercase font-bold tracking-wider text-amber-500 block mb-1">✨ Assistente Meu Lugar</span>
-                                        <p class="text-[11px] font-semibold leading-relaxed">Olá! Como posso te ajudar hoje em sua hospedagem?</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-                                <button onclick="sendPresetAIChat('Qual a senha do Wifi?')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold py-1.5 px-3 rounded-full shrink-0 border border-slate-200/50">
-                                    📶 Senha Wifi
-                                </button>
-                                <button onclick="sendPresetAIChat('Quais são as regras básicas do condomínio?')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold py-1.5 px-3 rounded-full shrink-0 border border-slate-200/50">
-                                    📋 Regras da Casa
-                                </button>
-                                <button onclick="sendPresetAIChat('Onde posso fazer compras perto do prédio?')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold py-1.5 px-3 rounded-full shrink-0 border border-slate-200/50">
-                                    🛒 Mercados Perto
-                                </button>
-                                <button onclick="sendPresetAIChat('Que horas preciso fazer check-out?')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold py-1.5 px-3 rounded-full shrink-0 border border-slate-200/50">
-                                    🕒 Checkout Limite
-                                </button>
-                            </div>
-
-                            <div class="flex gap-2">
-                                <input type="text" id="ai-chat-input" placeholder="Escreva sua dúvida..." 
-                                       class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:bg-white"
-                                       onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
-                                <button onclick="sendAIChatMessage()" class="bg-slate-900 hover:bg-slate-950 text-white p-3 rounded-xl transition-all shadow-md">
-                                    <i class="fa-solid fa-paper-plane text-xs"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- 2. Conteúdo: PLANEJADOR DE ROTEIRO -->
-                        <div id="ai-itinerary-container" class="hidden space-y-4 fade-in">
-                            <div class="bg-indigo-50 border border-indigo-100 p-3.5 rounded-xl text-[11px] font-semibold text-indigo-800 leading-relaxed flex items-start gap-2.5">
-                                <i class="fa-solid fa-compass text-indigo-500 text-sm mt-0.5"></i>
-                                <p>Personalize os filtros de sua viagem para criar um cronograma turístico exclusivo perto da região da sua hospedagem!</p>
-                            </div>
-
-                            <div class="space-y-3 bg-slate-50 border border-slate-100 p-4 rounded-2xl">
-                                <div>
-                                    <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">O que quer ver? (Vibe)</label>
-                                    <select id="itinerary-vibe" class="w-full bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-semibold text-slate-700 focus:outline-none">
-                                        <option value="Gastronomia (Melhores cafés, bares e restaurantes)">🍽️ Gastronomia e Café da Manhã</option>
-                                        <option value="Atrações Culturais e Galerias de Arte">🎨 Cultura, Exposições e Arte</option>
-                                        <option value="Pontos de Natureza, Parques e Lazer Externo">🌳 Parques e Lazer ao Ar Livre</option>
-                                        <option value="Centros de Compras, Lojas Estilosas e Mercados">🛍️ Compras e Lojas Autênticas</option>
-                                        <option value="Vida Noturna, Pubs e Música ao Vivo">🍹 Vida Noturna e Coquetelaria</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">Duração da Programação</label>
-                                    <select id="itinerary-duration" class="w-full bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-semibold text-slate-700 focus:outline-none">
-                                        <option value="Roteiro prático de 1 dia">☀️ Programação de 1 dia</option>
-                                        <option value="Roteiro de fim de semana completo">🗓️ Programação de Fim de Semana</option>
-                                        <option value="Roteiro sob medida de 3 dias">🎒 Programação de 3 dias</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">Como você está viajando?</label>
-                                    <select id="itinerary-companion" class="w-full bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-semibold text-slate-700 focus:outline-none">
-                                        <option value="Viajando sozinho(a) em busca de novos caminhos">👤 Sozinho(a)</option>
-                                        <option value="Viajando em casal para uma estadia romântica">❤️ Em casal</option>
-                                        <option value="Viajando em família com crianças">👨‍👩‍👧 Em família</option>
-                                    </select>
-                                </div>
-
-                                <button id="btn-itinerary-generate" onclick="generateAIItinerary()" class="w-full bg-slate-900 hover:bg-slate-950 text-white text-xs font-bold py-3 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Planejar Estadia
-                                </button>
-                            </div>
-
-                            <div id="itinerary-output" class="hidden bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-3 fade-in">
-                                <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                                    <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400 flex items-center gap-1">
-                                        <i class="fa-solid fa-sparkles text-amber-500"></i> Roteiro Gerado
-                                    </span>
-                                    <button onclick="copyItineraryToClipboard()" class="text-[10px] text-slate-600 hover:text-slate-800 font-bold flex items-center gap-1">
-                                        <i class="fa-solid fa-copy"></i> Copiar Roteiro
-                                    </button>
-                                </div>
-                                <div id="itinerary-text-container" class="space-y-2"></div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-
             const data = apt.content[catId];
             if (!data) {
                 detailContent.innerHTML = `<p class="text-xs text-slate-400 font-semibold">Nenhuma informação cadastrada nesta categoria.</p>`;
@@ -1432,11 +1097,11 @@ Diretrizes de Resposta:
         function setupServiceWorker() {
             if ('serviceWorker' in navigator) {
                 const swContent = `
-                    const CACHE_NAME = 'meu-lugar-guide-v8';
+                    const CACHE_NAME = 'meu-lugar-guide-v9';
                     self.addEventListener('install', event => {
                         event.waitUntil(
                             caches.open(CACHE_NAME).then(cache => {
-                                return cache.addAll(['/', '/logo.png', '/saoppaulo.png', '/passaros.png', '/azure.png']);
+                                return cache.addAll(['/', '/logo.png', '/saopaulo.png', '/passaros.png', '/azure.png']);
                             }).catch(() => {})
                         );
                     });
