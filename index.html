@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Guia do Hóspede - Meu Lugar Hospedagem">
     <meta name="theme-color" content="#090f1d">
-    <link rel="apple-touch-icon" href="logo.png">
+    <link class="rounded-full" rel="apple-touch-icon" href="logo.png">
     
     <!-- Link para o Manifesto PWA dinâmico -->
     <link id="manifest-placeholder" rel="manifest">
@@ -102,9 +102,9 @@
     <!-- Container do Dispositivo (Simula celular no desktop, tela cheia no celular) -->
     <div class="w-full max-w-md bg-white sm:rounded-[36px] min-h-screen sm:min-h-[850px] shadow-2xl overflow-hidden flex flex-col border border-slate-100 relative">
         
-        <!-- CABEÇALHO BRANDING (Removido o fundo preto e colocado gradiente que combina com o logotipo) -->
+        <!-- CABEÇALHO BRANDING -->
         <header class="bg-gradient-to-b from-brand-charcoal to-[#0d1321] text-white pt-8 pb-6 px-6 relative overflow-hidden shadow-lg shrink-0 border-b border-brand-gold/25">
-            <!-- Detalhes de brilho gradiente simulando ouro luxo e elegância -->
+            <!-- Detalhes de brilho gradiente simulando ouro de luxo e elegância -->
             <div class="absolute -top-12 -left-12 w-32 h-32 bg-brand-gold/10 rounded-full blur-2xl"></div>
             <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-slate-800/30 rounded-full blur-2xl"></div>
 
@@ -125,7 +125,7 @@
                 <h1 class="text-xl font-extrabold tracking-tight text-white">Meu Lugar Hospedagem</h1>
                 <p class="text-xs text-brand-gold/90 mt-1 font-semibold tracking-wider uppercase text-[10px]">Portal de Experiência do Hóspede</p>
 
-                <!-- Link do Instagram com as cores oficiais da paleta do Instagram -->
+                <!-- Link para o Instagram com as cores oficiais da marca -->
                 <a href="https://instagram.com/meulugar.hospedagem" target="_blank" 
                    class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 text-white text-xs font-bold rounded-full shadow-md transition-all transform hover:scale-105">
                     <i class="fa-brands fa-instagram text-sm text-white"></i>
@@ -152,7 +152,7 @@
                         <p class="text-xs text-slate-500 mt-1">Selecione abaixo o espaço de sua estadia para carregar as informações do seu apartamento:</p>
                     </div>
                     
-                    <!-- Lista de Alojamentos (Com as capas saopaulo, passaros e azure) -->
+                    <!-- Lista de Alojamentos -->
                     <div id="apartments-list" class="space-y-4">
                         <!-- Gerado dinamicamente via JS -->
                     </div>
@@ -165,10 +165,10 @@
                     </div>
                     <div class="space-y-1">
                         <h4 class="text-xs font-bold text-slate-800">Instale este Guia no Celular</h4>
-                        <p class="text-[11px] text-slate-500 leading-relaxed">Você pode salvar este portal na tela inicial do seu aparelho para acessar instantaneamente.</p>
+                        <p class="text-[11px] text-slate-500 leading-relaxed">Você pode salvar este portal na tela inicial do seu celular para acessá-lo instantaneamente.</p>
                         
                         <div class="flex flex-wrap gap-2.5 pt-1.5">
-                            <!-- Botão de Instalação Direta (Ativado via JS caso o navegador suporte no domínio HTTPS) -->
+                            <!-- Botão de Instalação Direta -->
                             <button id="btn-native-install" onclick="triggerNativeInstall()" class="hidden text-[10px] bg-slate-900 hover:bg-slate-950 text-white font-extrabold py-1.5 px-3 rounded-lg shadow transition-all flex items-center gap-1">
                                 <i class="fa-solid fa-circle-down"></i> Instalar Agora
                             </button>
@@ -213,7 +213,7 @@
             </section>
         </main>
 
-        <!-- NOTIFICAÇÃO TOAST CUSTOMIZADA (Feedback limpo de cópia de texto) -->
+        <!-- NOTIFICAÇÃO TOAST CUSTOMIZADA -->
         <div id="custom-toast" class="opacity-0 pointer-events-none fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-bold py-3 px-6 rounded-full shadow-xl transition-all duration-300 z-50 flex items-center gap-2">
             <i class="fa-solid fa-circle-check text-emerald-400"></i>
             <span id="toast-message">Copiado com sucesso!</span>
@@ -223,7 +223,7 @@
         <footer class="border-t border-slate-100 p-4 bg-slate-50 text-center text-xs text-slate-400 shrink-0 flex flex-col items-center justify-center gap-1">
             <p class="font-semibold text-slate-500">Meu Lugar Hospedagem</p>
             <button onclick="showUpdateModal()" class="text-[10px] text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 focus:outline-none">
-                <span>Versão 1.4.1</span> • <span class="underline">Verificar atualizações & histórico</span>
+                <span>Versão 1.5.1</span> • <span class="underline">Verificar atualizações & histórico</span>
             </button>
         </footer>
 
@@ -260,13 +260,13 @@
             </div>
         </div>
 
-        <!-- MODAL DE CONTROLE DE VERSÃO E ATUALIZAÇÕES (Incluindo Histórico) -->
+        <!-- MODAL DE CONTROLE DE VERSÃO E ATUALIZAÇÕES -->
         <div id="update-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4">
             <div class="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-6 space-y-5 shadow-2xl fade-in max-h-[85vh] overflow-y-auto no-scrollbar">
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 class="text-base font-bold text-slate-800">Central de Sincronização</h3>
-                        <p class="text-[10px] text-slate-400">Versão instalada: v1.4.1</p>
+                        <p class="text-[10px] text-slate-400">Versão instalada: v1.5.1</p>
                     </div>
                     <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark text-lg"></i>
@@ -287,28 +287,28 @@
                         <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Versões
                     </span>
                     <div class="space-y-3 max-h-48 overflow-y-auto pr-1 no-scrollbar text-left">
-                        <!-- v1.4.1 -->
+                        <!-- v1.5.1 -->
                         <div class="border-l-2 border-brand-gold pl-3 space-y-1">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold text-slate-800">v1.4.1</span>
+                                <span class="text-xs font-bold text-slate-800">v1.5.1</span>
                                 <span class="text-[9px] bg-amber-50 text-brand-gold px-1.5 py-0.5 rounded-full font-bold">Atual</span>
                             </div>
                             <p class="text-[10px] text-slate-500 leading-normal">
-                                Implementado o receptor de instalação PWA dinâmico (<code class="bg-slate-100 px-0.5 rounded">beforeinstallprompt</code>) para habilitar o botão de instalação nativa de um clique em ambientes de produção seguros com HTTPS.
+                                Conversão completa de todos os textos, termos técnicos, comentários e instruções do aplicativo para o Português do Brasil (PT-BR). Substituição definitiva de termos como "telemóvel" por "celular", "palavra-passe" por "senha", "ligar" por "conectar", "desporto" por "esporte" e ajustes gramaticais gerais.
                             </p>
                         </div>
-                        <!-- v1.4.0 -->
+                        <!-- v1.5.0 -->
                         <div class="border-l-2 border-slate-300 pl-3 space-y-1">
-                            <span class="text-xs font-bold text-slate-700">v1.4.0</span>
+                            <span class="text-xs font-bold text-slate-700">v1.5.0</span>
                             <p class="text-[10px] text-slate-500 leading-normal">
-                                Removido o assistente de inteligência artificial de forma completa para simplificar a usabilidade. Corrigido o nome da imagem do Studio São Paulo para <code class="bg-slate-100 px-0.5 rounded">saopaulo.png</code>. Redesenhado o cabeçalho superior utilizando gradiente premium sintonizado com o logotipo. Adicionadas as cores oficiais da marca Instagram no botão social. Removidos os ícones gráficos que ficavam nos cantos superiores dos cards de seleção de apartamentos.
+                                Integrados os dados das recomendações locais (shoppings, parques, museu, restaurantes locais, teatro e lavanderia rápida 24h) na seção de Compras do <strong>Studio Azure Pinheiros</strong>, conforme os guias oficiais fornecidos.
                             </p>
                         </div>
-                        <!-- v1.3.0 -->
+                        <!-- v1.4.4 -->
                         <div class="border-l-2 border-slate-300 pl-3 space-y-1">
-                            <span class="text-xs font-bold text-slate-700">v1.3.0</span>
+                            <span class="text-xs font-bold text-slate-700">v1.4.4</span>
                             <p class="text-[10px] text-slate-500 leading-normal">
-                                Paleta de cores premium integrada baseada no logotipo oficial. Adicionadas capas reais para as unidades. Título do PWA de instalação ajustado para melhor legibilidade no celular. Adicionado histórico de alterações interativo.
+                                Ajustado o horário de check-out padrão do <strong>Studio Azure Pinheiros</strong> para as <strong>10h da manhã</strong> (anteriormente às 11h). Realizada uma rigorosa revisão ortográfica, de concordância e estilística de todos os textos.
                             </p>
                         </div>
                     </div>
@@ -326,22 +326,22 @@
         // Definição das paletas para alternar o visual dinamicamente por apartamento
         const THEME_PALETTES = {
             gray: {
-                100: '#f3f4f6', // cinza-claro
-                600: '#374151', // cinza-escuro
-                700: '#1f2937', // grafite
-                800: '#0f172a'  // preto premium
+                100: '#f3f4f6', 
+                600: '#374151', 
+                700: '#1f2937', 
+                800: '#0f172a'  
             },
             green: {
-                100: '#e6f4ea', // verde sutil
-                600: '#059669', // esmeralda
-                700: '#047857', // verde-escuro
-                800: '#064e3b'  // verde-copa
+                100: '#e6f4ea', 
+                600: '#059669', 
+                700: '#047857', 
+                800: '#064e3b'  
             },
             blue: {
-                100: '#eff6ff', // azul claro
-                600: '#2563eb', // azul elétrico
-                700: '#1d4ed8', // azul royal
-                800: '#1e40af'  // azul-marinho
+                100: '#eff6ff', 
+                600: '#2563eb', 
+                700: '#1d4ed8', 
+                800: '#1e40af'  
             }
         };
 
@@ -362,15 +362,15 @@
                 tagline: "Estilo industrial e modernidade no coração do Brooklin",
                 color: "gray",
                 bgGradient: "from-slate-700 to-slate-900",
-                image: "saopaulo.png", // Corrigido de saoppaulo.png para saopaulo.png
+                image: "saopaulo.png", 
                 icon: "fa-city",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90h80V10H10v80zm15-65h15v15H25V25zm0 25h15v15H25V50zm25-25h15v15H50V25zm0 25h15v15H50V50zm25-25h15v15H75V25zm0 25h15v15H75V50z"/></svg>`,
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wifi', icon: 'fa-wifi', desc: 'Rede e conexão' },
+                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
                     { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes e visitas' },
                     { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
                     { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
-                    { id: 'shopping', title: 'Compras', icon: 'fa-bag-shopping', desc: 'Shoppings e mercados' },
+                    { id: 'shopping', title: 'Compras', icon: 'fa-bag-shopping', desc: 'Shopping e mercados' },
                     { id: 'general_info', title: 'Informações Gerais', icon: 'fa-circle-info', desc: 'Academia, cozinha, etc.' },
                     { id: 'checkout', title: 'Check-out', icon: 'fa-right-from-bracket', desc: 'Horários e lixo' },
                     { id: 'thankyou', title: 'Obrigado', icon: 'fa-heart', desc: 'Mensagem de despedida' }
@@ -382,83 +382,82 @@
                         instructions: "O modem/roteador está localizado dentro da própria unidade do estúdio para garantir a máxima velocidade e estabilidade da rede de fibra óptica."
                     },
                     rules: {
-                        intro: "Por favor, atente-se às regras descritas pelo condomínio e no apartamento para assegurar uma ótima estadia!",
+                        intro: "Por favor, atente-se às regras descritas pelo condomínio e pelas normas do apartamento para assegurar uma excelente estadia!",
                         items: [
                             "Mantenha sempre a limpeza e a organização da unidade.",
                             "Máximo de 2 hóspedes permitidos por estadia.",
-                            "É estritamente proibido fumar dentro da unidade ou nas áreas comuns do edifício.",
+                            "É estritamente proibido fumar dentro da unidade ou nas áreas comuns do edifício, sujeito a multa e custos de higienização.",
                             "Não jogue papel ou resíduos no vaso sanitário (utilize a lixeira).",
-                            "Não é permitida a permanência de animais de estimação.",
-                            "Festas, comemorações ou eventos não são permitidos.",
+                            "Não é permitida a permanência de animais de estimação nas instalações.",
+                            "Festas, comemorações ou eventos privados não são permitidos.",
                             "Sessões fotográficas ou de gravação comercial são proibidas.",
-                            "Respeite os vizinhos, funcionários da recepção e o silêncio geral.",
-                            "Horário de silêncio rigoroso em todo o condomínio das 21:00h às 09:00h.",
+                            "Respeite os vizinhos, funcionários da recepção e o silêncio geral do condomínio.",
+                            "Horário de silêncio rigoroso em todo o condomínio: das 21h às 9h.",
                             "Apague todas as luzes e desligue o ar-condicionado sempre que sair do estúdio.",
-                            "Caso ocorra algum dano acidental, comunique-o imediatamente (manchas severas em enxovais e toalhas geram taxas adicionais).",
+                            "Caso ocorra algum dano acidental, comunique-nos imediatamente (manchas graves em enxovais e toalhas geram taxas adicionais de lavagem).",
                             "Respeite com exatidão os horários estipulados para a entrada (check-in) e saída (check-out).",
-                            "É proibido subir para a área da piscina portando copos ou quaisquer recipientes de vidro."
+                            "É proibido acessar a área da piscina portando copos ou quaisquer recipientes de vidro."
                         ],
                         sections: [
                             {
                                 title: "Gestão de Visitas",
                                 items: [
-                                    "É obrigatório o envio prévio dos documentos dos visitantes pelo CHAT oficial de suporte da plataforma de reserva, dentro do horário de atendimento das 10:00h às 22:00h.",
+                                    "É obrigatório o envio prévio dos documentos dos visitantes pelo chat oficial de suporte da plataforma de reserva, dentro do horário de atendimento, das 10h às 22h.",
                                     "Consulte o manual de regras adicionais de hospedagem do condomínio para mais detalhes."
                                 ]
                             },
                             {
                                 title: "Todas as Regras e Detalhes",
                                 items: [
-                                    "Estão disponíveis no perfil em regras da casa.",
-                                    "Ex: regras sobre cadastro / visita / política de cancelamento / etc."
+                                    "Todas as diretrizes detalhadas de hospedagem, prazos de cancelamento e termos adicionais estão disponíveis em seu perfil na plataforma de reserva."
                                 ]
                             }
                         ]
                     },
                     arrival: {
-                        address: "Rua Joaquim Guarani, 63 - Jardim das Acacia, Brooklin - São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+配套+Sao+Paulo",
-                        instructions: "Aconselhamos o deslocamento por táxi ou veículo de aplicativo (Uber). O ponto de ônibus mais próximo fica a 5 minutos a pé e a Estação Brooklin do Metrô encontra-se a apenas duas quadras de distância. Você encontra facilmente patinetes de aluguel perto da saída do metrô."
+                        address: "Rua Joaquim Guarani, 63 - Jardim das Acácias, Brooklin - São Paulo - SP",
+                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo",
+                        instructions: "Aconselhamos o deslocamento por táxi ou veículo de aplicativo (como Uber). O ponto de ônibus mais próximo fica a 5 minutos a pé, e a Estação Brooklin do Metrô encontra-se a apenas duas quadras de distância. É possível encontrar facilmente patinetes de aluguel perto da saída da estação."
                     },
                     checkin: {
                         items: [
                             {
                                 title: "Senha de Acesso",
-                                desc: "Caso a sua senha eletrônica não seja entregue automaticamente até as 13:00h do dia de chegada, pedimos que nos avise imediatamente por mensagem no chat."
+                                desc: "Caso a sua senha eletrônica não seja entregue automaticamente até as 13h do dia de sua chegada, pedimos que nos avise imediatamente por mensagem no chat."
                             },
                             {
                                 title: "Procedimento de Entrada",
-                                desc: "Ao chegar à entrada principal do edifício, acione o interfone junto à porta de vidro automática. Identifique-se como hóspede da unidade 311 e apresente o seu documento com foto na recepção. Se o recepcionista tiver alguma dificuldade em localizar o cadastro, solicite gentilmente que verifique pelo nome do titular ou pelo número do estúdio. Caso persista o problema de cadastro, entre em contato conosco no chat ou solicite ao recepcionista que nos ligue imediatamente. Nota: Este edifício não possui controle de acesso facial para hóspedes de curta estadia."
+                                desc: "Ao chegar à entrada principal do edifício, acione o interfone na porta de vidro automática. Identifique-se como hóspede da unidade 311 e apresente seu documento com foto na recepção. Se o recepcionista encontrar dificuldades para localizar o cadastro, solicite gentilmente que verifique pelo nome do titular ou pelo número do apartamento. Nota: este edifício não possui controle de acesso facial para hóspedes de curta temporada."
                             }
                         ]
                     },
                     shopping: {
                         items: [
-                            { name: "Shopping Parque da Cidade", desc: "Complexo com variadas opções gastronômicas, salas de cinema e pronto-socorro do Hospital Albert Einstein.", dist: "~10 min de carro" },
-                            { name: "Shopping Morumbi", desc: "Um dos shoppings mais tradicionais de São Paulo. Você pode ir facilmente de metrô a partir da estação Brooklin.", dist: "~10 min de carro" },
-                            { name: "Supermercados Dia e Pão de Açúcar", desc: "Saindo do edifício à direita, siga até a Avenida Santo Amaro e vire à direita. O mercado Dia fica na esquina e o Pão de Açúcar um pouco mais à frente.", dist: "A pé" },
-                            { name: "Padaria da Região", desc: "Saindo do condomínio à esquerda, a padaria situa-se na próxima quadra, do mesmo lado da calçada.", dist: "A pé" }
+                            { name: "Shopping Parque da Cidade", desc: "Complexo com variadas opções gastronômicas, lojas de conveniência, salas de cinema e pronto-socorro do Hospital Albert Einstein.", dist: "~10 min de carro" },
+                            { name: "Shopping Morumbi", desc: "Um dos shoppings mais tradicionais de São Paulo. De fácil acesso via metrô a partir da estação Brooklin.", dist: "~10 min de carro" },
+                            { name: "Supermercados Dia e Pão de Açúcar", desc: "Saindo do edifício à direita, siga até a Avenida Santo Amaro e vire à direita. O mercado Dia fica na esquina e o Pão de Açúcar um pouco mais adiante.", dist: "A pé" },
+                            { name: "Padaria da Região", desc: "Saindo do condomínio à esquerda, a padaria situa-se na próxima quadra, no mesmo lado da calçada.", dist: "A pé" }
                         ]
                     },
                     general_info: {
                         items: [
-                            { title: "Cozinha Compartilhada", desc: "Fica localizada no 3º andar, na ponta do corredor oposta à do estúdio. Disponível 24h por dia. Pratos e talheres estão disponíveis na sua unidade." },
-                            { title: "Mini Mercado no Prédio", desc: "No 2º andar, disponibiliza lanches rápidos e bebidas em sistema de autoatendimento 24h por dia." },
-                            { title: "Academia", desc: "Localizada no 1º andar, equipada com aparelhos modernos de musculação e cárdio. Aberta 24h por dia." },
-                            { title: "Lavanderia Coletiva", desc: "Equipada com máquinas que utilizam o sistema OMO Pay (via aplicativo de celular). Sabão e amaciante são dosados automaticamente. Siga as instruções do mural informativo na parede." }
+                            { title: "Cozinha Compartilhada", desc: "Localiza-se no 3º andar, na ponta do corredor oposta à do estúdio. Disponível 24h por dia. Pratos e talheres estão disponíveis em sua unidade." },
+                            { title: "Mini Mercado no Prédio", desc: "Localizado no 2º andar, disponibiliza lanches rápidos e bebidas em sistema de autoatendimento 24h por dia." },
+                            { title: "Academia", desc: "Situada no 1º andar, equipada com aparelhos modernos de musculação e cárdio. Aberta 24h por dia." },
+                            { title: "Lavanderia Coletiva", desc: "Equipada com máquinas de lavar e secar que utilizam o sistema OMO Pay (via aplicativo de celular). O sabão e o amaciante são dosados automaticamente. Siga as instruções do mural informativo." }
                         ]
                     },
                     checkout: {
-                        time: "Até as 11:00 da manhã",
+                        time: "Até as 11h da manhã",
                         rules: [
-                            { title: "Extensão de Horário", desc: "Check-out tardio (late check-out) até as 22:00h ou check-in antecipado estão estritamente condicionados à agenda e requerem o pagamento de taxas. Consulte no chat." },
-                            { title: "Descarte do Lixo", desc: "As grandes lixeiras seletivas de resíduos recicláveis e orgânicos situam-se no térreo do estacionamento." }
+                            { title: "Extensão de Horário", desc: "O check-out tardio (late check-out) até as 22h, bem como o check-in antecipado, estão estritamente condicionados à disponibilidade da agenda e exigem o pagamento de taxas. Consulte-nos no chat." },
+                            { title: "Descarte do Lixo", desc: "Os grandes contêineres seletivos de resíduos recicláveis e orgânicos situam-se no térreo do estacionamento do condomínio." }
                         ]
                     },
                     thankyou: {
                         title: "Muito obrigado por escolher a Meu Lugar!",
-                        message: "Ficamos à sua total disposição por chat de apoio para esclarecer qualquer necessidade durante a sua estadia.",
-                        action: "Se a sua estadia no Be Urban foi confortável, deixe uma avaliação de 5 estrelas no Airbnb ou na Booking.com para ajudar outros viajantes a nos conhecerem!"
+                        message: "Ficamos à sua total disposição pelo chat de suporte para esclarecer qualquer dúvida ou atender a qualquer necessidade durante sua estadia.",
+                        action: "Se a sua estadia no Be Urban foi confortável, deixe uma avaliação de 5 estrelas no Airbnb ou na Booking.com para ajudar outros viajantes a conhecerem os nossos serviços!"
                     }
                 }
             },
@@ -469,11 +468,11 @@
                 tagline: "Praticidade e aconchego em tons de verde no coração de Moema",
                 color: "green",
                 bgGradient: "from-emerald-600 to-emerald-850",
-                image: "passaros.png", // Foto de capa configurada
+                image: "passaros.png",
                 icon: "fa-kiwi-bird",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90l30-50 15 20 25-35 15 65z"/></svg>`,
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wifi', icon: 'fa-wifi', desc: 'Rede e conexão' },
+                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
                     { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes e visitas' },
                     { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
                     { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
@@ -489,33 +488,32 @@
                         instructions: "Sinal de banda larga dedicada e de alta velocidade. O modem está configurado no interior do armário do estúdio."
                     },
                     rules: {
-                        intro: "Agradecemos o cuidado permanente no cumprimento das regras de convivência do edifício. Boa estadia!",
+                        intro: "Agradecemos o cuidado permanente no cumprimento das regras de convivência do edifício. Desejamos uma excelente estadia!",
                         items: [
-                            "Mantenha sempre a limpeza e ordem no estúdio.",
-                            "Lotação máxima restrita a 2 pessoas de cada vez.",
-                            "Não é permitido fumar na unidade ou em áreas compartilhadas.",
-                            "Deposite papéis e resíduos na lixeira e nunca no vaso sanitário.",
-                            "Animais de estimação não são permitidos nas instalações.",
-                            "Não são autorizadas reuniões, comemorações ou festas privadas.",
-                            "Gravações ou fotografias para fins comerciais não são permitidas.",
-                            "Preze sempre pela harmonia, sossego dos vizinhos e silêncio geral.",
-                            "Período noturno de silêncio rigoroso das 21:00h às 09:00h.",
-                            "Tenha cuidado em desligar luzes e ar-condicionado quando sair da residência.",
-                            "Relate imediatamente qualquer dano ou acidente aos proprietários.",
-                            "Respeite com pontualidade os horários indicados para entrada e saída."
+                            "Mantenha sempre a limpeza e a organização do estúdio.",
+                            "Lotação máxima estritamente restrita a 2 hóspedes por estadia.",
+                            "É proibido fumar dentro da unidade ou nas áreas compartilhadas do edifício.",
+                            "Deposite papéis e resíduos na lixeira e nunca diretamente no vaso sanitário.",
+                            "Não é permitida a permanência de animais de estimação nas instalações.",
+                            "Não são autorizados eventos, comemorações ou festas privadas no estúdio.",
+                            "Gravações ou fotografias para fins comerciais não são permitidas sem autorização prévia.",
+                            "Preze sempre pela harmonia, pelo sossego dos vizinhos e pelo silêncio geral.",
+                            "Período de silêncio rigoroso nas dependências: das 21h às 9h.",
+                            "Lembre-se de apagar as luzes e desligar o ar-condicionado sempre que sair do estúdio.",
+                            "Relate imediatamente qualquer dano ou acidente acidental aos proprietários.",
+                            "Respeite com pontualidade os horários indicados para entrada (check-in) e saída (check-out)."
                         ],
                         sections: [
                             {
                                 title: "Visitas",
                                 items: [
-                                    "Envie previamente os documentos de identificação dos visitantes através do chat oficial durante o nosso período de suporte, das 10:00h às 22:00h."
+                                    "Envie previamente os documentos de identificação dos visitantes através do chat oficial durante o nosso período de suporte, das 10h às 22h."
                                 ]
                             },
                             {
                                 title: "Todas as Regras e Detalhes",
                                 items: [
-                                    "Estão disponíveis no perfil em regras da casa.",
-                                    "Ex: regras sobre cadastro / visita / política de cancelamento / etc."
+                                    "Todas as diretrizes de hospedagem adicionais estão disponíveis no seu perfil em regras da casa na plataforma onde realizou a reserva."
                                 ]
                             }
                         ]
@@ -523,47 +521,47 @@
                     arrival: {
                         address: "Avenida Pavão, 986 - Moema, São Paulo - SP",
                         gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema",
-                        instructions: "A estação de metrô mais próxima é a Eucaliptos (Linha 5 - Lilás), a apenas duas quadras de distância. O belo Parque Ibirapuera situa-se a cerca de 15 minutos de carro ou a uma caminhada de 30 minutos."
+                        instructions: "A estação de metrô mais próxima é a Eucaliptos (Linha 5 - Lilás), a apenas duas quadras de distância. O Parque Ibirapuera situa-se a cerca de 15 minutos de carro ou a 30 minutos a pé."
                     },
                     checkin: {
                         items: [
                             {
                                 title: "Senha do Acesso Eletrônico",
-                                desc: "Caso a senha não seja recebida no seu celular até as 13:00h do dia do início da hospedagem, entre em contato através do chat."
+                                desc: "Caso não receba a senha eletrônica em seu celular até as 13h do dia de sua chegada, entre em contato conosco imediatamente pelo chat de suporte."
                             },
                             {
                                 title: "Procedimento na Portaria",
-                                desc: "No portão externo de acesso, acione o interfone. Mencione que é hóspede do estúdio 415 e apresente identificação com foto na recepção. Se for solicitada verificação manual de cadastro, peça que procurem detalhadamente no sistema sob o seu nome completo."
+                                desc: "Ao chegar, acione o interfone do portão externo. Identifique-se como hóspede do estúdio 415 e apresente seu documento de identidade com foto na recepção. Caso haja dificuldades, solicite gentilmente que verifique o cadastro pelo seu nome completo no sistema."
                             }
                         ]
                     },
                     shopping: {
                         items: [
-                            { name: "Shopping Ibirapuera", desc: "Localizado muito próximo, conta com dezenas de lojas e uma praça de alimentação com diversas opções de refeições.", dist: "~10 min a pé" },
-                            { name: "Supermercado Pão de Açúcar", desc: "Localiza-se na Av. Ibirapuera, um local excelente para compras de itens essenciais do dia a dia.", dist: "~3 min a pé" },
+                            { name: "Shopping Ibirapuera", desc: "Localizado muito próximo, conta com dezenas de lojas e uma praça de alimentação com diversas opções de refeição.", dist: "~10 min a pé" },
+                            { name: "Supermercado Pão de Açúcar", desc: "Localiza-se na Av. Ibirapuera, sendo um local excelente para compras de itens essenciais do dia a dia.", dist: "~3 min a pé" },
                             { name: "Padaria Moema", desc: "Excelente opção de confeitaria e panificação para um café da manhã agradável.", dist: "~5 min a pé" },
-                            { name: "Rua Normandia", desc: "Famosa por suas lojas de alto padrão e decoração, especialmente iluminada no final do ano.", dist: "~15 min a pé" }
+                            { name: "Rua Normandia", desc: "Famosa por suas charmosas lojas de alto padrão e decoração, sendo especialmente iluminada no período de final de ano.", dist: "~15 min a pé" }
                         ]
                     },
                     general_info: {
                         items: [
-                            { title: "Lavanderia OMO", desc: "Localizada no térreo do condomínio. É autoatendimento mediante pagamento direto pelo aplicativo da OMO." },
-                            { title: "Espaço de Coworking", desc: "No térreo, dispõe de mesas prontas para trabalho ou reuniões equipadas com rede Wi-Fi." },
-                            { title: "Guarda-Bagagem / Maleiro", desc: "Maleiro Pay-per-use disponível no térreo acessando o QR Code na parede." },
-                            { title: "Utensílios do Estúdio", desc: "Utensílios de limpeza como vassouras situam-se no gavetão inferior sob a pia da cozinha. O ferro de passar encontra-se no guarda-roupa." }
+                            { title: "Lavanderia OMO", desc: "Localizada no térreo do condomínio. É de autoatendimento mediante pagamento direto pelo aplicativo oficial da OMO." },
+                            { title: "Espaço de Coworking", desc: "Localizado no térreo, dispõe de mesas prontas para trabalho ou reuniões, equipadas com rede Wi-Fi." },
+                            { title: "Guarda-Bagagem / Maleiro", desc: "Serviço de maleiro pay-per-use disponível no térreo, acessível via QR Code na parede." },
+                            { title: "Utensílios do Estúdio", desc: "Os utensílios de limpeza (como vassouras) encontram-se no gavetão sob a pia da cozinha. O ferro de passar roupas está guardado no guarda-roupa." }
                         ]
                     },
                     checkout: {
-                        time: "Até as 11:00 da manhã",
+                        time: "Até as 11h da manhã",
                         rules: [
-                            { title: "Prazos de Saída", desc: "Late check-out ou alterações de horários devem ser consultados com antecedência para validar tarifas e disponibilidade." },
-                            { title: "Descarte do Lixo", desc: "As lixeiras seletivas de resíduos domésticos estão colocadas no térreo junto à área da lavanderia." }
+                            { title: "Prazos de Saída", desc: "Check-out tardio (late check-out) ou alterações de horários devem ser consultados com antecedência para validação de tarifas e disponibilidade." },
+                            { title: "Descarte do Lixo", desc: "As lixeiras seletivas para resíduos domésticos estão localizadas no térreo do edifício, junto à área da lavanderia." }
                         ]
                     },
                     thankyou: {
                         title: "Desejamos que tenha desfrutado de Moema!",
-                        message: "Ficamos muito gratos pela escolha e aguardamos o seu retorno em uma futura visita a São Paulo.",
-                        action: "Compartilhe seus momentos no nosso Instagram oficial e ajude-nos deixando sua avaliação no Airbnb ou na Booking.com: @meulugar.hospedagem"
+                        message: "Ficamos muito gratos pela escolha e aguardamos ansiosamente o seu retorno em uma futura visita à cidade de São Paulo.",
+                        action: "Compartilhe seus momentos em nosso Instagram oficial e ajude-nos deixando sua avaliação no Airbnb ou na Booking.com: @meulugar.hospedagem"
                     }
                 }
             },
@@ -574,60 +572,87 @@
                 tagline: "Estilo moderno, azul e branco no polo cultural de Pinheiros",
                 color: "blue",
                 bgGradient: "from-blue-600 to-blue-800",
-                image: "azure.png", // Foto de capa configurada
+                image: "azure.png",
                 icon: "fa-water",
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M30 20s15 10 30 0 30 10 50 0v50H10V20z"/><circle cx='50' cy='40' r='12'/></svg>`,
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wifi', icon: 'fa-wifi', desc: 'Rede e conexão' },
+                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
                     { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes básicas' },
                     { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
                     { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
-                    { id: 'shopping', title: 'Compras', icon: 'fa-bag-shopping', desc: 'Shoppings e mercados' },
+                    { id: 'shopping', title: 'Compras e Lazer', icon: 'fa-bag-shopping', desc: 'Comércio, gastronomia e parques' },
                     { id: 'general_info', title: 'Informações Gerais', icon: 'fa-circle-info', desc: 'Rooftop, coworking, etc.' },
                     { id: 'checkout', title: 'Check-out', icon: 'fa-right-from-bracket', desc: 'Horários e lixo' },
                     { id: 'thankyou', title: 'Obrigado', icon: 'fa-heart', desc: 'Mensagem de despedida' }
                 ],
                 content: {
                     wifi: {
-                        network: "Studio Azure pinheiros",
+                        network: "Studio Azure Pinheiros",
                         password: "SAP0023#",
-                        instructions: "Sinal forte com roteador de internet exclusivo configurado no painel central do estúdio."
+                        instructions: "Conexão de banda larga de alta velocidade exclusiva do apartamento, ideal para trabalho remoto e streaming."
                     },
                     rules: {
-                        intro: "Por favor, atente-se às regras descritas pelo condomínio de Pinheiros para que a estadia decorra da melhor forma.",
+                        intro: "Para garantir uma excelente estadia para todos e manter o alto padrão do apartamento, pedimos gentilmente atenção a estas diretrizes fundamentais:",
                         items: [
-                            "Mantenha sempre a conservação e a higiene geral do apartamento.",
-                            "Lotação da unidade estritamente limitada a 2 hóspedes.",
-                            "Fumar dentro do estúdio ou nas sacadas é expressamente proibido.",
-                            "Não descarte papel higiênico ou plásticos no vaso sanitário.",
-                            "Animais de estimação não são permitidos nas acomodações.",
-                            "Proibida a realização de quaisquer festas ou eventos barulhentos.",
-                            "Horário de silêncio obrigatório das 22:00h às 08:00h.",
-                            "Desligue as luzes e o sistema de climatização ao sair do estúdio."
+                            "É estritamente proibido fumar dentro do apartamento ou nas áreas comuns do condomínio. O descumprimento está sujeito à multa de R$ 500,00, além dos custos adicionais para higienização dos móveis.",
+                            "Visitas de pessoas não cadastradas são expressamente proibidas, conforme as diretrizes descritas na reserva.",
+                            "Aconselhamos todos os hóspedes a não andar calçados dentro do apartamento. Recomendamos deixar seus calçados logo na entrada do estúdio; essa simples ação evita trazer sujeira externa e previne ruídos incômodos para os vizinhos do andar de baixo.",
+                            "Por favor, não descarte papel higiênico ou qualquer outro resíduo no vaso sanitário, pois há risco de entupimento.",
+                            "Pedimos que mantenha o apartamento limpo durante a estadia e nos entregue da mesma forma que o encontrou.",
+                            "Não oferecemos serviço de hotelaria. Por favor, cuide do Azure como se fosse a sua própria casa!",
+                            "Ao sair do estúdio, certifique-se de que todas as luzes e o ar-condicionado estejam desligados, e que as janelas e portas estejam bem fechadas."
+                        ],
+                        sections: [
+                            {
+                                title: "Enxoval e Taxas Extras",
+                                items: [
+                                    "Deixamos toalhas, lençóis, cobertores e travesseiros higienizados para o número exato de hóspedes confirmados na reserva.",
+                                    "Em caso de manchas difíceis de remover (como sangue, maquiagem ou corantes) no enxoval, haverá cobrança de taxa extra de lavagem."
+                                ]
+                            },
+                            {
+                                title: "Gestão do Lixo",
+                                items: [
+                                    "Não se esqueça de recolher e organizar o lixo antes de sua partida.",
+                                    "O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço."
+                                ]
+                            }
                         ]
                     },
                     arrival: {
-                        address: "Rua Pinheiros, 1200 - Pinheiros, São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Pinheiros+1200+Sao+Paulo",
-                        instructions: "Localiza-se a escassas três quadras da estação de metrô Fradique Coutinho (Linha 4-Amarela). Região com muitos cafés, bistrôs, bares conceituados e lojas de design."
+                        address: "Rua Eugênio de Medeiros, 321, apto 23 (2º andar) - Pinheiros, São Paulo - SP",
+                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo",
+                        instructions: "O condomínio fica a apenas 150m da Estação Pinheiros do Metrô (Linha 4-Amarela e Linha 9-Esmeralda) e a 9km do Aeroporto de Congonhas. Como toda grande metrópole, São Paulo exige cuidado e atenção redobrados. Evite caminhar com o celular exposto na rua e evite passeios individuais à noite."
                     },
                     checkin: {
                         items: [
                             {
-                                title: "Senha Eletrônica de Entrada",
-                                desc: "O código individual para abertura da fechadura eletrônica é enviado por chat pela nossa equipe até as 13:00h do dia reservado para check-in."
+                                title: "Horários de Entrada",
+                                desc: "Seu check-in está se aproximando! A liberação da entrada ocorre a partir das 14h da data de chegada, e o check-out deve ser realizado até as 10h da manhã."
                             },
                             {
-                                title: "Controle na Recepção",
-                                desc: "A portaria opera de forma ininterrupta (24h). Forneça o seu documento pessoal de identificação com foto na entrada e indique que está hospedado na unidade 23."
+                                title: "Procedimento da Portaria",
+                                desc: "Oferecemos a facilidade de self check-in com portaria 24h. Ao chegar, basta se identificar na recepção apresentando um documento de identidade com foto."
+                            },
+                            {
+                                title: "Acesso ao Apartamento",
+                                desc: "Você encontrará um apartamento novo, finamente decorado, totalmente equipado para o seu maior conforto e em excepcional estado de limpeza. A senha temporária da fechadura eletrônica será enviada próximo à data reservada."
                             }
                         ]
                     },
                     shopping: {
                         items: [
-                            { name: "Shopping Eldorado", desc: "Shopping bastante completo, repleto de lojas de moda, opções de alimentação e hipermercado.", dist: "~10 min de carro" },
-                            { name: "Supermercado Pão de Açúcar", desc: "Opção ideal e próxima para compras de produtos alimentares do dia a dia.", dist: "~3 min a pé" },
-                            { name: "Beco do Batman (Vila Madalena)", desc: "Ponto cultural emblemático de São Paulo, famoso pelos muros repletos de grafites e galerias de arte urbana.", dist: "~15 min a pé" }
+                            { name: "Minimercado OXXO", desc: "Super prático para compras rápidas do dia a dia. Aberto 24 horas.", dist: "100 m (saindo à esquerda)" },
+                            { name: "Pacco Restaurante", desc: "Almoço por quilo / buffet de excelente qualidade com pratos sempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                            { name: "Québec Bar e Restaurante", desc: "Ótima opção para almoço, jantar e um Happy Hour muito animado ao fim do dia.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                            { name: "Giardino Pinheiros", desc: "Famoso pelas suas parmegianas espetaculares, ideal para almoço, jantar ou Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                            { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espaço de referência de cultura e lazer com excelente programação teatral, música e artes.", dist: "290 m (Rua Paes Leme, 195)" },
+                            { name: "Lavanderia Fast Faria Lima", desc: "Lavanderia self-service rápida 24 horas, localizada de forma muito conveniente dentro do posto Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                            { name: "Shopping Eldorado", desc: "Excelente e amplo centro comercial, gastronômico e cultural com opções completas de compras e serviços.", dist: "1 km (Av. Rebouças, 3970)" },
+                            { name: "Mercado Municipal de Pinheiros", desc: "Excelente para encontrar queijos finos, destilados, cafés especiais, frutas frescas e ótima gastronomia local. Fecha aos domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
+                            { name: "Shopping Villa Lobos", desc: "Centro comercial aconchegante, sofisticado e muito completo, com lojas, restaurantes e cinemas excelentes.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                            { name: "MASP - Museu de Arte de SP", desc: "Museu de arte privado sem fins lucrativos, com acervo de relevância internacional. Fica situado na célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
+                            { name: "Parque Villa Lobos", desc: "Maravilhoso parque público arborizado, perfeito para caminhar, relaxar ou praticar esportes ao ar livre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
                         ]
                     },
                     general_info: {
@@ -638,16 +663,16 @@
                         ]
                     },
                     checkout: {
-                        time: "Até as 11:00 da manhã",
+                        time: "Até as 10:00 da manhã",
                         rules: [
-                            { title: "Alteração de Horários", desc: "Saídas fora do horário e check-in adiantado devem ser verificados e autorizados por chat conforme tarifas vigentes." },
-                            { title: "Descarte de Lixo", desc: "Os coletores de lixo seletivo e orgânico estão indicados na área de serviços ou subsolo do condomínio." }
+                            { title: "Organização do Lixo", desc: "Por favor, recolha e organize o lixo antes de sua saída. O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço." },
+                            { title: "Check-out Check", desc: "Antes de sair, certifique-se de apagar as luzes, desligar o ar-condicionado e trancar as portas e janelas." }
                         ]
                     },
                     thankyou: {
-                        title: "Agradecemos o tempo que passou conosco!",
-                        message: "Ficamos muito feliz pela sua preferência em ficar no Studio Azure! Esperamos encontrá-lo em breve.",
-                        action: "Ajude a Meu Lugar deixando a sua avaliação de cinco estrelas no Airbnb ou na Booking.com e compartilhe a experiência no Instagram @meulugar.hospedagem!"
+                        title: "Desejamos que tenha dias maravilhosos no Azure Pinheiros!",
+                        message: "Estamos extremamente felizes em receber você em nosso espaço. Permanecemos à sua inteira disposição no chat de suporte para o que for necessário!",
+                        action: "Avalie sua estadia com 5 estrelas no Airbnb ou na Booking.com para apoiar nosso trabalho e acompanhe as novidades no Instagram: @meulugar.hospedagem!"
                     }
                 }
             }
@@ -680,7 +705,7 @@
             setupServiceWorker();
         });
 
-        // TELA 1: Renderizar Lista de Apartamentos para Seleção (Com Capa Premium, sem os ícones nos cantos)
+        // TELA 1: Renderizar Lista de Apartamentos para Seleção
         function renderApartmentSelection() {
             apartmentsList.innerHTML = '';
             APARTMENTS.forEach(apt => {
@@ -751,7 +776,7 @@
             screenDetail.classList.add('hidden');
         }
 
-        // TELA 2: Renderizar Botões do Menu Principal (Sem recursos de IA)
+        // TELA 2: Renderizar Botões do Menu Principal
         function renderMenuButtons(apt) {
             menuButtonsGrid.innerHTML = '';
             apt.menu.forEach(cat => {
@@ -784,7 +809,7 @@
                 rules: "Garantindo uma estadia agradável para todos",
                 arrival: "Passo a passo para chegar ao imóvel",
                 restaurants: "Melhores opções da gastronomia local",
-                shopping: "Lojas, shoppings e supermercados",
+                shopping: "Lojas, centros comerciais, gastronomia e parques",
                 leisure: "Pontos turísticos e passeios imperdíveis",
                 general_info: "Comodidades e regras gerais de áreas úteis",
                 emergency: "Contatos e localização de hospitais",
@@ -794,8 +819,8 @@
             };
 
             const catTitles = {
-                wifi: 'Senha do Wifi', rules: 'Regras da Casa', arrival: 'Como Chegar',
-                checkin: 'Check-in', restaurants: 'Restaurantes', shopping: 'Compras/Lojas', 
+                wifi: 'Senha do Wi-Fi', rules: 'Regras da Casa', arrival: 'Como Chegar',
+                checkin: 'Check-in', restaurants: 'Restaurantes', shopping: 'Compras e Lazer', 
                 leisure: 'Lazer e Passeios', general_info: 'Informações Gerais',
                 emergency: 'Contatos Úteis', info: 'Mais Informações', checkout: 'Check-out',
                 thankyou: 'Obrigado'
@@ -835,7 +860,7 @@
                             <p class="text-xl font-mono font-bold my-1 select-all text-amber-400">${data.password}</p>
                         </div>
                         <button onclick="copyToClipboard('${data.password}', 'Senha copiada com sucesso!')" class="w-full bg-white hover:bg-slate-50 text-slate-900 font-extrabold py-2.5 px-4 rounded-xl transition-all shadow text-xs">
-                            <i class="fa-solid fa-copy mr-1.5"></i> Copiar Senha de Acesso
+                            <i class="fa-solid fa-copy mr-1.5"></i> Copiar Senha
                         </button>
                     </div>
                     <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl">
@@ -1033,6 +1058,7 @@
             document.getElementById('install-modal').classList.add('hidden');
         }
 
+        // MODAL DE HISTÓRICO
         function showUpdateModal() {
             document.getElementById('update-modal').classList.remove('hidden');
         }
@@ -1064,7 +1090,7 @@
             }
         }
 
-        // MONTAGEM DE MANIFESTO DINÂMICO (PWA com título e ícones oficiais)
+        // MONTAGEM DE MANIFESTO DINÂMICO
         function setupManifestDynamic() {
             const manifest = {
                 name: "Guia do Hóspede - Meu Lugar Hospedagem",
@@ -1098,7 +1124,7 @@
         function setupServiceWorker() {
             if ('serviceWorker' in navigator) {
                 const swContent = `
-                    const CACHE_NAME = 'meu-lugar-guide-v10';
+                    const CACHE_NAME = 'meu-lugar-guide-v15';
                     self.addEventListener('install', event => {
                         event.waitUntil(
                             caches.open(CACHE_NAME).then(cache => {
@@ -1124,14 +1150,11 @@
             }
         }
 
-        // DETECTOR E GERENCIADOR DE INSTALAÇÃO PWA REAL (beforeinstallprompt)
+        // DETECTOR E GERENCIADOR DE INSTALAÇÃO PWA REAL
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Evita o prompt automático padrão do sistema para controlarmos o timing
             e.preventDefault();
-            // Salva o evento para dispararmos quando o usuário clicar
             deferredPrompt = e;
-            // Torna o botão de instalação nativa visível na tela
             const nativeInstallBtn = document.getElementById('btn-native-install');
             if (nativeInstallBtn) {
                 nativeInstallBtn.classList.remove('hidden');
@@ -1140,14 +1163,11 @@
 
         window.triggerNativeInstall = async function() {
             if (!deferredPrompt) return;
-            // Mostra a folha nativa de instalação do navegador
             deferredPrompt.prompt();
-            // Aguarda o hóspede tomar uma decisão
             const { outcome } = await deferredPrompt.userChoice;
             if (outcome === 'accepted') {
                 showToast('Obrigado por instalar o Guia!');
             }
-            // Reseta o evento e esconde o botão
             deferredPrompt = null;
             const nativeInstallBtn = document.getElementById('btn-native-install');
             if (nativeInstallBtn) {
