@@ -712,7 +712,7 @@
                 tagline: "Estilo moderno, concreto e sofisticação no polo cultural de Pinheiros",
                 color: "gray",
                 bgGradient: "from-slate-600 to-slate-800",
-                image: "azure.png", // Copiando as imagens/estrutura visual do Studio Azure
+                image: "concret.png",
                 icon: "fa-cubes", // Ícone de concreto/loft
                 svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M30 20s15 10 30 0 30 10 50 0v50H10V20z"/><circle cx='50' cy='40' r='12'/></svg>`,
                 menu: [
@@ -1285,7 +1285,7 @@
                     self.addEventListener('install', event => {
                         event.waitUntil(
                             caches.open(CACHE_NAME).then(cache => {
-                                return cache.addAll(['/', '/logo.png', '/saopaulo.png', '/passaros.png', '/azure.png']);
+                                return cache.addAll(['/', '/logo.png', '/saopaulo.png', '/passaros.png', '/azure.png', '/concret.png']);
                             }).catch(() => {})
                         );
                     });
