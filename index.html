@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -96,6 +95,18 @@
         .dynamic-border {
             border-color: var(--theme-100);
         }
+
+        .lang-btn {
+            transition: all 0.2s ease;
+            opacity: 0.65;
+            transform: scale(0.92);
+        }
+        .lang-btn.active {
+            opacity: 1;
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(223, 173, 81, 0.8);
+            border-color: #dfad51 !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex justify-center items-start sm:py-8">
@@ -105,12 +116,49 @@
         
         <!-- CABEÇALHO BRANDING -->
         <header class="bg-gradient-to-b from-brand-charcoal to-[#0d1321] text-white pt-8 pb-6 px-6 relative overflow-hidden shadow-lg shrink-0 border-b border-brand-gold/25">
-            <!-- Detalhes de brilho gradiente simulando ouro de luxo e elegância -->
             <div class="absolute -top-12 -left-12 w-32 h-32 bg-brand-gold/10 rounded-full blur-2xl"></div>
             <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-slate-800/30 rounded-full blur-2xl"></div>
 
+            <!-- SELETOR DE IDIOMA (BANDEIRAS NO TOPO DIREITO) -->
+            <div class="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-brand-dark/90 backdrop-blur-md p-1 rounded-full border border-brand-gold/30 shadow-md">
+                <!-- Bandeira Brasil (PT-BR) -->
+                <button onclick="setLanguage('pt-BR')" id="lang-pt-BR" title="Português (PT-BR)" class="lang-btn active w-6 h-6 rounded-full overflow-hidden border border-transparent focus:outline-none flex items-center justify-center">
+                    <svg class="w-full h-full object-cover" viewBox="0 0 72 50">
+                        <rect width="72" height="50" fill="#009b3a"/>
+                        <polygon points="36,4 68,25 36,46 4,25" fill="#fedf00"/>
+                        <circle cx="36" cy="25" r="11" fill="#002776"/>
+                        <path d="M 25.5,27.5 A 12,12 0 0 0 46.5,22.5" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+                    </svg>
+                </button>
+                <!-- Bandeira Estados Unidos (EN) -->
+                <button onclick="setLanguage('en')" id="lang-en" title="English" class="lang-btn w-6 h-6 rounded-full overflow-hidden border border-transparent focus:outline-none flex items-center justify-center">
+                    <svg class="w-full h-full object-cover" viewBox="0 0 741 390">
+                        <rect width="741" height="390" fill="#b22234"/>
+                        <path d="M0,30H741M0,90H741M0,150H741M0,210H741M0,270H741M0,330H741" stroke="#fff" stroke-width="30"/>
+                        <rect width="296" height="210" fill="#3c3b6e"/>
+                        <g fill="#fff">
+                            <circle cx="29" cy="21" r="8"/><circle cx="88" cy="21" r="8"/><circle cx="148" cy="21" r="8"/><circle cx="207" cy="21" r="8"/><circle cx="266" cy="21" r="8"/>
+                            <circle cx="59" cy="42" r="8"/><circle cx="118" cy="42" r="8"/><circle cx="177" cy="42" r="8"/><circle cx="236" cy="42" r="8"/>
+                            <circle cx="29" cy="63" r="8"/><circle cx="88" cy="63" r="8"/><circle cx="148" cy="63" r="8"/><circle cx="207" cy="63" r="8"/><circle cx="266" cy="63" r="8"/>
+                            <circle cx="59" cy="84" r="8"/><circle cx="118" cy="84" r="8"/><circle cx="177" cy="84" r="8"/><circle cx="236" cy="84" r="8"/>
+                            <circle cx="29" cy="105" r="8"/><circle cx="88" cy="105" r="8"/><circle cx="148" cy="105" r="8"/><circle cx="207" cy="105" r="8"/><circle cx="266" cy="105" r="8"/>
+                            <circle cx="59" cy="126" r="8"/><circle cx="118" cy="126" r="8"/><circle cx="177" cy="126" r="8"/><circle cx="236" cy="126" r="8"/>
+                            <circle cx="29" cy="147" r="8"/><circle cx="88" cy="147" r="8"/><circle cx="148" cy="147" r="8"/><circle cx="207" cy="147" r="8"/><circle cx="266" cy="147" r="8"/>
+                            <circle cx="59" cy="168" r="8"/><circle cx="118" cy="168" r="8"/><circle cx="177" cy="168" r="8"/><circle cx="236" cy="168" r="8"/>
+                            <circle cx="29" cy="189" r="8"/><circle cx="88" cy="189" r="8"/><circle cx="148" cy="189" r="8"/><circle cx="207" cy="189" r="8"/><circle cx="266" cy="189" r="8"/>
+                        </g>
+                    </svg>
+                </button>
+                <!-- Bandeira Espanha (ES) -->
+                <button onclick="setLanguage('es')" id="lang-es" title="Español" class="lang-btn w-6 h-6 rounded-full overflow-hidden border border-transparent focus:outline-none flex items-center justify-center">
+                    <svg class="w-full h-full object-cover" viewBox="0 0 750 500">
+                        <rect width="750" height="500" fill="#c60b1e"/>
+                        <rect y="125" width="750" height="250" fill="#ffc400"/>
+                    </svg>
+                </button>
+            </div>
+
             <div class="flex flex-col items-center text-center relative z-10">
-                <!-- Logotipo com borda sutil de ouro champanhe -->
                 <div class="relative w-24 h-24 mb-3 group">
                     <img id="brand-logo" src="logo.png" alt="Meu Lugar Hospedagem" 
                          class="w-full h-full object-cover rounded-full border-2 border-brand-gold shadow-lg bg-brand-dark transition-transform duration-300 group-hover:scale-105"
@@ -122,11 +170,9 @@
                     </div>
                 </div>
 
-                <!-- Título do Portal -->
                 <h1 class="text-xl font-extrabold tracking-tight text-white">Meu Lugar Hospedagem</h1>
-                <p class="text-xs text-brand-gold/90 mt-1 font-semibold tracking-wider uppercase text-[10px]">Portal de Experiência do Hóspede</p>
+                <p id="txt-header-subtitle" class="text-xs text-brand-gold/90 mt-1 font-semibold tracking-wider uppercase text-[10px]">Portal de Experiência do Hóspede</p>
 
-                <!-- Link para o Instagram com as cores oficiais da marca -->
                 <a href="https://instagram.com/meulugar.hospedagem" target="_blank" 
                    class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 text-white text-xs font-bold rounded-full shadow-md transition-all transform hover:scale-105">
                     <i class="fa-brands fa-instagram text-sm text-white"></i>
@@ -134,10 +180,9 @@
                 </a>
             </div>
 
-            <!-- Botão de Voltar para Seleção de Apartamento (oculto no início) -->
             <div class="w-full flex justify-center mt-4">
                 <button id="btn-change-apartment" class="hidden text-[11px] bg-white/5 hover:bg-white/10 text-slate-200 font-semibold py-1.5 px-3.5 rounded-full transition-all inline-flex items-center gap-1.5 border border-brand-gold/20">
-                    <i class="fa-solid fa-arrow-right-to-bracket rotate-180"></i> Escolher Outro Espaço
+                    <i class="fa-solid fa-arrow-right-to-bracket rotate-180"></i> <span id="txt-btn-change-apt">Escolher Outro Espaço</span>
                 </button>
             </div>
         </header>
@@ -149,11 +194,10 @@
             <section id="screen-selector" class="fade-in space-y-6 flex-1 flex flex-col justify-between">
                 <div class="space-y-4">
                     <div class="text-center sm:text-left">
-                        <h2 class="text-base font-bold text-slate-800">Seja muito bem-vindo(a)!</h2>
-                        <p class="text-xs text-slate-500 mt-1">Selecione abaixo o espaço de sua estadia para carregar as informações do seu apartamento:</p>
+                        <h2 id="txt-welcome-title" class="text-base font-bold text-slate-800">Seja muito bem-vindo(a)!</h2>
+                        <p id="txt-welcome-subtitle" class="text-xs text-slate-500 mt-1">Selecione abaixo o espaço de sua estadia para carregar as informações do seu apartamento:</p>
                     </div>
                     
-                    <!-- Lista de Alojamentos -->
                     <div id="apartments-list" class="space-y-4">
                         <!-- Gerado dinamicamente via JS -->
                     </div>
@@ -165,17 +209,16 @@
                         <i class="fa-solid fa-mobile-screen-button text-lg"></i>
                     </div>
                     <div class="space-y-1">
-                        <h4 class="text-xs font-bold text-slate-800">Instale este Guia no Celular</h4>
-                        <p class="text-[11px] text-slate-500 leading-relaxed">Você pode salvar este portal na tela inicial do seu celular para acessá-lo instantaneamente.</p>
+                        <h4 id="txt-pwa-title" class="text-xs font-bold text-slate-800">Instale este Guia no Celular</h4>
+                        <p id="txt-pwa-desc" class="text-[11px] text-slate-500 leading-relaxed">Você pode salvar este portal na tela inicial do seu celular para acessá-lo instantaneamente.</p>
                         
                         <div class="flex flex-wrap gap-2.5 pt-1.5">
-                            <!-- Botão de Instalação Direta -->
                             <button id="btn-native-install" onclick="triggerNativeInstall()" class="hidden text-[10px] bg-slate-900 hover:bg-slate-950 text-white font-extrabold py-1.5 px-3 rounded-lg shadow transition-all flex items-center gap-1">
-                                <i class="fa-solid fa-circle-down"></i> Instalar Agora
+                                <i class="fa-solid fa-circle-down"></i> <span id="txt-pwa-install-btn">Instalar Agora</span>
                             </button>
                             
                             <button onclick="showInstallInstructions()" class="text-xs font-semibold text-slate-900 hover:underline flex items-center gap-1 text-[11px]">
-                                Como instalar manualmente? <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                                <span id="txt-pwa-manual-btn">Como instalar manualmente?</span> <i class="fa-solid fa-chevron-right text-[9px]"></i>
                             </button>
                         </div>
                     </div>
@@ -184,19 +227,17 @@
 
             <!-- 2. TELA: MENU PRINCIPAL DO APARTAMENTO -->
             <section id="screen-menu" class="hidden fade-in space-y-6">
-                <!-- Card do Apartamento Selecionado -->
                 <div id="apartment-mini-card" class="rounded-2xl p-4 text-white flex items-center justify-between shadow-sm relative overflow-hidden">
                     <!-- Gerado dinamicamente -->
                 </div>
 
                 <div class="grid grid-cols-2 gap-4" id="menu-buttons-grid">
-                    <!-- Botões dinâmicos gerados baseados no estúdio ativo -->
+                    <!-- Botões dinâmicos -->
                 </div>
             </section>
 
             <!-- 3. TELA: DETALHES DA CATEGORIA -->
             <section id="screen-detail" class="hidden fade-in space-y-6">
-                <!-- Cabeçalho de Detalhes -->
                 <div class="flex items-center gap-3">
                     <button id="btn-back-to-menu" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-3 rounded-xl transition-all">
                         <i class="fa-solid fa-arrow-left"></i>
@@ -207,9 +248,13 @@
                     </div>
                 </div>
 
-                <!-- Conteúdo Dinâmico -->
+                <!-- Card de Capa do Espaço Mantido no Topo dos Detalhes -->
+                <div id="apartment-mini-card-detail" class="rounded-2xl p-4 text-white flex items-center justify-between shadow-sm relative overflow-hidden">
+                    <!-- Gerado dinamicamente -->
+                </div>
+
                 <div id="detail-content" class="space-y-4">
-                    <!-- JS preenche aqui -->
+                    <!-- Conteúdo dinâmico preenchido via JS no idioma ativo -->
                 </div>
             </section>
         </main>
@@ -220,11 +265,10 @@
             <span id="toast-message">Copiado com sucesso!</span>
         </div>
 
-        <!-- FOOTER COM SUPORTE E INDICADOR DE VERSÃO -->
         <footer class="border-t border-slate-100 p-4 bg-slate-50 text-center text-xs text-slate-400 shrink-0 flex flex-col items-center justify-center gap-1">
             <p class="font-semibold text-slate-500">Meu Lugar Hospedagem</p>
             <button onclick="showUpdateModal()" class="text-[10px] text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 focus:outline-none">
-                <span>Versão 1.7.0</span> • <span class="underline">Verificar atualizações & histórico</span>
+                <span>Versão 1.8.1</span> • <span id="txt-footer-updates" class="underline">Verificar atualizações & histórico</span>
             </button>
         </footer>
 
@@ -232,7 +276,7 @@
         <div id="install-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4">
             <div class="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-6 space-y-6 shadow-2xl fade-in">
                 <div class="flex justify-between items-start">
-                    <h3 class="text-base font-bold text-slate-800">Como Instalar</h3>
+                    <h3 id="txt-modal-install-title" class="text-base font-bold text-slate-800">Como Instalar</h3>
                     <button onclick="closeInstallModal()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark text-lg"></i>
                     </button>
@@ -243,19 +287,19 @@
                         <span class="bg-indigo-100 text-indigo-700 w-5 h-5 rounded-full flex items-center justify-center font-bold shrink-0">1</span>
                         <div>
                             <p class="font-semibold text-slate-800">Para iPhone (Safari)</p>
-                            <p class="text-[11px] text-slate-500 mt-0.5">Toque no botão de <strong class="text-slate-700">Compartilhar</strong> (<i class="fa-solid fa-share-from-square text-indigo-600"></i>) na barra inferior e selecione <strong class="text-slate-700">"Adicionar à Tela de Início"</strong>.</p>
+                            <p id="txt-modal-ios-instructions" class="text-[11px] text-slate-500 mt-0.5">Toque no botão de <strong class="text-slate-700">Compartilhar</strong> (<i class="fa-solid fa-share-from-square text-indigo-600"></i>) na barra inferior e selecione <strong class="text-slate-700">"Adicionar à Tela de Início"</strong>.</p>
                         </div>
                     </div>
                     <div class="flex gap-3">
                         <span class="bg-emerald-100 text-emerald-700 w-5 h-5 rounded-full flex items-center justify-center font-bold shrink-0">2</span>
                         <div>
                             <p class="font-semibold text-slate-800">Para Android (Chrome)</p>
-                            <p class="text-[11px] text-slate-500 mt-0.5">Toque nos <strong class="text-slate-700">três pontinhos</strong> no canto superior direito e selecione <strong class="text-slate-700">"Instalar aplicativo"</strong> ou "Adicionar à tela inicial".</p>
+                            <p id="txt-modal-android-instructions" class="text-[11px] text-slate-500 mt-0.5">Toque nos <strong class="text-slate-700">três pontinhos</strong> no canto superior direito e selecione <strong class="text-slate-700">"Instalar aplicativo"</strong> ou "Adicionar à tela inicial".</p>
                         </div>
                     </div>
                 </div>
 
-                <button onclick="closeInstallModal()" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-semibold py-3 rounded-xl transition-all text-xs">
+                <button id="txt-modal-close-btn" onclick="closeInstallModal()" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-semibold py-3 rounded-xl transition-all text-xs">
                     Entendi!
                 </button>
             </div>
@@ -266,105 +310,201 @@
             <div class="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-6 space-y-5 shadow-2xl fade-in max-h-[85vh] overflow-y-auto no-scrollbar">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h3 class="text-base font-bold text-slate-800">Central de Sincronização</h3>
-                        <p class="text-[10px] text-slate-400">Versão instalada: v1.7.0</p>
+                        <h3 id="txt-sync-title" class="text-base font-bold text-slate-800">Central de Sincronização</h3>
+                        <p class="text-[10px] text-slate-400">Versão instalada: v1.8.1</p>
                     </div>
                     <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark text-lg"></i>
                     </button>
                 </div>
                 
-                <!-- Área para o Hóspede -->
                 <div class="space-y-3 border-t border-slate-100 pt-4">
-                    <p class="text-[11px] text-slate-600 leading-relaxed font-semibold">Caso alguma informação (como senhas, horários ou regras) tenha sido alterada recentemente pelo anfitrião, clique no botão abaixo para baixar a versão mais recente do guia.</p>
+                    <p id="txt-sync-desc" class="text-[11px] text-slate-600 leading-relaxed font-semibold">Caso alguma informação tenha sido alterada recentemente pelo anfitrião, clique no botão abaixo para sincronizar a versão mais recente.</p>
                     <button id="btn-force-update" onclick="forceAppUpdate()" class="w-full bg-slate-900 hover:bg-slate-950 text-white text-xs font-bold py-2.5 rounded-xl transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-rotate"></i> Sincronizar Informações
+                        <i class="fa-solid fa-rotate"></i> <span id="txt-sync-btn">Sincronizar Informações</span>
                     </button>
                 </div>
 
-                <!-- Histórico de Versões / Alterações -->
                 <div class="space-y-3 border-t border-slate-100 pt-4">
                     <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 flex items-center gap-1.5">
-                        <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Versões
+                        <i class="fa-solid fa-clock-rotate-left"></i> <span id="txt-version-history-title">Histórico de Versões</span>
                     </span>
                     <div class="space-y-3 max-h-48 overflow-y-auto pr-1 no-scrollbar text-left">
-                        <!-- v1.7.0 -->
+                        <!-- v1.8.1 -->
                         <div class="border-l-2 border-brand-gold pl-3 space-y-1">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold text-slate-800">v1.7.0</span>
+                                <span class="text-xs font-bold text-slate-800">v1.8.1</span>
                                 <span class="text-[9px] bg-amber-50 text-brand-gold px-1.5 py-0.5 rounded-full font-bold">Atual</span>
                             </div>
                             <p class="text-[10px] text-slate-500 leading-normal">
-                                Adicionado o novo espaço <strong>Provance Pinheiros - Welconx 25</strong>, herdando a estrutura de Pinheiros, ajustando credenciais de Wi-Fi, foto de capa customizada (provance.png) e número do apartamento para <strong>apto 25</strong>.
+                                Restauração das imagens de capa com fallback inteligente e tradução completa dos dados internos dos cards para PT-BR, EN e ES.
                             </p>
                         </div>
-                        <!-- v1.6.1 -->
+                        <!-- v1.8.0 -->
                         <div class="border-l-2 border-slate-300 pl-3 space-y-1">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold text-slate-800">v1.6.1</span>
+                                <span class="text-xs font-bold text-slate-800">v1.8.0</span>
                             </div>
                             <p class="text-[10px] text-slate-500 leading-normal">
-                                Adicionado o número do apartamento (<strong>apto 415</strong>) no endereço da seção Como Chegar do Today Moema.
-                            </p>
-                        </div>
-                        <!-- v1.6.0 -->
-                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold text-slate-800">v1.6.0</span>
-                            </div>
-                            <p class="text-[10px] text-slate-500 leading-normal">
-                                Adicionado o novo espaço <strong>Concret Loft Pinheiros - Welconx 29</strong>, herdando a estrutura local de Pinheiros e integrando dados específicos de Wi-Fi e regras exclusivas (ducha higiênica e desligamento do toalheiro elétrico).
-                            </p>
-                        </div>
-                        <!-- v1.5.3 -->
-                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
-                            <span class="text-xs font-bold text-slate-700">v1.5.3</span>
-                            <p class="text-[10px] text-slate-500 leading-normal">
-                                Removido o trecho *"sem autorização por escrito"* da regra sobre sessões de gravação comercial no <strong>Studio Azure Pinheiros</strong>, consolidando a proibição absoluta.
-                            </p>
-                        </div>
-                        <!-- v1.5.2 -->
-                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
-                            <span class="text-xs font-bold text-slate-700">v1.5.2</span>
-                            <p class="text-[10px] text-slate-500 leading-normal">
-                                Atualizado o nome de Moema para <strong>Studio para Relaxar em Moema - Today 415</strong>. Lotação de Moema alterada para <strong>4 hóspedes</strong> com proibição de visitas. Adicionado aviso de taxas de check-out tardio em Moema. Atualizadas as regras de restrições do <strong>Studio Azure Pinheiros</strong> (proibição de animais, festas e gravações), inclusão de blocos estruturados de regras e remoção da disponibilidade de áreas comuns indisponíveis no Azure. Revisão gramatical total para PT-BR.
+                                Adicionado suporte a múltiplos idiomas e atualizada a senha do Wi-Fi do Provance Pinheiros (<code>PP00025#</code>).
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <button onclick="closeUpdateModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 rounded-xl transition-all text-xs">
+                <button id="txt-modal-back-btn" onclick="closeUpdateModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 rounded-xl transition-all text-xs">
                     Voltar ao Guia
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT DO SISTEMA -->
     <script>
-        // Definição das paletas para alternar o visual dinamicamente por apartamento
-        const THEME_PALETTES = {
-            gray: {
-                100: '#f3f4f6', 
-                600: '#374151', 
-                700: '#1f2937', 
-                800: '#0f172a'  
+        // DICIONÁRIO DE INTERFACE GERAL (UI)
+        const UI_TEXTS = {
+            'pt-BR': {
+                headerSubtitle: "Portal de Experiência do Hóspede",
+                btnChangeApt: "Escolher Outro Espaço",
+                welcomeTitle: "Seja muito bem-vindo(a)!",
+                welcomeSubtitle: "Selecione abaixo o espaço de sua estadia para carregar as informações do seu apartamento:",
+                pwaTitle: "Instale este Guia no Celular",
+                pwaDesc: "Você pode salvar este portal na tela inicial do seu celular para acessá-lo instantaneamente.",
+                pwaInstallBtn: "Instalar Agora",
+                pwaManualBtn: "Como instalar manualmente?",
+                footerUpdates: "Verificar atualizações & histórico",
+                modalInstallTitle: "Como Instalar",
+                modalIos: 'Toque no botão de <strong class="text-slate-700">Compartilhar</strong> (<i class="fa-solid fa-share-from-square text-indigo-600"></i>) na barra inferior e selecione <strong class="text-slate-700">"Adicionar à Tela de Início"</strong>.',
+                modalAndroid: 'Toque nos <strong class="text-slate-700">três pontinhos</strong> no canto superior direito e selecione <strong class="text-slate-700">"Instalar aplicativo"</strong> ou "Adicionar à tela inicial".',
+                modalCloseBtn: "Entendi!",
+                syncTitle: "Central de Sincronização",
+                syncDesc: "Caso alguma informação tenha sido alterada recentemente pelo anfitrião, clique no botão abaixo para baixar a versão mais recente do guia.",
+                syncBtn: "Sincronizar Informações",
+                versionHistoryTitle: "Histórico de Versões",
+                modalBackBtn: "Voltar ao Guia",
+                toastCopied: "Copiado com sucesso!",
+                toastAddressCopied: "Endereço copiado!",
+                toastPassCopied: "Senha copiada com sucesso!",
+                toastUpdated: "Aplicativo atualizado! Recarregando...",
+                toastInstalled: "Obrigado por instalar o Guia!",
+                networkLabel: "Nome da Rede",
+                passwordLabel: "Senha",
+                copyPasswordBtn: "Copiar Senha",
+                addInfoTitle: "Informações Adicional",
+                addressLabel: "Endereço do Imóvel",
+                copyAddressBtn: "Copiar",
+                openGpsBtn: "Abrir GPS",
+                directionsTitle: "Dicas de Trajeto",
+                checkoutTimeLimit: "Horário Limite de Saída",
+                noInfo: "Nenhuma informação cadastrada nesta categoria.",
+
+                // Categorias
+                catWifiTitle: "Senha do Wi-Fi", catWifiDesc: "Rede e conexão", catWifiSub: "Como se conectar ao sinal de internet local",
+                catRulesTitle: "Regras da Casa", catRulesDesc: "Diretrizes e normas", catRulesSub: "Garantindo uma estadia agradável para todos",
+                catArrivalTitle: "Como Chegar", catArrivalDesc: "Endereço e rotas", catArrivalSub: "Passo a passo para chegar ao imóvel",
+                catCheckinTitle: "Check-in", catCheckinDesc: "Acesso e portaria", catCheckinSub: "Instruções de entrada",
+                catShoppingTitle: "Compras e Lazer", catShoppingDesc: "Comércio, restaurantes e lazer", catShoppingSub: "Lojas, centros comerciais, gastronomia e parques",
+                catGeneralTitle: "Informações Gerais", catGeneralDesc: "Áreas comuns e facilidades", catGeneralSub: "Comodidades e regras gerais de áreas úteis",
+                catCheckoutTitle: "Check-out", catCheckoutDesc: "Horários e lixo", catCheckoutSub: "Procedimentos e horários de saída",
+                catThankyouTitle: "Obrigado", catThankyouDesc: "Mensagem de despedida", catThankyouSub: "Agradecemos a sua preferência!"
             },
-            green: {
-                100: '#e6f4ea', 
-                600: '#059669', 
-                700: '#047857', 
-                800: '#064e3b'  
+            'en': {
+                headerSubtitle: "Guest Experience Portal",
+                btnChangeApt: "Choose Another Unit",
+                welcomeTitle: "Welcome!",
+                welcomeSubtitle: "Select your accommodation below to load your apartment details:",
+                pwaTitle: "Install this Guide on Your Phone",
+                pwaDesc: "You can save this portal to your home screen for instant access.",
+                pwaInstallBtn: "Install Now",
+                pwaManualBtn: "How to install manually?",
+                footerUpdates: "Check updates & history",
+                modalInstallTitle: "How to Install",
+                modalIos: 'Tap the <strong class="text-slate-700">Share</strong> button (<i class="fa-solid fa-share-from-square text-indigo-600"></i>) in the bottom bar and choose <strong class="text-slate-700">"Add to Home Screen"</strong>.',
+                modalAndroid: 'Tap the <strong class="text-slate-700">three dots</strong> in the top right corner and select <strong class="text-slate-700">"Install app"</strong> or "Add to Home screen".',
+                modalCloseBtn: "Got it!",
+                syncTitle: "Sync Center",
+                syncDesc: "If any information was recently updated by the host, click below to sync the latest guide version.",
+                syncBtn: "Sync Information",
+                versionHistoryTitle: "Version History",
+                modalBackBtn: "Back to Guide",
+                toastCopied: "Copied successfully!",
+                toastAddressCopied: "Address copied!",
+                toastPassCopied: "Password copied successfully!",
+                toastUpdated: "App updated! Reloading...",
+                toastInstalled: "Thank you for installing the Guide!",
+                networkLabel: "Network Name",
+                passwordLabel: "Password",
+                copyPasswordBtn: "Copy Password",
+                addInfoTitle: "Additional Information",
+                addressLabel: "Property Address",
+                copyAddressBtn: "Copy",
+                openGpsBtn: "Open GPS",
+                directionsTitle: "Route Tips",
+                checkoutTimeLimit: "Checkout Deadline",
+                noInfo: "No information registered in this category.",
+
+                // Categories
+                catWifiTitle: "Wi-Fi Password", catWifiDesc: "Network and connection", catWifiSub: "How to connect to local internet",
+                catRulesTitle: "House Rules", catRulesDesc: "Guidelines and policies", catRulesSub: "Ensuring a pleasant stay for everyone",
+                catArrivalTitle: "How to Get There", catArrivalDesc: "Address and routes", catArrivalSub: "Step-by-step to arrive at property",
+                catCheckinTitle: "Check-in", catCheckinDesc: "Access and front desk", catCheckinSub: "Entry instructions",
+                catShoppingTitle: "Shopping & Leisure", catShoppingDesc: "Shops, dining & parks", catShoppingSub: "Stores, shopping malls, dining & parks",
+                catGeneralTitle: "General Info", catGeneralDesc: "Amenities and areas", catGeneralSub: "Amenities and common area rules",
+                catCheckoutTitle: "Check-out", catCheckoutDesc: "Schedule and trash", catCheckoutSub: "Departure procedures and times",
+                catThankyouTitle: "Thank You", catThankyouDesc: "Farewell message", catThankyouSub: "Thank you for staying with us!"
             },
-            blue: {
-                100: '#eff6ff', 
-                600: '#2563eb', 
-                700: '#1d4ed8', 
-                800: '#1e40af'  
+            'es': {
+                headerSubtitle: "Portal de Experiencia del Huésped",
+                btnChangeApt: "Elegir Otro Espacio",
+                welcomeTitle: "¡Sea muy bienvenido(a)!",
+                welcomeSubtitle: "Seleccione abajo el espacio de su estancia para cargar las informaciones de su apartamento:",
+                pwaTitle: "Instale esta Guía en su Móvil",
+                pwaDesc: "Puede guardar este portal en la pantalla de inicio de su teléfono para un acceso instantáneo.",
+                pwaInstallBtn: "Instalar Ahora",
+                pwaManualBtn: "¿Cómo instalar manualmente?",
+                footerUpdates: "Verificar actualizaciones e historial",
+                modalInstallTitle: "Cómo Instalar",
+                modalIos: 'Toque el botón <strong class="text-slate-700">Compartir</strong> (<i class="fa-solid fa-share-from-square text-indigo-600"></i>) en la barra inferior y seleccione <strong class="text-slate-700">"Agregar a inicio"</strong>.',
+                modalAndroid: 'Toque los <strong class="text-slate-700">tres puntos</strong> en la esquina superior derecha y seleccione <strong class="text-slate-700">"Instalar aplicación"</strong> o "Agregar a pantalla principal".',
+                modalCloseBtn: "¡Entendido!",
+                syncTitle: "Central de Sincronización",
+                syncDesc: "Si alguna información fue modificada recientemente por el anfitrión, haga clic abajo para sincronizar la versión más reciente.",
+                syncBtn: "Sincronizar Información",
+                versionHistoryTitle: "Historial de Versiones",
+                modalBackBtn: "Volver a la Guía",
+                toastCopied: "¡Copiado con éxito!",
+                toastAddressCopied: "¡Dirección copiada!",
+                toastPassCopied: "¡Contraseña copiada con éxito!",
+                toastUpdated: "¡Aplicación actualizada! Recargando...",
+                toastInstalled: "¡Gracias por instalar la Guía!",
+                networkLabel: "Nombre de Red",
+                passwordLabel: "Contraseña",
+                copyPasswordBtn: "Copiar Contraseña",
+                addInfoTitle: "Informaciones Adicionales",
+                addressLabel: "Dirección del Inmueble",
+                copyAddressBtn: "Copiar",
+                openGpsBtn: "Abrir GPS",
+                directionsTitle: "Consejos de Ruta",
+                checkoutTimeLimit: "Hora Límite de Salida",
+                noInfo: "Sin información registrada en esta categoría.",
+
+                // Categories
+                catWifiTitle: "Contraseña Wi-Fi", catWifiDesc: "Red y conexión", catWifiSub: "Cómo conectarse al internet local",
+                catRulesTitle: "Reglas de la Casa", catRulesDesc: "Directrices y normas", catRulesSub: "Garantizando una estancia agradable para todos",
+                catArrivalTitle: "Cómo Llegar", catArrivalDesc: "Dirección y rutas", catArrivalSub: "Paso a paso para llegar al inmueble",
+                catCheckinTitle: "Check-in", catCheckinDesc: "Acceso y recepción", catCheckinSub: "Instrucciones de entrada",
+                catShoppingTitle: "Compras y Ocio", catShoppingDesc: "Comercio, restaurantes y ocio", catShoppingSub: "Tiendas, centros comerciales, gastronomía y parques",
+                catGeneralTitle: "Información General", catGeneralDesc: "Áreas comunes y servicios", catGeneralSub: "Servicios y reglas generales de áreas comunes",
+                catCheckoutTitle: "Check-out", catCheckoutDesc: "Horarios y basura", catCheckoutSub: "Procedimientos y horarios de salida",
+                catThankyouTitle: "Gracias", catThankyouDesc: "Mensaje de despedida", catThankyouSub: "¡Agradecemos su preferencia!"
             }
         };
 
-        // Tratamento de erro na ausência do arquivo físico logo.png
+        const THEME_PALETTES = {
+            gray: { 100: '#f3f4f6', 600: '#374151', 700: '#1f2937', 800: '#0f172a' },
+            green: { 100: '#e6f4ea', 600: '#059669', 700: '#047857', 800: '#064e3b' },
+            blue: { 100: '#eff6ff', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af' }
+        };
+
         function handleLogoError() {
             const img = document.getElementById('brand-logo');
             const fallback = document.getElementById('brand-logo-fallback');
@@ -372,111 +512,101 @@
             if (fallback) fallback.classList.remove('hidden');
         }
 
-        // BANCO DE DADOS DINÂMICO DOS ESPAÇOS (Meu Lugar Hospedagem)
         const APARTMENTS = [
             {
                 id: "beurban-311",
                 name: "Studio São Paulo Brooklin - Be Urban 311",
                 city: "São Paulo - SP (Brooklin)",
-                tagline: "Estilo industrial e modernidade no coração do Brooklin",
                 color: "gray",
                 bgGradient: "from-slate-700 to-slate-900",
                 image: "saopaulo.png", 
-                icon: "fa-city",
-                svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90h80V10H10v80zm15-65h15v15H25V25zm0 25h15v15H25V50zm25-25h15v15H50V25zm0 25h15v15H50V50zm25-25h15v15H75V25zm0 25h15v15H75V50z"/></svg>`,
+                fallbackImage: "https://images.unsplash.com/photo-1578637387939-43c525550085?q=80&w=800&auto=format&fit=crop",
+                tagline: {
+                    'pt-BR': "Estilo industrial e modernidade no coração do Brooklin",
+                    'en': "Industrial style and modernity in the heart of Brooklin",
+                    'es': "Estilo industrial y modernidad en el corazón de Brooklin"
+                },
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
-                    { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes e visitas' },
-                    { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
-                    { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
-                    { id: 'shopping', title: 'Compras', icon: 'fa-bag-shopping', desc: 'Shopping e mercados' },
-                    { id: 'general_info', title: 'Informações Gerais', icon: 'fa-circle-info', desc: 'Academia, cozinha, etc.' },
-                    { id: 'checkout', title: 'Check-out', icon: 'fa-right-from-bracket', desc: 'Horários e lixo' },
-                    { id: 'thankyou', title: 'Obrigado', icon: 'fa-heart', desc: 'Mensagem de despedida' }
+                    { id: 'wifi', titleKey: 'catWifiTitle', descKey: 'catWifiDesc', icon: 'fa-wifi' },
+                    { id: 'rules', titleKey: 'catRulesTitle', descKey: 'catRulesDesc', icon: 'fa-clipboard-list' },
+                    { id: 'arrival', titleKey: 'catArrivalTitle', descKey: 'catArrivalDesc', icon: 'fa-map-location-dot' },
+                    { id: 'checkin', titleKey: 'catCheckinTitle', descKey: 'catCheckinDesc', icon: 'fa-key' },
+                    { id: 'shopping', titleKey: 'catShoppingTitle', descKey: 'catShoppingDesc', icon: 'fa-bag-shopping' },
+                    { id: 'general_info', titleKey: 'catGeneralTitle', descKey: 'catGeneralDesc', icon: 'fa-circle-info' },
+                    { id: 'checkout', titleKey: 'catCheckoutTitle', descKey: 'catCheckoutDesc', icon: 'fa-right-from-bracket' },
+                    { id: 'thankyou', titleKey: 'catThankyouTitle', descKey: 'catThankyouDesc', icon: 'fa-heart' }
                 ],
                 content: {
-                    wifi: {
-                        network: "beurban-311",
-                        password: "bu@311SP",
-                        instructions: "O modem/roteador está localizado dentro da própria unidade do estúdio para garantir a máxima velocidade e estabilidade da rede de fibra óptica."
+                    'pt-BR': {
+                        wifi: { network: "beurban-311", password: "bu@311SP", instructions: "O modem/roteador está localizado dentro da própria unidade para garantir máxima velocidade de fibra óptica." },
+                        rules: {
+                            intro: "Por favor, atente-se às regras do condomínio e do apartamento para assegurar uma excelente estadia!",
+                            items: [
+                                "Mantenha a limpeza e a organização da unidade.",
+                                "Máximo de 2 hóspedes permitidos.",
+                                "Estritamente proibido fumar dentro do apartamento ou nas áreas comuns.",
+                                "Não jogue papel ou resíduos no vaso sanitário.",
+                                "Animais de estimação não são permitidos.",
+                                "Festas ou eventos privados são proibidos.",
+                                "Sessões fotográficas comerciais são proibidas.",
+                                "Horário de silêncio rigoroso: das 21h às 9h.",
+                                "Desligue luzes e ar-condicionado ao sair."
+                            ],
+                            sections: [{ title: "Gestão de Visitas", items: ["Envio prévio de documentos de visitantes é obrigatório pelo chat."] }]
+                        },
+                        arrival: { address: "Rua Joaquim Guarani, 63 - Jardim das Acácias, Brooklin - São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo", instructions: "Deslocamento por táxi/Uber recomendado. Estação Brooklin do Metrô a duas quadras." },
+                        checkin: { items: [{ title: "Acesso à Portaria", desc: "Apresente documento com foto na recepção e identifique-se na unidade 311." }] },
+                        shopping: { items: [{ name: "Shopping Morumbi", desc: "Shopping tradicional e completo.", dist: "~10 min de carro" }] },
+                        general_info: { items: [{ title: "Academia", desc: "No 1º andar, equipada e aberta 24h." }] },
+                        checkout: { time: "Até as 11h da manhã", rules: [{ title: "Lixo", desc: "Descarte nas lixeiras seletivas no estacionamento térreo." }] },
+                        thankyou: { title: "Muito obrigado!", message: "Ficamos à sua disposição pelo chat.", action: "Avalie com 5 estrelas!" }
                     },
-                    rules: {
-                        intro: "Por favor, atente-se às regras descritas pelo condomínio e pelas normas do apartamento para assegurar uma excelente estadia!",
-                        items: [
-                            "Mantenha sempre a limpeza e a organização da unidade.",
-                            "Máximo de 2 hóspedes permitidos por estadia.",
-                            "É estritamente proibido fumar dentro da unidade ou nas áreas comuns do edifício, sujeito a multa e custos de higienização.",
-                            "Não jogue papel ou resíduos no vaso sanitário (utilize a lixeira).",
-                            "Não é permitida a permanência de animais de estimação nas instalações.",
-                            "Festas, comemorações ou eventos privados não são permitidos.",
-                            "Sessões fotográficas ou de gravação comercial são proibidas.",
-                            "Respeite os vizinhos, funcionários da recepção e o silêncio geral do condomínio.",
-                            "Horário de silêncio rigoroso em todo o condomínio: das 21h às 9h.",
-                            "Apague todas as luzes e desligue o ar-condicionado sempre que sair do estúdio.",
-                            "Caso ocorra algum dano acidental, comunique-nos imediatamente (manchas graves em enxovais e toalhas geram taxas adicionais de lavagem).",
-                            "Respeite com exatidão os horários estipulados para a entrada (check-in) e saída (check-out).",
-                            "É proibido acessar a área da piscina portando copos ou quaisquer recipientes de vidro."
-                        ],
-                        sections: [
-                            {
-                                title: "Gestão de Visitas",
-                                items: [
-                                    "É obrigatório o envio prévio dos documentos dos visitantes pelo chat oficial de suporte da plataforma de reserva, dentro do horário de atendimento, das 10h às 22h.",
-                                    "Consulte o manual de regras adicionais de hospedagem do condomínio para mais detalhes."
-                                ]
-                            },
-                            {
-                                title: "Todas as Regras e Detalhes",
-                                items: [
-                                    "Todas as diretrizes detalhadas de hospedagem, prazos de cancelamento e termos adicionais estão disponíveis em seu perfil na plataforma de reserva."
-                                ]
-                            }
-                        ]
+                    'en': {
+                        wifi: { network: "beurban-311", password: "bu@311SP", instructions: "The modem router is inside the unit for maximum fiber optic speed." },
+                        rules: {
+                            intro: "Please follow the condo rules for a great stay!",
+                            items: [
+                                "Keep the unit clean and organized.",
+                                "Maximum of 2 guests.",
+                                "Strictly no smoking inside or in common areas.",
+                                "Do not flush paper down the toilet.",
+                                "Pets are not allowed.",
+                                "No parties or private events.",
+                                "Commercial photoshoots are prohibited.",
+                                "Strict quiet hours: 9 PM to 9 AM.",
+                                "Turn off lights and air conditioning when leaving."
+                            ],
+                            sections: [{ title: "Visitor Policy", items: ["Pre-registration of visitor ID documents via chat is required."] }]
+                        },
+                        arrival: { address: "Rua Joaquim Guarani, 63 - Brooklin - São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo", instructions: "Taxi or Uber recommended. Brooklin Subway Station is just two blocks away." },
+                        checkin: { items: [{ title: "Front Desk Access", desc: "Present a photo ID at the reception and identify unit 311." }] },
+                        shopping: { items: [{ name: "Morumbi Shopping", desc: "Traditional shopping mall with complete options.", dist: "~10 min by car" }] },
+                        general_info: { items: [{ title: "Gym", desc: "On the 1st floor, equipped and open 24/7." }] },
+                        checkout: { time: "Until 11:00 AM", rules: [{ title: "Trash", desc: "Dispose in selective trash bins on the ground parking floor." }] },
+                        thankyou: { title: "Thank you very much!", message: "We are at your service via chat.", action: "Rate us 5 stars!" }
                     },
-                    arrival: {
-                        address: "Rua Joaquim Guarani, 63 - Jardim das Acácias, Brooklin - São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo",
-                        instructions: "Aconselhamos o deslocamento por táxi ou veículo de aplicativo (como Uber). O ponto de ônibus mais próximo fica a 5 minutos a pé, e a Estação Brooklin do Metrô encontra-se a apenas duas quadras de distância. É possível encontrar facilmente patinetes de aluguel perto da saída da estação."
-                    },
-                    checkin: {
-                        items: [
-                            {
-                                title: "Senha de Acesso",
-                                desc: "Caso a sua senha eletrônica não seja entregue automaticamente até as 13h do dia de sua chegada, pedimos que nos avise imediatamente por mensagem no chat."
-                            },
-                            {
-                                title: "Procedimento de Entrada",
-                                desc: "Ao chegar à entrada principal do edifício, acione o interfone na porta de vidro automática. Identifique-se como hóspede da unidade 311 e apresente seu documento com foto na recepção. Se o recepcionista encontrar dificuldades para localizar o cadastro, solicite gentilmente que verifique pelo nome do titular ou pelo número do apartamento. Nota: este edifício não possui controle de acesso facial para hóspedes de curta temporada."
-                            }
-                        ]
-                    },
-                    shopping: {
-                        items: [
-                            { name: "Shopping Parque da Cidade", desc: "Complexo com variadas opções gastronômicas, lojas de conveniência, salas de cinema e pronto-socorro do Hospital Albert Einstein.", dist: "~10 min de carro" },
-                            { name: "Shopping Morumbi", desc: "Um dos shoppings mais tradicionais de São Paulo. De fácil acesso via metrô a partir da estação Brooklin.", dist: "~10 min de carro" },
-                            { name: "Supermercados Dia e Pão de Açúcar", desc: "Saindo do edifício à direita, siga até a Avenida Santo Amaro e vire à direita. O mercado Dia fica na esquina e o Pão de Açúcar um pouco mais adiante.", dist: "A pé" },
-                            { name: "Padaria da Região", desc: "Saindo do condomínio à esquerda, a padaria situa-se na próxima quadra, no mesmo lado da calçada.", dist: "A pé" }
-                        ]
-                    },
-                    general_info: {
-                        items: [
-                            { title: "Cozinha Compartilhada", desc: "Localiza-se no 3º andar, na ponta do corredor oposta à do estúdio. Disponível 24h por dia. Pratos e talheres estão disponíveis em sua unidade." },
-                            { title: "Mini Mercado no Prédio", desc: "Localizado no 2º andar, disponibiliza lanches rápidos e bebidas em sistema de autoatendimento 24h por dia." },
-                            { title: "Academia", desc: "Situada no 1º andar, equipada com aparelhos modernos de musculação e cárdio. Aberta 24h por dia." },
-                            { title: "Lavanderia Coletiva", desc: "Equipada com máquinas de lavar e secar que utilizam o sistema OMO Pay (via aplicativo de celular). O sabão e o amaciante são dosados automaticamente. Siga as instruções do mural informativo." }
-                        ]
-                    },
-                    checkout: {
-                        time: "Até as 11h da manhã",
-                        rules: [
-                            { title: "Extensão de Horário", desc: "O check-out tardio (late check-out) até as 22h, bem como o check-in antecipado, estão estritamente condicionados à disponibilidade da agenda e exigem o pagamento de taxas. Consulte-nos no chat." },
-                            { title: "Descarte do Lixo", desc: "Os grandes contêineres seletivos de resíduos recicláveis e orgânicos situam-se no térreo do estacionamento do condomínio." }
-                        ]
-                    },
-                    thankyou: {
-                        title: "Muito obrigado por escolher a Meu Lugar!",
-                        message: "Ficamos à sua total disposição pelo chat de suporte para esclarecer qualquer dúvida ou atender a qualquer necessidade durante sua estadia.",
-                        action: "Se a sua estadia no Be Urban foi confortável, deixe uma avaliação de 5 estrelas no Airbnb ou na Booking.com para ajudar outros viajantes a conhecerem os nossos serviços!"
+                    'es': {
+                        wifi: { network: "beurban-311", password: "bu@311SP", instructions: "El módem está dentro de la unidad para mayor velocidad de fibra." },
+                        rules: {
+                            intro: "¡Por favor cumpla las reglas para una excelente estancia!",
+                            items: [
+                                "Mantenga la limpieza y organización.",
+                                "Máximo 2 huéspedes.",
+                                "Prohibido fumar en el apartamento o áreas comunes.",
+                                "No tire papel al inodoro.",
+                                "No se admiten mascotas.",
+                                "Prohibidas fiestas o eventos.",
+                                "Horario de silencio: 21:00 a 09:00.",
+                                "Apague luces y aire al salir."
+                            ],
+                            sections: [{ title: "Gestión de Visitas", items: ["El registro previo de visitantes por chat es obligatorio."] }]
+                        },
+                        arrival: { address: "Rua Joaquim Guarani, 63 - Brooklin - São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo", instructions: "Se recomienda taxi o Uber. Estación de Metro Brooklin a dos calles." },
+                        checkin: { items: [{ title: "Entrada en Recepción", desc: "Presente identificación con foto en la recepción." }] },
+                        shopping: { items: [{ name: "Shopping Morumbi", desc: "Centro comercial completo.", dist: "~10 min en coche" }] },
+                        general_info: { items: [{ title: "Gimnasio", desc: "En el 1º piso, abierto 24h." }] },
+                        checkout: { time: "Hasta las 11:00 AM", rules: [{ title: "Basura", desc: "Deposite en los contenedores del estacionamiento." }] },
+                        thankyou: { title: "¡Muchas gracias!", message: "Estamos a su disposición por chat.", action: "¡Califíquenos con 5 estrellas!" }
                     }
                 }
             },
@@ -484,108 +614,85 @@
                 id: "today-415",
                 name: "Studio para Relaxar em Moema - Today 415", 
                 city: "São Paulo - SP (Moema)",
-                tagline: "Praticidade e aconchego em tons de verde no coração de Moema",
                 color: "green",
                 bgGradient: "from-emerald-600 to-emerald-850",
                 image: "passaros.png",
-                icon: "fa-kiwi-bird",
-                svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M10 90l30-50 15 20 25-35 15 65z"/></svg>`,
+                fallbackImage: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop",
+                tagline: {
+                    'pt-BR': "Praticidade e aconchego em tons de verde no coração de Moema",
+                    'en': "Cozy green tones and comfort in the heart of Moema",
+                    'es': "Practicidad y acogimiento en tonos verdes en el corazón de Moema"
+                },
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
-                    { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes e visitas' },
-                    { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
-                    { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
-                    { id: 'shopping', title: 'Compras', icon: 'fa-bag-shopping', desc: 'Shopping e padarias' },
-                    { id: 'general_info', title: 'Informações Gerais', icon: 'fa-circle-info', desc: 'Lavanderia, maleiro, coworking' },
-                    { id: 'checkout', title: 'Check-out', icon: 'fa-right-from-bracket', desc: 'Horários e lixo' },
-                    { id: 'thankyou', title: 'Obrigado', icon: 'fa-heart', desc: 'Mensagem de despedida' }
+                    { id: 'wifi', titleKey: 'catWifiTitle', descKey: 'catWifiDesc', icon: 'fa-wifi' },
+                    { id: 'rules', titleKey: 'catRulesTitle', descKey: 'catRulesDesc', icon: 'fa-clipboard-list' },
+                    { id: 'arrival', titleKey: 'catArrivalTitle', descKey: 'catArrivalDesc', icon: 'fa-map-location-dot' },
+                    { id: 'checkin', titleKey: 'catCheckinTitle', descKey: 'catCheckinDesc', icon: 'fa-key' },
+                    { id: 'shopping', titleKey: 'catShoppingTitle', descKey: 'catShoppingDesc', icon: 'fa-bag-shopping' },
+                    { id: 'general_info', titleKey: 'catGeneralTitle', descKey: 'catGeneralDesc', icon: 'fa-circle-info' },
+                    { id: 'checkout', titleKey: 'catCheckoutTitle', descKey: 'catCheckoutDesc', icon: 'fa-right-from-bracket' },
+                    { id: 'thankyou', titleKey: 'catThankyouTitle', descKey: 'catThankyouDesc', icon: 'fa-heart' }
                 ],
                 content: {
-                    wifi: {
-                        network: "today-415",
-                        password: "tm@415MP",
-                        instructions: "Sinal de banda larga dedicada e de alta velocidade. O modem está configurado no interior do armário do estúdio."
+                    'pt-BR': {
+                        wifi: { network: "today-415", password: "tm@415MP", instructions: "Roteador dedicado no armário." },
+                        rules: {
+                            intro: "Aproveite Moema com total conforto e respeite as regras da casa!",
+                            items: [
+                                "Máximo de 4 hóspedes.",
+                                "Visitas não são permitidas.",
+                                "Prohibido fumar nas instalações.",
+                                "Não jogue resíduos no vaso sanitário.",
+                                "Animais de estimação não são permitidos.",
+                                "Horário de silêncio: 21h às 9h."
+                            ]
+                        },
+                        arrival: { address: "Avenida Pavão, 986, apto 415 - Moema, São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema", instructions: "Estação Eucaliptos a 2 quadras. Parque Ibirapuera a 15 min." },
+                        checkin: { items: [{ title: "Portaria", desc: "Identifique-se como hóspede da unidade 415 na portaria." }] },
+                        shopping: { items: [{ name: "Shopping Ibirapuera", desc: "A poucos passos com ótimas lojas e gastronomia.", dist: "~10 min a pé" }] },
+                        general_info: { items: [{ title: "Sofá-Cama", desc: "Abra um lado de cada vez cuidadosamente." }] },
+                        checkout: { time: "Até as 11h da manhã", rules: [{ title: "Saída", desc: "Apague luzes e desligue ar-condicionado." }] },
+                        thankyou: { title: "Desejamos boa viagem!", message: "Obrigado por se hospedar conosco em Moema.", action: "Siga no Instagram @meulugar.hospedagem" }
                     },
-                    rules: {
-                        intro: "Agradecemos o cuidado permanente no cumprimento das regras de convivência do edifício. Desejamos uma excelente estadia!",
-                        items: [
-                            "Mantenha sempre a limpeza e a organização do estúdio.",
-                            "Lotação máxima estritamente restrita a 4 hóspedes por estadia.", 
-                            "Visitas não são permitidas nas dependências do estúdio conforme termos contratuais.", 
-                            "É proibido fumar dentro da unidade ou nas áreas compartilhadas do edifício.",
-                            "Deposite papéis e resíduos na lixeira e nunca diretamente no vaso sanitário.",
-                            "Não é permitida a permanência de animais de estimação nas instalações.",
-                            "Não são autorizados eventos, comemorações ou festas privadas no estúdio.",
-                            "Gravações ou fotografias para fins comerciais não são permitidas sem autorização prévia.",
-                            "Preze sempre pela harmonia, pelo sossego dos vizinhos e pelo silêncio geral.",
-                            "Período de silêncio rigoroso nas dependências: das 21h às 9h.",
-                            "Lembre-se de apagar as luzes e desligar o ar-condicionado sempre que sair do estúdio.",
-                            "Relate imediatamente qualquer dano ou acidente acidental aos proprietários.",
-                            "Respeite com pontualidade os horários indicados para entrada (check-in) e saída (check-out)."
-                        ],
-                        sections: [
-                            {
-                                title: "Gestão de Visitas", 
-                                items: [
-                                    "Visitas não são permitidas no estúdio durante a sua estadia, em total conformidade com o regulamento do condomínio e as regras de sua reserva."
-                                ]
-                            },
-                            {
-                                title: "Todas as Regras e Detalhes",
-                                items: [
-                                    "Todas as diretrizes de hospedagem adicionais estão disponíveis no seu perfil em regras da casa na plataforma onde realizou a reserva."
-                                ]
-                            }
-                        ]
+                    'en': {
+                        wifi: { network: "today-415", password: "tm@415MP", instructions: "Dedicated router inside the closet." },
+                        rules: {
+                            intro: "Enjoy Moema comfortably while respecting house rules!",
+                            items: [
+                                "Maximum 4 guests.",
+                                "Visitors are strictly not allowed.",
+                                "No smoking inside.",
+                                "Do not flush paper down the toilet.",
+                                "No pets allowed.",
+                                "Quiet hours: 9 PM to 9 AM."
+                            ]
+                        },
+                        arrival: { address: "Avenida Pavão, 986, apt 415 - Moema, São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema", instructions: "Eucaliptos Station 2 blocks away. Ibirapuera Park 15 min drive." },
+                        checkin: { items: [{ title: "Front Desk", desc: "Identify yourself as guest of unit 415 at reception." }] },
+                        shopping: { items: [{ name: "Ibirapuera Mall", desc: "A short walk with great stores and food court.", dist: "~10 min walk" }] },
+                        general_info: { items: [{ title: "Sofa Bed", desc: "Open one side at a time carefully." }] },
+                        checkout: { time: "Until 11:00 AM", rules: [{ title: "Departure", desc: "Turn off lights and air conditioning." }] },
+                        thankyou: { title: "Have a safe trip!", message: "Thank you for staying with us in Moema.", action: "Follow us on Instagram @meulugar.hospedagem" }
                     },
-                    arrival: {
-                        address: "Avenida Pavão, 986, apto 415 - Moema, São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema",
-                        instructions: "A estação de metrô mais próxima é a Eucaliptos (Linha 5 - Lilás), a apenas duas quadras de distância. O Parque Ibirapuera situa-se a cerca de 15 minutos de carro ou a 30 minutos a pé."
-                    },
-                    checkin: {
-                        items: [
-                            {
-                                title: "Senha do Acesso Eletrônico",
-                                desc: "Caso não receba a senha eletrônica em seu celular até as 13h do dia de sua chegada, entre em contato conosco imediatamente pelo chat de suporte."
-                            },
-                            {
-                                title: "Procedimento na Portaria",
-                                desc: "Ao chegar, acione o interfone do portão externo. Identifique-se como hóspede do estúdio 415 e apresente seu documento de identidade com foto na recepção. Caso haja dificuldades, solicite gentilmente que verifique o cadastro pelo seu nome completo no sistema."
-                            }
-                        ]
-                    },
-                    shopping: {
-                        items: [
-                            { name: "Shopping Ibirapuera", desc: "Localizado muito próximo, conta com dezenas de lojas e uma praça de alimentação com diversas opções de refeição.", dist: "~10 min a pé" },
-                            { name: "Supermercado Pão de Açúcar", desc: "Localiza-se na Av. Ibirapuera, sendo um local excelente para compras de itens essenciais do dia a dia.", dist: "~3 min a pé" },
-                            { name: "Padaria Moema", desc: "Excelente opção de confeitaria e panificação para um café da manhã agradável.", dist: "~5 min a pé" },
-                            { name: "Rua Normandia", desc: "Famosa por suas charmosas lojas de alto padrão e decoração, sendo especialmente iluminada no período de final de ano.", dist: "~15 min a pé" }
-                        ]
-                    },
-                    general_info: {
-                        items: [
-                            { 
-                                title: "Como Abrir o Sofá-Cama", 
-                                desc: "1. Abra um lado de cada vez, conforme as orientações do manual.<br>2. Para uso de volta como sofá, faça o movimento inverso completo até que retorne à sua posição original.<br><br><a href='manual-do-sofa-cama.jpg' target='_blank' class='inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-100 text-emerald-800 rounded-lg hover:bg-emerald-200 transition-all font-bold text-[10px] mt-1'><i class='fa-solid fa-file-image text-emerald-600'></i> Ver Manual de Manuseio do Sofá-Cama</a>" 
-                            },
-                            { title: "Lavanderia OMO", desc: "Localizada no térreo do condomínio. É de autoatendimento mediante pagamento direto pelo aplicativo oficial da OMO." },
-                            { title: "Espaço de Coworking", desc: "Localizado no térreo, dispõe de mesas prontas para trabalho ou reuniões, equipadas com rede Wi-Fi." },
-                            { title: "Guarda-Bagagem / Maleiro", desc: "Serviço de maleiro pay-per-use disponível no térreo, acessível via QR Code na parede." },
-                            { title: "Utensílios do Estúdio", desc: "Os utensílios de limpeza (como vassouras) encontram-se no gavetão sob a pia da cozinha. O ferro de passar roupas está guardado no guarda-roupa." }
-                        ]
-                    },
-                    checkout: {
-                        time: "Até as 11h da manhã",
-                        rules: [
-                            { title: "Extensão de Horário", desc: "O check-out tardio (late check-out), bem como o check-in antecipado, estão estritamente condicionados à disponibilidade da agenda e exigem o pagamento de taxas." }, 
-                            { title: "Descarte do Lixo", desc: "As lixeiras seletivas para resíduos domésticos estão localizadas no térreo do edifício, junto à área da lavanderia." }
-                        ]
-                    },
-                    thankyou: {
-                        title: "Desejamos que tenha desfrutado de Moema!",
-                        message: "Ficamos muito gratos pela escolha e aguardamos ansiosamente o seu retorno em uma futura visita à cidade de São Paulo.",
-                        action: "Compartilhe seus momentos em nosso Instagram oficial e ajude-nos deixando sua avaliação no Airbnb ou na Booking.com: @meulugar.hospedagem"
+                    'es': {
+                        wifi: { network: "today-415", password: "tm@415MP", instructions: "Módem dedicado en el armario." },
+                        rules: {
+                            intro: "¡Disfrute de Moema respetando las normas de convivencia!",
+                            items: [
+                                "Máximo 4 huéspedes.",
+                                "Visitas no permitidas.",
+                                "Prohibido fumar.",
+                                "No tire papel al inodoro.",
+                                "No se admiten mascotas.",
+                                "Horario de silencio: 21:00 a 09:00."
+                            ]
+                        },
+                        arrival: { address: "Avenida Pavão, 986, apto 415 - Moema, São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema", instructions: "Estación Eucaliptos a 2 calles. Parque Ibirapuera a 15 min." },
+                        checkin: { items: [{ title: "Recepción", desc: "Identifíquese como huésped de la unidad 415." }] },
+                        shopping: { items: [{ name: "Shopping Ibirapuera", desc: "A pocos pasos con gran gastronomía y tiendas.", dist: "~10 min a pie" }] },
+                        general_info: { items: [{ title: "Sofá Cama", desc: "Abra un lado a la vez cuidadosamente." }] },
+                        checkout: { time: "Hasta las 11:00 AM", rules: [{ title: "Salida", desc: "Apague luces y aire acondicionado." }] },
+                        thankyou: { title: "¡Buen viaje!", message: "Gracias por hospedarse en Moema.", action: "Síganos en Instagram @meulugar.hospedagem" }
                     }
                 }
             },
@@ -593,125 +700,85 @@
                 id: "azure-pinheiros",
                 name: "Studio Azure Pinheiros - Welconx 23",
                 city: "São Paulo - SP (Pinheiros)",
-                tagline: "Estilo moderno, azul e branco no polo cultural de Pinheiros",
                 color: "blue",
                 bgGradient: "from-blue-600 to-blue-800",
                 image: "azure.png",
-                icon: "fa-water",
-                svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M30 20s15 10 30 0 30 10 50 0v50H10V20z"/><circle cx='50' cy='40' r='12'/></svg>`,
+                fallbackImage: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
+                tagline: {
+                    'pt-BR': "Estilo moderno, azul e branco no polo cultural de Pinheiros",
+                    'en': "Modern blue and white style in the cultural hub of Pinheiros",
+                    'es': "Estilo moderno, azul y blanco en el polo cultural de Pinheiros"
+                },
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
-                    { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes básicas' },
-                    { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
-                    { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
-                    { id: 'shopping', title: 'Compras e Lazer', icon: 'fa-bag-shopping', desc: 'Comércio, gastronomia e parques' },
-                    { id: 'general_info', title: 'Informações Gerais', icon: 'fa-circle-info', desc: 'Áreas comuns e condomínio' }, 
-                    { id: 'checkout', title: 'Check-out', icon: 'fa-right-from-bracket', desc: 'Horários e lixo' },
-                    { id: 'thankyou', title: 'Obrigado', icon: 'fa-heart', desc: 'Mensagem de despedida' }
+                    { id: 'wifi', titleKey: 'catWifiTitle', descKey: 'catWifiDesc', icon: 'fa-wifi' },
+                    { id: 'rules', titleKey: 'catRulesTitle', descKey: 'catRulesDesc', icon: 'fa-clipboard-list' },
+                    { id: 'arrival', titleKey: 'catArrivalTitle', descKey: 'catArrivalDesc', icon: 'fa-map-location-dot' },
+                    { id: 'checkin', titleKey: 'catCheckinTitle', descKey: 'catCheckinDesc', icon: 'fa-key' },
+                    { id: 'shopping', titleKey: 'catShoppingTitle', descKey: 'catShoppingDesc', icon: 'fa-bag-shopping' },
+                    { id: 'general_info', titleKey: 'catGeneralTitle', descKey: 'catGeneralDesc', icon: 'fa-circle-info' }, 
+                    { id: 'checkout', titleKey: 'catCheckoutTitle', descKey: 'catCheckoutDesc', icon: 'fa-right-from-bracket' },
+                    { id: 'thankyou', titleKey: 'catThankyouTitle', descKey: 'catThankyouDesc', icon: 'fa-heart' }
                 ],
                 content: {
-                    wifi: {
-                        network: "Studio Azure Pinheiros",
-                        password: "SAP0023#",
-                        instructions: "Conexão de banda larga de alta velocidade exclusiva do apartamento, ideal para trabalho remoto e streaming."
+                    'pt-BR': {
+                        wifi: { network: "Studio Azure Pinheiros", password: "SAP0023#", instructions: "Conexão de alta velocidade de fibra óptica." },
+                        rules: {
+                            intro: "Atenção às regras para manter a qualidade de sua hospedagem:",
+                            items: [
+                                "Proibido fumar. Multa de R$ 500 em caso de infração.",
+                                "Visitas não cadastradas são proibidas.",
+                                "Animais de estimação não são permitidos.",
+                                "Festas ou eventos são proibidos.",
+                                "Evite andar calçado dentro do estúdio.",
+                                "Não jogue papel no vaso sanitário."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apto 23 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A apenas 150m da Estação Pinheiros do Metrô." },
+                        checkin: { items: [{ title: "Self Check-in", desc: "Portaria 24h. Apresente documento de identidade na recepção." }] },
+                        shopping: { items: [{ name: "Minimercado OXXO", desc: "Aberto 24h a 100m.", dist: "100 m" }] },
+                        general_info: { items: [{ title: "Áreas Comuns", desc: "Áreas de lazer do prédio estão em fase de implantação." }] },
+                        checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Lixo", desc: "Recolha o lixo e deixe no depósito ao lado da portaria." }] },
+                        thankyou: { title: "Agradecemos sua visita!", message: "Esperamos ver você de volta em breve no Azure!", action: "Avalie com 5 estrelas!" }
                     },
-                    rules: {
-                        intro: "Para garantir uma excelente estadia para todos e manter o alto padrão do apartamento, pedimos gentilmente atenção a estas diretrizes fundamentais:",
-                        items: [
-                            "É estritamente proibido fumar dentro do apartamento ou nas áreas comuns do condomínio. O descumprimento está sujeito à multa de R$ 500,00, além dos custos adicionais para higienização dos móveis.",
-                            "Visitas de pessoas não cadastradas são expressamente proibidas, conforme as diretrizes descritas na reserva.",
-                            "Não é permitida a permanência de animais de estimação no estúdio ou nas dependências do condomínio.", 
-                            "Festas, comemorações ou eventos privados não são permitidos.", 
-                            "Sessões fotográficas ou de gravação de comerciais são proibidas.", 
-                            "Aconselhamos todos os hóspedes a não andar calçados dentro do apartamento. Recomendamos deixar seus calçados logo na entrada do estúdio; essa simples ação evita trazer sujeira externa e previne ruídos incômodos para os vizinhos do andar de baixo.",
-                            "Por favor, não descarte papel higiênico ou qualquer outro resíduo no vaso sanitário, pois há risco de entupimento.",
-                            "Pedimos que mantenha o apartamento limpo durante a estadia e nos entregue da mesma forma que o encontrou.",
-                            "Não oferecemos serviço de hotelaria. Por favor, cuide do Azure como se fosse a sua própria casa!",
-                            "Ao sair do estúdio, certifique-se de que todas as luzes e o ar-condicionado estejam desligados, e que as janelas e portas estejam bem fechadas."
-                        ],
-                        sections: [ 
-                            {
-                                title: "Gestão de Visitas",
-                                items: [
-                                    "Visitas de pessoas não cadastradas são expressamente proibidas nas dependências do estúdio, conforme as regras descritas no anúncio de sua reserva.",
-                                    "Consulte o manual de regras adicionais de hospedagem do condomínio para mais detalhes."
-                                ]
-                            },
-                            {
-                                title: "Enxoval e Taxas Extras",
-                                items: [
-                                    "Deixamos toalhas, lençóis, cobertores e travesseiros higienizados para o número exas de hóspedes confirmados na reserva.",
-                                    "Em caso de manchas difíceis de remover (como sangue, maquiagem ou corantes) no enxoval, haverá cobrança de taxa extra de lavagem."
-                                ]
-                            },
-                            {
-                                title: "Gestão do Lixo",
-                                items: [
-                                    "Não se esqueça de recolher e organizar o lixo antes de sua partida.",
-                                    "O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço."
-                                ]
-                            },
-                            {
-                                title: "Todas as Regras e Detalhes",
-                                items: [
-                                    "Todas as diretrizes detalhadas de hospedagem, prazos de cancelamento e termos adicionais estão disponíveis em seu perfil na plataforma de reserva."
-                                ]
-                            }
-                        ]
+                    'en': {
+                        wifi: { network: "Studio Azure Pinheiros", password: "SAP0023#", instructions: "High-speed fiber optic connection." },
+                        rules: {
+                            intro: "Please follow rules to preserve apartment quality:",
+                            items: [
+                                "No smoking inside. R$ 500 fine for violations.",
+                                "Unregistered visitors are strictly forbidden.",
+                                "No pets allowed.",
+                                "No parties or events.",
+                                "Please take off shoes inside.",
+                                "Do not flush paper down the toilet."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apt 23 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "Just 150m from Pinheiros Subway Station." },
+                        checkin: { items: [{ title: "Self Check-in", desc: "24/7 reception. Show your photo ID upon arrival." }] },
+                        shopping: { items: [{ name: "OXXO Convenience Store", desc: "Open 24/7 just 100m away.", dist: "100 m" }] },
+                        general_info: { items: [{ title: "Common Areas", desc: "Leisure areas in the building are currently under setup." }] },
+                        checkout: { time: "Until 10:00 AM", rules: [{ title: "Trash", desc: "Collect trash and leave it by the service entrance." }] },
+                        thankyou: { title: "Thank you for staying!", message: "We hope to welcome you back soon at Azure!", action: "Rate us 5 stars!" }
                     },
-                    arrival: {
-                        address: "Rua Eugênio de Medeiros, 321, apto 23 (2º andar) - Pinheiros, São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo",
-                        instructions: "O condomínio fica a apenas 150m da Estação Pinheiros do Metrô (Linha 4-Amarela e Linha 9-Esmeralda) e a 9km do Aeroporto de Congonhas. Como toda grande metrópole, São Paulo exige cuidado e atenção redobrados. Evite caminhar com o celular exposto na rua e evite passeios individuais à noite."
-                    },
-                    checkin: {
-                        items: [
-                            {
-                                title: "Horários de Entrada",
-                                desc: "Seu check-in está se aproximando! A liberação da entrada ocorre a partir das 14h da data de chegada, e o check-out deve ser realizado até as 10h da manhã."
-                            },
-                            {
-                                title: "Procedimento da Portaria",
-                                desc: "Oferecemos a facilidade de self check-in com portaria 24h. Ao chegar, basta se identificar na recepção apresentando um documento de identidade com foto."
-                            },
-                            {
-                                title: "Acesso ao Apartamento",
-                                desc: "Você encontrará um apartamento novo, finamente decorado, totalmente equipado para o seu maior conforto e em excepcional estado de limpeza. A senha temporária da fechadura eletrônica será enviada próximo à data reservada."
-                            }
-                        ]
-                    },
-                    shopping: {
-                        items: [
-                            { name: "Minimercado OXXO", desc: "Super prático para compras rápidas do dia a dia. Aberto 24 horas.", dist: "100 m (saindo à esquerda)" },
-                            { name: "Pacco Restaurante", desc: "Almoço por quilo / buffet de excelente qualidade com pratos sempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
-                            { name: "Québec Bar e Restaurante", desc: "Ótima opção para almoço, jantar e um Happy Hour muito animado ao fim do dia.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
-                            { name: "Giardino Pinheiros", desc: "Famoso pelas suas parmegianas espetaculares, ideal para almoço, jantar ou Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
-                            { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espaço de referência de cultura e lazer com excelente programação teatral, música e artes.", dist: "290 m (Rua Paes Leme, 195)" },
-                            { name: "Lavanderia Fast Faria Lima", desc: "Lavanderia self-service rápida 24 horas, localizada de forma muito conveniente dentro do posto Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
-                            { name: "Shopping Eldorado", desc: "Excelente e amplo centro comercial, gastronômico e cultural com opções completas de compras e serviços.", dist: "1 km (Av. Rebouças, 3970)" },
-                            { name: "Mercado Municipal de Pinheiros", desc: "Excelente para encontrar queijos finos, destilados, cafés especiais, frutas frescas e ótima gastronomia local. Fecha aos domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
-                            { name: "Shopping Villa Lobos", desc: "Centro comercial aconchegante, sofisticado e muito completo, com lojas, restaurantes e cinemas excelentes.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
-                            { name: "MASP - Museu de Arte de SP", desc: "Museu de arte privado sem fins lucrativos, com acervo de relevância internacional. Fica situado na célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
-                            { name: "Parque Villa Lobos", desc: "Maravilhoso parque público arborizado, perfeito para caminhar, relaxar ou praticar esportes ao ar livre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
-                        ]
-                    },
-                    general_info: { 
-                        items: [
-                            { title: "Áreas Comuns em Implantação", desc: "Os espaços de lazer e áreas comuns do condomínio ainda estão em fase de implantação física e não se encontram ativos ou disponíveis para a utilização dos hóspedes de curta temporada." },
-                            { title: "Importante: Condições de Reserva", desc: "Salientamos expressamente que estas áreas comuns não constam e não fazem parte da oferta ou do anúncio deste estúdio em nenhuma das plataformas de reserva contratadas." }
-                        ]
-                    },
-                    checkout: {
-                        time: "Até as 10:00 da manhã",
-                        rules: [
-                            { title: "Organização do Lixo", desc: "Por favor, recolha e organize o lixo antes de sua saída. O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço." },
-                            { title: "Check-out Check", desc: "Antes de sair, certifique-se de apagar as luzes, desligar o ar-condicionado e trancar as portas e janelas." }
-                        ]
-                    },
-                    thankyou: {
-                        title: "Desejamos que tenha dias maravilhosos no Azure Pinheiros!",
-                        message: "Estamos extremamente felizes em receber você em nosso espaço. Permanecemos à sua inteira disposição no chat de suporte para o que for necessário!",
-                        action: "Avalie sua estadia com 5 estrelas no Airbnb ou na Booking.com para apoiar nosso trabalho e acompanhe as novidades no Instagram: @meulugar.hospedagem!"
+                    'es': {
+                        wifi: { network: "Studio Azure Pinheiros", password: "SAP0023#", instructions: "Conexión de fibra óptica de alta velocidad." },
+                        rules: {
+                            intro: "Conserve la calidad del apartamento cumpliendo estas normas:",
+                            items: [
+                                "Prohibido fumar. Multa de R$ 500 por infracción.",
+                                "Visitas no registradas no están permitidas.",
+                                "No se admiten mascotas.",
+                                "No se permiten fiestas.",
+                                "Evite andar con calzado dentro del estudio.",
+                                "No tire papel al inodoro."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apto 23 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A solo 150m de la Estación de Metro Pinheiros." },
+                        checkin: { items: [{ title: "Self Check-in", desc: "Recepción 24h. Presente identificación en entrada." }] },
+                        shopping: { items: [{ name: "Tienda OXXO", desc: "Abierta 24 horas a 100 metros.", dist: "100 m" }] },
+                        general_info: { items: [{ title: "Áreas Comunes", desc: "Las áreas comunes se encuentran en fase de adecuación." }] },
+                        checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Basura", desc: "Deposite la basura al lado de la entrada de servicio." }] },
+                        thankyou: { title: "¡Gracias por su visita!", message: "¡Esperamos recibirle nuevamente en Azure!", action: "¡Califíquenos con 5 estrellas!" }
                     }
                 }
             },
@@ -719,127 +786,82 @@
                 id: "concret-loft-29",
                 name: "Concret Loft Pinheiros - Welconx 29",
                 city: "São Paulo - SP (Pinheiros)",
-                tagline: "Estilo moderno, concreto e sofisticação no polo cultural de Pinheiros",
                 color: "gray",
                 bgGradient: "from-slate-600 to-slate-800",
                 image: "concret.png",
-                icon: "fa-cubes",
-                svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M30 20s15 10 30 0 30 10 50 0v50H10V20z"/><circle cx='50' cy='40' r='12'/></svg>`,
+                fallbackImage: "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=800&auto=format&fit=crop",
+                tagline: {
+                    'pt-BR': "Estilo moderno, concreto e sofisticação no polo cultural de Pinheiros",
+                    'en': "Modern concrete style and sophistication in the cultural hub of Pinheiros",
+                    'es': "Estilo moderno, concreto y sofisticación en el polo cultural de Pinheiros"
+                },
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
-                    { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes básicas' },
-                    { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
-                    { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
-                    { id: 'shopping', title: 'Compras e Lazer', icon: 'fa-bag-shopping', desc: 'Comércio, gastronomia e parques' },
-                    { id: 'general_info', title: 'Informações Gerais', icon: 'fa-circle-info', desc: 'Áreas comuns e condomínio' }, 
-                    { id: 'checkout', title: 'Check-out', icon: 'fa-right-from-bracket', desc: 'Horários e lixo' },
-                    { id: 'thankyou', title: 'Obrigado', icon: 'fa-heart', desc: 'Mensagem de despedida' }
+                    { id: 'wifi', titleKey: 'catWifiTitle', descKey: 'catWifiDesc', icon: 'fa-wifi' },
+                    { id: 'rules', titleKey: 'catRulesTitle', descKey: 'catRulesDesc', icon: 'fa-clipboard-list' },
+                    { id: 'arrival', titleKey: 'catArrivalTitle', descKey: 'catArrivalDesc', icon: 'fa-map-location-dot' },
+                    { id: 'checkin', titleKey: 'catCheckinTitle', descKey: 'catCheckinDesc', icon: 'fa-key' },
+                    { id: 'shopping', titleKey: 'catShoppingTitle', descKey: 'catShoppingDesc', icon: 'fa-bag-shopping' },
+                    { id: 'general_info', titleKey: 'catGeneralTitle', descKey: 'catGeneralDesc', icon: 'fa-circle-info' }, 
+                    { id: 'checkout', titleKey: 'catCheckoutTitle', descKey: 'catCheckoutDesc', icon: 'fa-right-from-bracket' },
+                    { id: 'thankyou', titleKey: 'catThankyouTitle', descKey: 'catThankyouDesc', icon: 'fa-heart' }
                 ],
                 content: {
-                    wifi: {
-                        network: "Concrete Loft Pinheiros",
-                        password: "CLP00029#",
-                        instructions: "Conexão de banda larga de alta velocidade exclusiva do apartamento, ideal para trabalho remoto e streaming."
+                    'pt-BR': {
+                        wifi: { network: "Concrete Loft Pinheiros", password: "CLP00029#", instructions: "Conexão dedicada de fibra óptica." },
+                        rules: {
+                            intro: "Atenção às regras exclusivas do Concret Loft:",
+                            items: [
+                                "Proibido fumar no imóvel.",
+                                "Desligue o toalheiro elétrico quando as toalhas estiverem secas.",
+                                "Feche o registro da ducha higiênica ao sair.",
+                                "Não ande calçado no apartamento.",
+                                "Não jogue papel no vaso sanitário."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apto 29 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m da Estação Pinheiros." },
+                        checkin: { items: [{ title: "Check-in", desc: "Portaria 24h. Apresente documento na entrada." }] },
+                        shopping: { items: [{ name: "Shopping Eldorado", desc: "Opção completa de compras.", dist: "1 km" }] },
+                        general_info: { items: [{ title: "Informações", desc: "Áreas comuns em implantação." }] },
+                        checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Check-out", desc: "Feche janelas e desligue aparelhos ao sair." }] },
+                        thankyou: { title: "Muito obrigado!", message: "Tenha um excelente retorno!", action: "Deixe sua avaliação 5 estrelas!" }
                     },
-                    rules: {
-                        intro: "Para garantir uma excelente estadia para todos e manter o alto padrão do apartamento, pedimos gentilmente atenção a estas diretrizes fundamentais:",
-                        items: [
-                            "É estritamente proibido fumar dentro do apartamento ou nas áreas comuns do condomínio. O descumprimento está sujeito à multa de R$ 500,00, além dos custos adicionais para higienização dos móveis.",
-                            "Visitas de pessoas não cadastradas são expressamente proibidas, conforme as diretrizes descritas na reserva.",
-                            "Não é permitida a permanência de animais de estimação no estúdio ou nas dependências do condomínio.", 
-                            "Festas, comemorações ou eventos privados não são permitidos.", 
-                            "Sessões fotográficas ou de gravação de comerciais são proibidas.", 
-                            "Desligue o toalheiro quando as toalhas estiverem secas.", 
-                            "Não esqueça de fechar o registro da ducha higiênica quando sair.", 
-                            "Aconselhamos todos os hóspedes a não andar calçados dentro do apartamento. Recomendamos deixar seus calçados logo na entrada do estúdio; essa simples ação evita trazer sujeira externa e previne ruídos incômodos para os vizinhos do andar de baixo.",
-                            "Por favor, não descarte papel higiênico ou qualquer outro resíduo no vaso sanitário, pois há risco de entupimento.",
-                            "Pedimos que mantenha o apartamento limpo durante a estadia e nos entregue da mesma forma que o encontrou.",
-                            "Não oferecemos serviço de hotelaria. Por favor, cuide do Concret Loft como se fosse a sua própria casa!",
-                            "Ao sair do estúdio, certifique-se de que todas as luzes e o ar-condicionado estejam desligados, e que as janelas e portas estejam bem fechadas."
-                        ],
-                        sections: [ 
-                            {
-                                title: "Gestão de Visitas",
-                                items: [
-                                    "Visitas de pessoas não cadastradas são expressamente proibidas nas dependências do estúdio, conforme as regras descritas no anúncio de sua reserva.",
-                                    "Consulte o manual de regras adicionais de hospedagem do condomínio para mais detalhes."
-                                ]
-                            },
-                            {
-                                title: "Enxoval e Taxas Extras",
-                                items: [
-                                    "Deixamos toalhas, lençóis, cobertores e travesseiros higienizados para o número exato de hóspedes confirmados na reserva.",
-                                    "Em caso de manchas difíceis de remover (como sangue, maquiagem ou corantes) no enxoval, haverá cobrança de taxa extra de lavagem."
-                                ]
-                            },
-                            {
-                                title: "Gestão do Lixo",
-                                items: [
-                                    "Não se esqueça de recolher e organizar o lixo antes de sua partida.",
-                                    "O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço."
-                                ]
-                            },
-                            {
-                                title: "Todas as Regras e Detalhes",
-                                items: [
-                                    "Todas as diretrizes detalhadas de hospedagem, prazos de cancelamento e termos adicionais estão disponíveis em seu perfil na plataforma de reserva."
-                                ]
-                            }
-                        ]
+                    'en': {
+                        wifi: { network: "Concrete Loft Pinheiros", password: "CLP00029#", instructions: "Dedicated high-speed fiber connection." },
+                        rules: {
+                            intro: "Please note Concret Loft rules:",
+                            items: [
+                                "No smoking allowed.",
+                                "Turn off towel warmer when towels are dry.",
+                                "Close bidet sprayer valve before leaving.",
+                                "Take off shoes inside.",
+                                "Do not flush paper down toilet."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apt 29 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "150m from Pinheiros Station." },
+                        checkin: { items: [{ title: "Check-in", desc: "24h reception. Present photo ID." }] },
+                        shopping: { items: [{ name: "Eldorado Mall", desc: "Complete shopping option.", dist: "1 km" }] },
+                        general_info: { items: [{ title: "Information", desc: "Common areas under implementation." }] },
+                        checkout: { time: "Until 10:00 AM", rules: [{ title: "Check-out", desc: "Close windows and switch off devices." }] },
+                        thankyou: { title: "Thank you!", message: "Have a great trip back!", action: "Leave your 5-star review!" }
                     },
-                    arrival: {
-                        address: "Rua Eugênio de Medeiros, 321, apto 29 (2º andar) - Pinheiros, São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo",
-                        instructions: "O condomínio fica a apenas 150m da Estação Pinheiros do Metrô (Linha 4-Amarela e Linha 9-Esmeralda) e a 9km do Aeroporto de Congonhas. Como toda grande metrópole, São Paulo exige cuidado e atenção redobrados. Evite caminhar com o celular exposto na rua e evite passeios individuais à noite."
-                    },
-                    checkin: {
-                        items: [
-                            {
-                                title: "Horários de Entrada",
-                                desc: "Seu check-in está se aproximando! A liberação da entrada ocorre a partir das 14h da data de chegada, e o check-out deve ser realizado até as 10h da manhã."
-                            },
-                            {
-                                title: "Procedimento da Portaria",
-                                desc: "Oferecemos a facilidade de self check-in com portaria 24h. Ao chegar, basta se identificar na recepção apresentando um documento de identidade com foto."
-                            },
-                            {
-                                title: "Acesso ao Apartamento",
-                                desc: "Você encontrará um apartamento novo, finamente decorado, totalmente equipado para o seu maior conforto e em excepcional estado de limpeza. A senha temporária da fechadura eletrônica será enviada próximo à data reservada."
-                            }
-                        ]
-                    },
-                    shopping: {
-                        items: [
-                            { name: "Minimercado OXXO", desc: "Super prático para compras rápidas do dia a dia. Aberto 24 horas.", dist: "100 m (saindo à esquerda)" },
-                            { name: "Pacco Restaurante", desc: "Almoço por quilo / buffet de excelente qualidade com pratos sempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
-                            { name: "Québec Bar e Restaurante", desc: "Ótima opção para almoço, jantar e um Happy Hour muito animado ao fim do dia.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
-                            { name: "Giardino Pinheiros", desc: "Famoso pelas suas parmegianas espetaculares, ideal para almoço, jantar ou Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
-                            { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espaço de referência de cultura e lazer com excelente programação teatral, música e artes.", dist: "290 m (Rua Paes Leme, 195)" },
-                            { name: "Lavanderia Fast Faria Lima", desc: "Lavanderia self-service rápida 24 horas, localizada de forma muito conveniente dentro do posto Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
-                            { name: "Shopping Eldorado", desc: "Excelente e amplo centro comercial, gastronômico e cultural com opções completas de compras e serviços.", dist: "1 km (Av. Rebouças, 3970)" },
-                            { name: "Mercado Municipal de Pinheiros", desc: "Excelente para encontrar queijos finos, destilados, cafés especiais, frutas frescas e ótima gastronomia local. Fecha aos domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
-                            { name: "Shopping Villa Lobos", desc: "Centro comercial aconchegante, sofisticado e muito completo, com lojas, restaurantes e cinemas excelentes.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
-                            { name: "MASP - Museu de Arte de SP", desc: "Museu de arte privado sem fins lucrativos, com acervo de relevância internacional. Fica situado na célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
-                            { name: "Parque Villa Lobos", desc: "Maravilhoso parque público arborizado, perfeito para caminhar, relaxar ou praticar esportes ao ar livre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
-                        ]
-                    },
-                    general_info: { 
-                        items: [
-                            { title: "Áreas Comuns em Implantação", desc: "Os espaços de lazer e áreas comuns do condomínio ainda estão em fase de implantação física e não se encontram ativos ou disponíveis para a utilização dos hóspedes de curta temporada." },
-                            { title: "Importante: Condições de Reserva", desc: "Salientamos expressamente que estas áreas comuns não constam e não fazem parte da oferta ou do anúncio deste estúdio em nenhuma das plataformas de reserva contratadas." }
-                        ]
-                    },
-                    checkout: {
-                        time: "Até as 10:00 da manhã",
-                        rules: [
-                            { title: "Organização do Lixo", desc: "Por favor, recolha e organize o lixo antes de sua saída. O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço." },
-                            { title: "Check-out Check", desc: "Antes de sair, certifique-se de apagar as luzes, desligar o ar-condicionado e trancar as portas e janelas." }
-                        ]
-                    },
-                    thankyou: {
-                        title: "Desejamos que tenha dias maravilhosos no Concret Loft Pinheiros!",
-                        message: "Estamos extremamente felizes em receber você em nosso espaço. Permanecemos à sua inteira disposição no chat de suporte para o que for necessário!",
-                        action: "Avalie sua estadia com 5 estrelas no Airbnb ou na Booking.com para apoiar nosso trabalho e acompanhe as novidades no Instagram: @meulugar.hospedagem!"
+                    'es': {
+                        wifi: { network: "Concrete Loft Pinheiros", password: "CLP00029#", instructions: "Conexión dedicada de fibra óptica." },
+                        rules: {
+                            intro: "Por favor observe las normas de Concret Loft:",
+                            items: [
+                                "Prohibido fumar.",
+                                "Apague el toallero eléctrico cuando las toallas estén secas.",
+                                "Cierre el grifo de la ducha higiénica al salir.",
+                                "Quítese los zapatos dentro.",
+                                "No tire papel al inodoro."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apto 29 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m de Estación Pinheiros." },
+                        checkin: { items: [{ title: "Check-in", desc: "Recepción 24h. Muestre documento al entrar." }] },
+                        shopping: { items: [{ name: "Shopping Eldorado", desc: "Compras completas.", dist: "1 km" }] },
+                        general_info: { items: [{ title: "Información", desc: "Áreas comunes en implementación." }] },
+                        checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Salida", desc: "Cierre ventanas y apague aparatos." }] },
+                        thankyou: { title: "¡Muchas gracias!", message: "¡Que tenga un excelente regreso!", action: "¡Deje su reseña de 5 estrellas!" }
                     }
                 }
             },
@@ -847,140 +869,105 @@
                 id: "provance-pinheiros-25",
                 name: "Provance Pinheiros - Welconx 25",
                 city: "São Paulo - SP (Pinheiros)",
-                tagline: "Estilo elegante de lavanda e sofisticação no polo cultural de Pinheiros",
                 color: "gray",
                 bgGradient: "from-slate-600 to-slate-800",
                 image: "provance.png",
-                icon: "fa-leaf",
-                svgPattern: `<svg class="absolute right-0 bottom-0 opacity-10 w-32 h-32" fill="currentColor" viewBox="0 0 100 100"><path d="M30 20s15 10 30 0 30 10 50 0v50H10V20z"/><circle cx='50' cy='40' r='12'/></svg>`,
+                fallbackImage: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
+                tagline: {
+                    'pt-BR': "Estilo elegante de lavanda e sofisticação no polo cultural de Pinheiros",
+                    'en': "Elegant lavender style and sophistication in the cultural hub of Pinheiros",
+                    'es': "Estilo elegante de lavanda y sofisticación en el polo cultural de Pinheiros"
+                },
                 menu: [
-                    { id: 'wifi', title: 'Senha do Wi-Fi', icon: 'fa-wifi', desc: 'Rede e conexão' },
-                    { id: 'rules', title: 'Regras da Casa', icon: 'fa-clipboard-list', desc: 'Diretrizes básicas' },
-                    { id: 'arrival', title: 'Como Chegar', icon: 'fa-map-location-dot', desc: 'Endereço e rotas' },
-                    { id: 'checkin', title: 'Check-in', icon: 'fa-key', desc: 'Acesso e portaria' },
-                    { id: 'shopping', title: 'Compras e Lazer', icon: 'fa-bag-shopping', desc: 'Comércio, gastronomia e parques' },
-                    { id: 'general_info', title: 'Informações Gerais', icon: 'fa-circle-info', desc: 'Áreas comuns e condomínio' }, 
-                    { id: 'checkout', title: 'Check-out', icon: 'fa-right-from-bracket', desc: 'Horários e lixo' },
-                    { id: 'thankyou', title: 'Obrigado', icon: 'fa-heart', desc: 'Mensagem de despedida' }
+                    { id: 'wifi', titleKey: 'catWifiTitle', descKey: 'catWifiDesc', icon: 'fa-wifi' },
+                    { id: 'rules', titleKey: 'catRulesTitle', descKey: 'catRulesDesc', icon: 'fa-clipboard-list' },
+                    { id: 'arrival', titleKey: 'catArrivalTitle', descKey: 'catArrivalDesc', icon: 'fa-map-location-dot' },
+                    { id: 'checkin', titleKey: 'catCheckinTitle', descKey: 'catCheckinDesc', icon: 'fa-key' },
+                    { id: 'shopping', titleKey: 'catShoppingTitle', descKey: 'catShoppingDesc', icon: 'fa-bag-shopping' },
+                    { id: 'general_info', titleKey: 'catGeneralTitle', descKey: 'catGeneralDesc', icon: 'fa-circle-info' }, 
+                    { id: 'checkout', titleKey: 'catCheckoutTitle', descKey: 'catCheckoutDesc', icon: 'fa-right-from-bracket' },
+                    { id: 'thankyou', titleKey: 'catThankyouTitle', descKey: 'catThankyouDesc', icon: 'fa-heart' }
                 ],
                 content: {
-                    wifi: {
-                        network: "ProvancePinheiros",
-                        password: "PP00025#",
-                        instructions: "Conexão de banda larga de alta velocidade exclusiva do apartamento, ideal para trabalho remoto e streaming."
+                    'pt-BR': {
+                        wifi: { network: "ProvancePinheiros", password: "PP00025#", instructions: "Conexão de fibra óptica de altíssima velocidade." },
+                        rules: {
+                            intro: "Normas de convivência do Provance Pinheiros:",
+                            items: [
+                                "Estritamente proibido fumar (multa de R$ 500 + higienização).",
+                                "Visitas não cadastradas são proibidas.",
+                                "Animais de estimação não são permitidos.",
+                                "Festas ou eventos são proibidos.",
+                                "Desligue o toalheiro quando as toalhas secarem.",
+                                "Feche o registro da ducha higiênica.",
+                                "Deixe os calçados na entrada.",
+                                "Não jogue papel no vaso sanitário."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apto 25 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m do Metrô Pinheiros." },
+                        checkin: { items: [{ title: "Check-in", desc: "A partir das 14h com portaria 24h." }] },
+                        shopping: { items: [{ name: "Giardino Pinheiros", desc: "Famoso pelas parmegianas.", dist: "120 m" }] },
+                        general_info: { items: [{ title: "Observação", desc: "Áreas comuns em implantação." }] },
+                        checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Instruções", desc: "Recolha o lixo e deixe no depósito do térreo." }] },
+                        thankyou: { title: "Agradecemos sua escolha!", message: "Tenha uma estadia inesquecível no Provance!", action: "Avalie com 5 estrelas!" }
                     },
-                    rules: {
-                        intro: "Para garantir uma excelente estadia para todos e manter o alto padrão do apartamento, pedimos gentilmente atenção a estas diretrizes fundamentais:",
-                        items: [
-                            "É estritamente proibido fumar dentro do apartamento ou nas áreas comuns do condomínio. O descumprimento está sujeito à multa de R$ 500,00, além dos custos adicionais para higienização dos móveis.",
-                            "Visitas de pessoas não cadastradas são expressamente proibidas, conforme as diretrizes descritas na reserva.",
-                            "Não é permitida a permanência de animais de estimação no estúdio ou nas dependências do condomínio.", 
-                            "Festas, comemorações ou eventos privados não são permitidos.", 
-                            "Sessões fotográficas ou de gravação de comerciais são proibidas.", 
-                            "Desligue o toalheiro quando as toalhas estiverem secas.", 
-                            "Não esqueça de fechar o registro da ducha higiênica quando sair.", 
-                            "Aconselhamos todos os hóspedes a não andar calçados dentro do apartamento. Recomendamos deixar seus calçados logo na entrada do estúdio; essa simples ação evita trazer sujeira externa e previne ruídos incômodos para os vizinhos do andar de baixo.",
-                            "Por favor, não descarte papel higiênico ou qualquer outro resíduo no vaso sanitário, pois há risco de entupimento.",
-                            "Pedimos que mantenha o apartamento limpo durante a estadia e nos entregue da mesma forma que o encontrou.",
-                            "Não oferecemos serviço de hotelaria. Por favor, cuide do Provance Pinheiros como se fosse a sua própria casa!",
-                            "Ao sair do estúdio, certifique-se de que todas as luzes e o ar-condicionado estejam desligados, e que as janelas e portas estejam bem fechadas."
-                        ],
-                        sections: [ 
-                            {
-                                title: "Gestão de Visitas",
-                                items: [
-                                    "Visitas de pessoas não cadastradas são expressamente proibidas nas dependências do estúdio, conforme as regras descritas no anúncio de sua reserva.",
-                                    "Consulte o manual de regras adicionais de hospedagem do condomínio para mais detalhes."
-                                ]
-                            },
-                            {
-                                title: "Enxoval e Taxas Extras",
-                                items: [
-                                    "Deixamos toalhas, lençóis, cobertores e travesseiros higienizados para o número exato de hóspedes confirmados na reserva.",
-                                    "Em caso de manchas difíceis de remover (como sangue, maquiagem ou corantes) no enxoval, haverá cobrança de taxa extra de lavagem."
-                                ]
-                            },
-                            {
-                                title: "Gestão do Lixo",
-                                items: [
-                                    "Não se esqueça de recolher e organizar o lixo antes de sua partida.",
-                                    "O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço."
-                                ]
-                            },
-                            {
-                                title: "Todas as Regras e Detalhes",
-                                items: [
-                                    "Todas as diretrizes detalhadas de hospedagem, prazos de cancelamento e termos adicionais estão disponíveis em seu perfil na plataforma de reserva."
-                                ]
-                            }
-                        ]
+                    'en': {
+                        wifi: { network: "ProvancePinheiros", password: "PP00025#", instructions: "Ultra high speed fiber optic connection." },
+                        rules: {
+                            intro: "Provance Pinheiros guidelines:",
+                            items: [
+                                "Strictly no smoking (R$ 500 fine + cleaning fee).",
+                                "Unregistered visitors prohibited.",
+                                "Pets not allowed.",
+                                "Parties or events strictly forbidden.",
+                                "Turn off towel warmer when dry.",
+                                "Close bidet sprayer valve.",
+                                "Leave shoes at the entrance.",
+                                "Do not flush paper down toilet."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apt 25 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "150m from Pinheiros Subway." },
+                        checkin: { items: [{ title: "Check-in", desc: "From 2:00 PM with 24/7 front desk." }] },
+                        shopping: { items: [{ name: "Giardino Pinheiros", desc: "Famous for parmigiana dishes.", dist: "120 m" }] },
+                        general_info: { items: [{ title: "Notice", desc: "Building leisure areas currently under setup." }] },
+                        checkout: { time: "Until 10:00 AM", rules: [{ title: "Instructions", desc: "Collect trash and drop it at ground floor disposal." }] },
+                        thankyou: { title: "Thank you for choosing us!", message: "Have an unforgettable stay at Provance!", action: "Rate us 5 stars!" }
                     },
-                    arrival: {
-                        address: "Rua Eugênio de Medeiros, 321, apto 25 (2º andar) - Pinheiros, São Paulo - SP",
-                        gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo",
-                        instructions: "O condomínio fica a apenas 150m da Estação Pinheiros do Metrô (Linha 4-Amarela e Linha 9-Esmeralda) e a 9km do Aeroporto de Congonhas. Como toda grande metrópole, São Paulo exige cuidado e atenção redobrados. Evite caminhar com o celular exposto na rua e evite passeios individuais à noite."
-                    },
-                    checkin: {
-                        items: [
-                            {
-                                title: "Horários de Entrada",
-                                desc: "Seu check-in está se aproximando! A liberação da entrada ocorre a partir das 14h da data de chegada, e o check-out deve ser realizado até as 10h da manhã."
-                            },
-                            {
-                                title: "Procedimento da Portaria",
-                                desc: "Oferecemos a facilidade de self check-in com portaria 24h. Ao chegar, basta se identificar na recepção apresentando um documento de identidade com foto."
-                            },
-                            {
-                                title: "Acesso ao Apartamento",
-                                desc: "Você encontrará um apartamento novo, finamente decorado, totalmente equipado para o seu maior conforto e em excepcional estado de limpeza. A senha temporária da fechadura eletrônica será enviada próximo à data reservada."
-                            }
-                        ]
-                    },
-                    shopping: {
-                        items: [
-                            { name: "Minimercado OXXO", desc: "Super prático para compras rápidas do dia a dia. Aberto 24 horas.", dist: "100 m (saindo à esquerda)" },
-                            { name: "Pacco Restaurante", desc: "Almoço por quilo / buffet de excelente qualidade com pratos sempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
-                            { name: "Québec Bar e Restaurante", desc: "Ótima opção para almoço, jantar e um Happy Hour muito animado ao fim do dia.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
-                            { name: "Giardino Pinheiros", desc: "Famoso pelas suas parmegianas espetaculares, ideal para almoço, jantar ou Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
-                            { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espaço de referência de cultura e lazer com excelente programação teatral, música e artes.", dist: "290 m (Rua Paes Leme, 195)" },
-                            { name: "Lavanderia Fast Faria Lima", desc: "Lavanderia self-service rápida 24 horas, localizada de forma muito conveniente dentro do posto Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
-                            { name: "Shopping Eldorado", desc: "Excelente e amplo centro comercial, gastronômico e cultural com opções completas de compras e serviços.", dist: "1 km (Av. Rebouças, 3970)" },
-                            { name: "Mercado Municipal de Pinheiros", desc: "Excelente para encontrar queijos finos, destilados, cafés especiais, frutas frescas e ótima gastronomia local. Fecha aos domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
-                            { name: "Shopping Villa Lobos", desc: "Centro comercial aconchegante, sofisticado e muito completo, com lojas, restaurantes e cinemas excelentes.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
-                            { name: "MASP - Museu de Arte de SP", desc: "Museu de arte privado sem fins lucrativos, com acervo de relevância internacional. Fica situado na célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
-                            { name: "Parque Villa Lobos", desc: "Maravilhoso parque público arborizado, perfeito para caminhar, relaxar ou praticar esportes ao ar livre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
-                        ]
-                    },
-                    general_info: { 
-                        items: [
-                            { title: "Áreas Comuns em Implantação", desc: "Os espaços de lazer e áreas comuns do condomínio ainda estão em fase de implantação física e não se encontram ativos ou disponíveis para a utilização dos hóspedes de curta temporada." },
-                            { title: "Importante: Condições de Reserva", desc: "Salientamos expressamente que estas áreas comuns não constam e não fazem parte da oferta ou do anúncio deste estúdio em nenhuma das plataformas de reserva contratadas." }
-                        ]
-                    },
-                    checkout: {
-                        time: "Até as 10:00 da manhã",
-                        rules: [
-                            { title: "Organização do Lixo", desc: "Por favor, recolha e organize o lixo antes de sua saída. O depósito para descarte (lixeira geral) fica localizado ao lado da portaria de serviço." },
-                            { title: "Check-out Check", desc: "Antes de sair, certifique-se de apagar as luzes, desligar o ar-condicionado e trancar as portas e janelas." }
-                        ]
-                    },
-                    thankyou: {
-                        title: "Desejamos que tenha dias maravilhosos no Provance Pinheiros!",
-                        message: "Estamos extremamente felizes em receber você em nosso espaço. Permanecemos à sua inteira disposição no chat de suporte para o que for necessário!",
-                        action: "Avalie sua estadia com 5 estrelas no Airbnb ou na Booking.com para apoiar nosso trabalho e acompanhe as novidades no Instagram: @meulugar.hospedagem!"
+                    'es': {
+                        wifi: { network: "ProvancePinheiros", password: "PP00025#", instructions: "Conexión de fibra óptica de ultra alta velocidad." },
+                        rules: {
+                            intro: "Normas de Provance Pinheiros:",
+                            items: [
+                                "Estrictamente prohibido fumar (multa R$ 500).",
+                                "Visitas no registradas prohibidas.",
+                                "No se admiten mascotas.",
+                                "Prohibidas fiestas o eventos.",
+                                "Apague el toallero al secar las toallas.",
+                                "Cierre la ducha higiénica.",
+                                "Deje el calzado en la entrada.",
+                                "No tire papel al inodoro."
+                            ]
+                        },
+                        arrival: { address: "Rua Eugênio de Medeiros, 321, apto 25 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m del Metro Pinheiros." },
+                        checkin: { items: [{ title: "Check-in", desc: "A partir de las 14:00 con recepción 24h." }] },
+                        shopping: { items: [{ name: "Giardino Pinheiros", desc: "Famoso por sus parmigianas.", dist: "120 m" }] },
+                        general_info: { items: [{ title: "Aviso", desc: "Áreas comunes en acondicionamiento." }] },
+                        checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Instrucciones", desc: "Deposite la basura en el contenedor del piso inferior." }] },
+                        thankyou: { title: "¡Gracias por su preferencia!", message: "¡Que tenga una estancia inolvidable!", action: "¡Deje su reseña de 5 estrellas!" }
                     }
                 }
             }
         ];
 
-        // CONTROLE DE ESTADOS DO APLICATIVO
+        // ESTADO DO APP
         const APP_STATE = {
+            lang: 'pt-BR',
             currentScreen: 'selection',
             selectedApartment: null,
             currentCategory: null
         };
 
-        // ELEMENTOS DOM
+        // DOM ELEMENTS
         const btnChangeApartment = document.getElementById('btn-change-apartment');
         const screenSelector = document.getElementById('screen-selector');
         const screenMenu = document.getElementById('screen-menu');
@@ -993,28 +980,68 @@
         const detailContent = document.getElementById('detail-content');
         const btnBackToMenu = document.getElementById('btn-back-to-menu');
 
-        // INICIALIZAÇÃO DO APP
+        // TROCAR IDIOMA E ATUALIZAR INTERFACE
+        function setLanguage(lang) {
+            if (!UI_TEXTS[lang]) return;
+            APP_STATE.lang = lang;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`lang-${lang}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const texts = UI_TEXTS[lang];
+            document.getElementById('txt-header-subtitle').textContent = texts.headerSubtitle;
+            document.getElementById('txt-btn-change-apt').textContent = texts.btnChangeApt;
+            document.getElementById('txt-welcome-title').textContent = texts.welcomeTitle;
+            document.getElementById('txt-welcome-subtitle').textContent = texts.welcomeSubtitle;
+            document.getElementById('txt-pwa-title').textContent = texts.pwaTitle;
+            document.getElementById('txt-pwa-desc').textContent = texts.pwaDesc;
+            document.getElementById('txt-pwa-install-btn').textContent = texts.pwaInstallBtn;
+            document.getElementById('txt-pwa-manual-btn').textContent = texts.pwaManualBtn;
+            document.getElementById('txt-footer-updates').textContent = texts.footerUpdates;
+            document.getElementById('txt-modal-install-title').textContent = texts.modalInstallTitle;
+            document.getElementById('txt-modal-ios-instructions').innerHTML = texts.modalIos;
+            document.getElementById('txt-modal-android-instructions').innerHTML = texts.modalAndroid;
+            document.getElementById('txt-modal-close-btn').textContent = texts.modalCloseBtn;
+            document.getElementById('txt-sync-title').textContent = texts.syncTitle;
+            document.getElementById('txt-sync-desc').textContent = texts.syncDesc;
+            document.getElementById('txt-sync-btn').textContent = texts.syncBtn;
+            document.getElementById('txt-version-history-title').textContent = texts.versionHistoryTitle;
+            document.getElementById('txt-modal-back-btn').textContent = texts.modalBackBtn;
+
+            if (APP_STATE.currentScreen === 'selection') {
+                renderApartmentSelection();
+            } else if (APP_STATE.currentScreen === 'menu' && APP_STATE.selectedApartment) {
+                renderMenuButtons(APP_STATE.selectedApartment);
+                updateMiniCardTagline();
+            } else if (APP_STATE.currentScreen === 'detail' && APP_STATE.selectedApartment && APP_STATE.currentCategory) {
+                openCategory(APP_STATE.currentCategory);
+            }
+        }
+
+        // INICIALIZAÇÃO
         document.addEventListener('DOMContentLoaded', () => {
             renderApartmentSelection();
             setupManifestDynamic();
             setupServiceWorker();
         });
 
-        // TELA 1: Renderizar Lista de Apartamentos para Seleção
         function renderApartmentSelection() {
             apartmentsList.innerHTML = '';
+            const lang = APP_STATE.lang;
+
             APARTMENTS.forEach(apt => {
                 const card = document.createElement('div');
                 card.className = `group relative overflow-hidden bg-brand-charcoal rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-500 transform hover:-translate-y-1 flex flex-col justify-between h-40`;
                 card.onclick = () => selectApartment(apt);
                 
+                const tagline = apt.tagline[lang] || apt.tagline['pt-BR'];
+
                 card.innerHTML = `
-                    <!-- Imagem de Capa do Apartamento com efeito Zoom-hover -->
-                    <img src="${apt.image}" alt="Capa do ${apt.name}" 
+                    <img src="${apt.image}" alt="${apt.name}" 
                          class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 z-0"
-                         onerror="this.style.display='none';">
+                         onerror="if(this.src!=='${apt.fallbackImage}'){this.src='${apt.fallbackImage}';}else{this.style.display='none';}">
                          
-                    <!-- Overlay de gradiente luxo escuro que garante legibilidade excelente das letras -->
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent z-10"></div>
                     
                     <div class="z-20 flex justify-between items-start w-full">
@@ -1025,7 +1052,7 @@
                     </div>
                     
                     <div class="z-20 flex items-center justify-between mt-2 pt-2 border-t border-white/10 w-full">
-                        <span class="text-[11px] text-slate-200 line-clamp-1 max-w-[80%] font-medium">${apt.tagline}</span>
+                        <span class="text-[11px] text-slate-200 line-clamp-1 max-w-[80%] font-medium">${tagline}</span>
                         <span class="bg-brand-gold text-brand-dark w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold group-hover:translate-x-1 transition-transform">
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
@@ -1035,94 +1062,105 @@
             });
         }
 
-        // SELECIONAR UM APARTAMENTO
         function selectApartment(apt) {
             APP_STATE.selectedApartment = apt;
             APP_STATE.currentScreen = 'menu';
             btnChangeApartment.classList.remove('hidden');
 
-            // Ajustar o CSS para as Cores do Apartamento Selecionado
             const palette = THEME_PALETTES[apt.color] || THEME_PALETTES.gray;
             document.documentElement.style.setProperty('--theme-100', palette[100]);
             document.documentElement.style.setProperty('--theme-600', palette[600]);
             document.documentElement.style.setProperty('--theme-700', palette[700]);
             document.documentElement.style.setProperty('--theme-800', palette[800]);
 
-            // Renderizar Mini Card no Menu do Apartamento
-            apartmentMiniCard.className = `relative overflow-hidden bg-brand-charcoal rounded-2xl p-4 text-white shadow-sm flex items-center justify-between min-h-[100px]`;
-            apartmentMiniCard.innerHTML = `
-                <!-- Foto de capa no minicard -->
-                <img src="${apt.image}" alt="Capa ${apt.name}" class="absolute inset-0 w-full h-full object-cover opacity-40 z-0" onerror="this.style.display='none';">
-                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/70 to-transparent z-10"></div>
-                
-                <div class="z-20">
-                    <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold text-brand-dark px-2 py-0.5 rounded-full">${apt.city}</span>
-                    <h3 class="text-base font-bold mt-1.5">${apt.name}</h3>
-                    <p class="text-[10px] text-slate-200 mt-0.5 font-medium">${apt.tagline}</p>
-                </div>
-            `;
-
-            // Renderizar Botões do Menu
+            updateMiniCardTagline();
             renderMenuButtons(apt);
 
-            // Trocar de Telas
             screenSelector.classList.add('hidden');
             screenMenu.classList.remove('hidden');
             screenDetail.classList.add('hidden');
         }
 
-        // TELA 2: Renderizar Botões do Menu Principal
+        function updateMiniCardTagline() {
+            const apt = APP_STATE.selectedApartment;
+            if (!apt) return;
+            const lang = APP_STATE.lang;
+            const tagline = apt.tagline[lang] || apt.tagline['pt-BR'];
+
+            const cardContent = `
+                <img src="${apt.image}" alt="${apt.name}" class="absolute inset-0 w-full h-full object-cover opacity-40 z-0" onerror="if(this.src!=='${apt.fallbackImage}'){this.src='${apt.fallbackImage}';}else{this.style.display='none';}">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/70 to-transparent z-10"></div>
+                
+                <div class="z-20">
+                    <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold text-brand-dark px-2 py-0.5 rounded-full">${apt.city}</span>
+                    <h3 class="text-base font-bold mt-1.5">${apt.name}</h3>
+                    <p class="text-[10px] text-slate-200 mt-0.5 font-medium">${tagline}</p>
+                </div>
+            `;
+
+            if (apartmentMiniCard) {
+                apartmentMiniCard.className = `relative overflow-hidden bg-brand-charcoal rounded-2xl p-4 text-white shadow-sm flex items-center justify-between min-h-[100px]`;
+                apartmentMiniCard.innerHTML = cardContent;
+            }
+
+            const detailMiniCard = document.getElementById('apartment-mini-card-detail');
+            if (detailMiniCard) {
+                detailMiniCard.className = `relative overflow-hidden bg-brand-charcoal rounded-2xl p-4 text-white shadow-sm flex items-center justify-between min-h-[100px]`;
+                detailMiniCard.innerHTML = cardContent;
+            }
+        }
+
         function renderMenuButtons(apt) {
             menuButtonsGrid.innerHTML = '';
+            const lang = APP_STATE.lang;
+            const texts = UI_TEXTS[lang];
+
             apt.menu.forEach(cat => {
                 const btn = document.createElement('button');
                 btn.className = `p-4 flex flex-col justify-between items-start text-left bg-slate-50 border border-slate-100 rounded-2xl hover:border-slate-200 hover:shadow-sm transition-all duration-300 h-26 group relative overflow-hidden`;
                 btn.onclick = () => openCategory(cat.id);
                 
+                const title = texts[cat.titleKey] || cat.id;
+                const desc = texts[cat.descKey] || '';
+
                 btn.innerHTML = `
                     <div class="p-2 rounded-lg bg-white text-slate-600 border border-slate-100 shadow-sm transition-all dynamic-icon">
                         <i class="fa-solid ${cat.icon} text-xs"></i>
                     </div>
                     <div class="mt-2">
                         <h4 class="font-bold text-xs text-slate-800 leading-tight flex items-center gap-1">
-                            ${cat.title}
+                            ${title}
                         </h4>
-                        <p class="text-[9px] text-slate-400 mt-0.5">${cat.desc}</p>
+                        <p class="text-[9px] text-slate-400 mt-0.5">${desc}</p>
                     </div>
                 `;
                 menuButtonsGrid.appendChild(btn);
             });
         }
 
-        // TELA 3: Abrir Tela de Detalhes da Categoria
         function openCategory(catId) {
             APP_STATE.currentCategory = catId;
+            APP_STATE.currentScreen = 'detail';
             const apt = APP_STATE.selectedApartment;
-            
-            const subtitles = {
-                wifi: "Como se conectar ao sinal de internet local",
-                rules: "Garantindo uma estadia agradável para todos",
-                arrival: "Passo a passo para chegar ao imóvel",
-                restaurants: "Melhores opções da gastronomia local",
-                shopping: "Lojas, centros comerciais, gastronomia e parques",
-                leisure: "Pontos turísticos e passeios imperdíveis",
-                general_info: "Comodidades e regras gerais de áreas úteis",
-                emergency: "Contatos e localização de hospitais",
-                info: "Dicas sobre as facilidades do imóvel",
-                checkout: "Procedimentos e horários de saída",
-                thankyou: "Agradecemos a sua preferência!"
+            const lang = APP_STATE.lang;
+            const texts = UI_TEXTS[lang];
+
+            updateMiniCardTagline();
+
+            const subKeyMap = {
+                wifi: 'catWifiSub', rules: 'catRulesSub', arrival: 'catArrivalSub',
+                checkin: 'catCheckinSub', shopping: 'catShoppingSub',
+                general_info: 'catGeneralSub', checkout: 'catCheckoutSub', thankyou: 'catThankyouSub'
             };
 
-            const catTitles = {
-                wifi: 'Senha do Wi-Fi', rules: 'Regras da Casa', arrival: 'Como Chegar',
-                checkin: 'Check-in', restaurants: 'Restaurantes', shopping: 'Compras e Lazer', 
-                leisure: 'Lazer e Passeios', general_info: 'Informações Gerais',
-                emergency: 'Contatos Úteis', info: 'Mais Informações', checkout: 'Check-out',
-                thankyou: 'Obrigado'
+            const titleKeyMap = {
+                wifi: 'catWifiTitle', rules: 'catRulesTitle', arrival: 'catArrivalTitle',
+                checkin: 'catCheckinTitle', shopping: 'catShoppingTitle',
+                general_info: 'catGeneralTitle', checkout: 'catCheckoutTitle', thankyou: 'catThankyouTitle'
             };
             
-            detailCategoryTitle.textContent = catTitles[catId] || catId;
-            detailCategorySubtitle.textContent = subtitles[catId] || "Detalhes importantes";
+            detailCategoryTitle.textContent = texts[titleKeyMap[catId]] || catId;
+            detailCategorySubtitle.textContent = texts[subKeyMap[catId]] || "Detalhes";
 
             renderDetailContent(catId, apt);
 
@@ -1130,13 +1168,14 @@
             screenDetail.classList.remove('hidden');
         }
 
-        // RENDERIZADOR ESPECÍFICO DE CONTEÚDO
         function renderDetailContent(catId, apt) {
             detailContent.innerHTML = '';
+            const lang = APP_STATE.lang;
+            const texts = UI_TEXTS[lang];
             
-            const data = apt.content[catId];
+            const data = (apt.content[lang] && apt.content[lang][catId]) || (apt.content['pt-BR'] && apt.content['pt-BR'][catId]);
             if (!data) {
-                detailContent.innerHTML = `<p class="text-xs text-slate-400 font-semibold">Nenhuma informação cadastrada nesta categoria.</p>`;
+                detailContent.innerHTML = `<p class="text-xs text-slate-400 font-semibold">${texts.noInfo}</p>`;
                 return;
             }
             
@@ -1147,36 +1186,37 @@
                             <i class="fa-solid fa-wifi text-base text-amber-400"></i>
                         </div>
                         <div>
-                            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Nome da Rede</p>
+                            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">${texts.networkLabel}</p>
                             <p class="text-base font-extrabold select-all text-slate-100">${data.network}</p>
                         </div>
                         <div class="border-t border-white/10 pt-4">
-                            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Senha</p>
+                            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">${texts.passwordLabel}</p>
                             <p class="text-xl font-mono font-bold my-1 select-all text-amber-400">${data.password}</p>
                         </div>
-                        <button onclick="copyToClipboard('${data.password}', 'Senha copiada com sucesso!')" class="w-full bg-white hover:bg-slate-50 text-slate-900 font-extrabold py-2.5 px-4 rounded-xl transition-all shadow text-xs">
-                            <i class="fa-solid fa-copy mr-1.5"></i> Copiar Senha
+                        <button onclick="copyToClipboard('${data.password}', '${texts.toastPassCopied}')" class="w-full bg-white hover:bg-slate-50 text-slate-900 font-extrabold py-2.5 px-4 rounded-xl transition-all shadow text-xs">
+                            <i class="fa-solid fa-copy mr-1.5"></i> ${texts.copyPasswordBtn}
                         </button>
                     </div>
                     <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl">
                         <h4 class="font-bold text-slate-800 text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-circle-question text-amber-500"></i> Informações Adicionais
+                            <i class="fa-solid fa-circle-question text-amber-500"></i> ${texts.addInfoTitle}
                         </h4>
                         <p class="text-[11px] text-slate-500 mt-2 leading-relaxed font-semibold">${data.instructions}</p>
                     </div>
                 `;
             } 
-            
             else if (catId === 'rules') {
                 let rulesList = '';
-                data.items.forEach((rule, idx) => {
-                    rulesList += `
-                        <div class="flex items-start gap-3 p-3.5 bg-slate-50 rounded-xl border border-slate-100">
-                            <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
-                            <p class="text-[11px] text-slate-600 leading-relaxed font-semibold">${rule}</p>
-                        </div>
-                    `;
-                });
+                if (data.items) {
+                    data.items.forEach((rule, idx) => {
+                        rulesList += `
+                            <div class="flex items-start gap-3 p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                                <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+                                <p class="text-[11px] text-slate-600 leading-relaxed font-semibold">${rule}</p>
+                            </div>
+                        `;
+                    });
+                }
 
                 let sectionsHtml = '';
                 if (data.sections) {
@@ -1205,20 +1245,19 @@
                     </div>
                 `;
             } 
-            
             else if (catId === 'arrival') {
                 detailContent.innerHTML = `
                     <div class="bg-slate-50 border border-slate-100 p-4 rounded-2xl space-y-4">
                         <div>
-                            <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Endereço do Imóvel</span>
+                            <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">${texts.addressLabel}</span>
                             <p class="text-xs font-bold text-slate-800 mt-1">${data.address}</p>
                         </div>
                         <div class="flex gap-2">
-                            <button onclick="copyToClipboard('${data.address}', 'Endereço copiado!')" class="flex-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-2 px-3 rounded-xl transition-all text-[11px] flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-copy"></i> Copiar
+                            <button onclick="copyToClipboard('${data.address}', '${texts.toastAddressCopied}')" class="flex-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-2 px-3 rounded-xl transition-all text-[11px] flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-copy"></i> ${texts.copyAddressBtn}
                             </button>
                             <a href="${data.gps}" target="_blank" class="flex-1 bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 px-3 rounded-xl transition-all text-[11px] flex items-center justify-center gap-1.5 shadow-sm">
-                                <i class="fa-solid fa-route text-amber-400"></i> Abrir GPS
+                                <i class="fa-solid fa-route text-amber-400"></i> ${texts.openGpsBtn}
                             </a>
                         </div>
                     </div>
@@ -1226,71 +1265,73 @@
                     <div class="bg-slate-50 border border-slate-100 p-4 rounded-2xl space-y-2">
                         <div class="flex items-center gap-2 text-slate-800 font-bold text-xs border-b border-slate-150 pb-2">
                             <i class="fa-solid fa-clock text-slate-500"></i>
-                            <span>Dicas de Trajeto</span>
+                            <span>${texts.directionsTitle}</span>
                         </div>
                         <p class="text-[11px] text-slate-600 leading-relaxed font-semibold">${data.instructions}</p>
                     </div>
                 `;
             } 
-            
             else if (catId === 'checkin' || catId === 'general_info') {
                 let itemsList = '';
-                data.items.forEach(item => {
-                    itemsList += `
-                        <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-2">
-                            <h4 class="font-bold text-slate-800 text-xs flex items-center gap-2">
-                                <i class="fa-solid fa-circle-check dynamic-icon"></i>
-                                ${item.title}
-                            </h4>
-                            <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">${item.desc}</p>
-                        </div>
-                    `;
-                });
+                if (data.items) {
+                    data.items.forEach(item => {
+                        itemsList += `
+                            <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-2">
+                                <h4 class="font-bold text-slate-800 text-xs flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check dynamic-icon"></i>
+                                    ${item.title}
+                                </h4>
+                                <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">${item.desc}</p>
+                            </div>
+                        `;
+                    });
+                }
                 detailContent.innerHTML = `<div class="space-y-4">${itemsList}</div>`;
             }
-
             else if (catId === 'shopping') {
                 let itemsList = '';
-                data.items.forEach(item => {
-                    itemsList += `
-                        <div class="p-4 bg-slate-50 hover:bg-slate-100/70 border border-slate-100 rounded-2xl transition-all duration-300">
-                            <div class="flex justify-between items-start gap-2">
-                                <h4 class="font-extrabold text-slate-800 text-xs leading-tight">${item.name}</h4>
-                                <span class="bg-slate-900 text-amber-400 text-[9px] font-extrabold px-2 py-0.5 rounded-full shrink-0 flex items-center gap-1">
-                                    <i class="fa-solid fa-location-dot text-[8px]"></i> ${item.dist || 'A pé'}
-                                </span>
+                if (data.items) {
+                    data.items.forEach(item => {
+                        itemsList += `
+                            <div class="p-4 bg-slate-50 hover:bg-slate-100/70 border border-slate-100 rounded-2xl transition-all duration-300">
+                                <div class="flex justify-between items-start gap-2">
+                                    <h4 class="font-extrabold text-slate-800 text-xs leading-tight">${item.name}</h4>
+                                    <span class="bg-slate-900 text-amber-400 text-[9px] font-extrabold px-2 py-0.5 rounded-full shrink-0 flex items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-[8px]"></i> ${item.dist || 'A pé'}
+                                    </span>
+                                </div>
+                                <p class="text-[11px] text-slate-500 mt-2 leading-relaxed font-semibold">${item.desc}</p>
                             </div>
-                            <p class="text-[11px] text-slate-500 mt-2 leading-relaxed font-semibold">${item.desc}</p>
-                        </div>
-                    `;
-                });
+                        `;
+                    });
+                }
                 detailContent.innerHTML = `<div class="space-y-4">${itemsList}</div>`;
             }
-
             else if (catId === 'checkout') {
                 let rulesList = '';
-                data.rules.forEach(item => {
-                    rulesList += `
-                        <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-2">
-                            <h4 class="font-bold text-slate-800 text-xs flex items-center gap-2">
-                                <i class="fa-solid fa-chevron-right dynamic-icon text-[10px]"></i>
-                                ${item.title}
-                            </h4>
-                            <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">${item.desc}</p>
-                        </div>
-                    `;
-                });
+                if (data.rules) {
+                    data.rules.forEach(item => {
+                        rulesList += `
+                            <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-2">
+                                <h4 class="font-bold text-slate-800 text-xs flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right dynamic-icon text-[10px]"></i>
+                                    ${item.title}
+                                </h4>
+                                <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">${item.desc}</p>
+                            </div>
+                        `;
+                    });
+                }
                 detailContent.innerHTML = `
                     <div class="space-y-4">
                         <div class="bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-xl text-center shadow-sm">
-                            <p class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Horário Limite de Saída</p>
+                            <p class="text-[9px] uppercase font-bold tracking-wider text-slate-400">${texts.checkoutTimeLimit}</p>
                             <p class="text-base font-extrabold text-blue-900 mt-0.5">${data.time}</p>
                         </div>
                         ${rulesList}
                     </div>
                 `;
             }
-
             else if (catId === 'thankyou') {
                 detailContent.innerHTML = `
                     <div class="bg-blue-50 text-blue-800 p-6 rounded-2xl shadow-sm border border-blue-100 text-center space-y-4">
@@ -1307,7 +1348,7 @@
             }
         }
 
-        // EVENTOS GERAIS DE NAVEGAÇÃO
+        // NAVEGAÇÃO E UTILITÁRIOS
         btnChangeApartment.onclick = () => {
             APP_STATE.selectedApartment = null;
             APP_STATE.currentScreen = 'selection';
@@ -1343,7 +1384,7 @@
             tempInput.select();
             document.execCommand("copy");
             document.body.removeChild(tempInput);
-            showToast(successMsg);
+            showToast(successMsg || UI_TEXTS[APP_STATE.lang].toastCopied);
         }
 
         function showInstallInstructions() {
@@ -1353,7 +1394,6 @@
             document.getElementById('install-modal').classList.add('hidden');
         }
 
-        // MODAL DE HISTÓRICO
         function showUpdateModal() {
             document.getElementById('update-modal').classList.remove('hidden');
         }
@@ -1363,7 +1403,7 @@
 
         function forceAppUpdate() {
             const btn = document.getElementById('btn-force-update');
-            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Sincronizando dados...';
+            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Sincronizando...';
             btn.disabled = true;
 
             if ('caches' in window) {
@@ -1372,7 +1412,7 @@
                 }).then(() => {
                     setTimeout(() => {
                         btn.innerHTML = '<i class="fa-solid fa-check"></i> Sincronizado!';
-                        showToast('Aplicativo atualizado! Recarregando...');
+                        showToast(UI_TEXTS[APP_STATE.lang].toastUpdated);
                         setTimeout(() => {
                             window.location.reload(true);
                         }, 1000);
@@ -1385,7 +1425,6 @@
             }
         }
 
-        // MONTAGEM DE MANIFESTO DINÂMICO
         function setupManifestDynamic() {
             const manifest = {
                 name: "Guia do Hóspede - Meu Lugar Hospedagem",
@@ -1397,16 +1436,8 @@
                 background_color: "#090f1d",
                 theme_color: "#090f1d",
                 icons: [
-                    {
-                        src: "logo.png",
-                        sizes: "192x192",
-                        type: "image/png"
-                    },
-                    {
-                        src: "logo.png",
-                        sizes: "512x512",
-                        type: "image/png"
-                    }
+                    { src: "logo.png", sizes: "192x192", type: "image/png" },
+                    { src: "logo.png", sizes: "512x512", type: "image/png" }
                 ]
             };
             const stringManifest = JSON.stringify(manifest);
@@ -1415,11 +1446,10 @@
             document.getElementById('manifest-placeholder').setAttribute('href', manifestURL);
         }
 
-        // REGISTRO DE SERVICE WORKER IN-FILE
         function setupServiceWorker() {
             if ('serviceWorker' in navigator) {
                 const swContent = `
-                    const CACHE_NAME = 'meu-lugar-guide-v17';
+                    const CACHE_NAME = 'meu-lugar-guide-v181';
                     self.addEventListener('install', event => {
                         event.waitUntil(
                             caches.open(CACHE_NAME).then(cache => {
@@ -1445,7 +1475,6 @@
             }
         }
 
-        // DETECTOR E GERENCIADOR DE INSTALAÇÃO PWA REAL
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -1461,7 +1490,7 @@
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
             if (outcome === 'accepted') {
-                showToast('Obrigado por instalar o Guia!');
+                showToast(UI_TEXTS[APP_STATE.lang].toastInstalled);
             }
             deferredPrompt = null;
             const nativeInstallBtn = document.getElementById('btn-native-install');
@@ -1472,4 +1501,3 @@
     </script>
 </body>
 </html>
-
