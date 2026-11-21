@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Guia do Hóspede - Meu Lugar Hospedagem</title>
     
+    <!-- Script de Limpeza Imediata de Cache Antigo (Executa antes do carregamento na Vercel) -->
+    <script>
+        (function() {
+            const APP_VER = '1.8.6';
+            if (localStorage.getItem('ml_ver') !== APP_VER) {
+                localStorage.setItem('ml_ver', APP_VER);
+                if ('caches' in window) {
+                    caches.keys().then(names => Promise.all(names.map(n => caches.delete(n)))).catch(() => {});
+                }
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                        try {
+                            navigator.serviceWorker.getRegistrations().then(regs => {
+                                for (let r of regs) r.unregister();
+                            }).catch(() => {});
+                        } catch (e) {}
+                    });
+                }
+            }
+        })();
+    </script>
+
     <!-- Meta tags para PWA (iOS e Android) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -269,7 +291,7 @@
         <footer class="border-t border-slate-100 p-4 bg-slate-50 text-center text-xs text-slate-400 shrink-0 flex flex-col items-center justify-center gap-1">
             <p class="font-semibold text-slate-500">Meu Lugar Hospedagem</p>
             <button onclick="showUpdateModal()" class="text-[10px] text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 focus:outline-none">
-                <span>Versão 1.8.4</span> • <span id="txt-footer-updates" class="underline">Verificar atualizações & histórico</span>
+                <span>Versão 1.8.6</span> • <span id="txt-footer-updates" class="underline">Verificar atualizações & histórico</span>
             </button>
         </footer>
 
@@ -312,7 +334,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 id="txt-sync-title" class="text-base font-bold text-slate-800">Central de Sincronização</h3>
-                        <p class="text-[10px] text-slate-400">Versão instalada: v1.8.4</p>
+                        <p class="text-[10px] text-slate-400">Versão instalada: v1.8.6</p>
                     </div>
                     <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark text-lg"></i>
@@ -331,6 +353,16 @@
                         <i class="fa-solid fa-clock-rotate-left"></i> <span id="txt-version-history-title">Histórico de Versões</span>
                     </span>
                     <div class="space-y-3 max-h-48 overflow-y-auto pr-1 no-scrollbar text-left">
+                        <!-- v1.8.6 -->
+                        <div class="border-l-2 border-brand-gold pl-3 space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-800">v1.8.6</span>
+                                <span class="text-[9px] bg-amber-50 text-brand-gold px-1.5 py-0.5 rounded-full font-bold">Atual</span>
+                            </div>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Conversão dos cards de propriedades para botões nativos e limpeza preventiva de cache no carregamento da Vercel.
+                            </p>
+                        </div>
                         <!-- v1.8.4 -->
                         <div class="border-l-2 border-brand-gold pl-3 space-y-1">
                             <div class="flex items-center justify-between">
@@ -1220,11 +1252,10 @@
             const lang = APP_STATE.lang;
 
             APARTMENTS.forEach(apt => {
-                const card = document.createElement('div');
-                card.className = `group relative overflow-hidden bg-brand-charcoal rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-500 transform hover:-translate-y-1 flex flex-col justify-between h-40 select-none`;
-                card.setAttribute('role', 'button');
-                card.setAttribute('tabindex', '0');
-                card.addEventListener('click', () => selectApartment(apt));
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `w-full text-left group relative overflow-hidden bg-brand-charcoal rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-500 transform hover:-translate-y-1 flex flex-col justify-between h-40 select-none focus:outline-none`;
+                card.onclick = function() { selectApartment(apt); };
                 
                 const tagline = apt.tagline[lang] || apt.tagline['pt-BR'];
 
@@ -1589,40 +1620,46 @@
         function closeUpdateModal() {
             document.getElementById('update-modal').classList.add('hidden');
         }
+
+        function forceAppUpdate() {
+            const btn = document.getElementById('btn-force-update');
+            if (btn) {
+                btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Sincronizando...';
+                btn.disabled = true;
+            }
+            if ('serviceWorker' in navigator) {
+                try {
+                    navigator.serviceWorker.getRegistrations().then(regs => {
+                        for (let r of regs) r.unregister();
+                    }).catch(() => {});
+                } catch (e) {}
+            }
+            if ('caches' in window) {
+                caches.keys().then(names => Promise.all(names.map(n => caches.delete(n)))).finally(() => {
+                    showToast(UI_TEXTS[APP_STATE.lang].toastUpdated);
+                    setTimeout(() => window.location.reload(true), 800);
+                });
+            } else {
+                window.location.reload(true);
+            }
+        }
+
         // REGISTRO DE SERVICE WORKER COM LIMPEZA AUTOMÁTICA DE CACHE ANTIGO NA VERCEL
         function cleanupOldServiceWorkersAndRegister() {
-            const CURRENT_APP_VERSION = '1.8.5';
-            const savedVersion = localStorage.getItem('meu_lugar_app_version');
-
-            if (savedVersion !== CURRENT_APP_VERSION) {
-                localStorage.setItem('meu_lugar_app_version', CURRENT_APP_VERSION);
-                
-                // Desregistra Service Workers antigos e limpa caches presos da Vercel
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.getRegistrations().then(registrations => {
-                        for (let reg of registrations) {
-                            reg.unregister();
-                        }
-                    });
-                }
-                if ('caches' in window) {
-                    caches.keys().then(names => {
-                        return Promise.all(names.map(name => caches.delete(name)));
-                    }).then(() => {
-                        // Recarrega uma única vez para buscar os arquivos novos da Vercel
-                        if (savedVersion !== null) {
-                            window.location.reload();
-                        }
-                    });
-                }
-            }
-
+            const CURRENT_APP_VERSION = '1.8.6';
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./sw.js?v=' + CURRENT_APP_VERSION)
-                    .then(reg => {
-                        reg.update();
-                    })
-                    .catch(err => console.warn("Aviso SW:", err));
+                const registerSW = () => {
+                    try {
+                        navigator.serviceWorker.register('./sw.js?v=' + CURRENT_APP_VERSION)
+                            .then(reg => reg.update())
+                            .catch(() => {});
+                    } catch (e) {}
+                };
+                if (document.readyState === 'complete') {
+                    registerSW();
+                } else {
+                    window.addEventListener('load', registerSW);
+                }
             }
         }
 
