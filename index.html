@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Guia do Hóspede - Meu Lugar Hospedagem">
     <meta name="theme-color" content="#090f1d">
-    <link class="rounded-full" rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link class="rounded-full" rel="apple-touch-icon" href="icon-192.png">
     
     <!-- Link para o Manifesto PWA dinâmico -->
     <link id="manifest-placeholder" rel="manifest">
@@ -1621,6 +1622,7 @@
         }
 
         function setupManifestDynamic() {
+            const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
             const manifest = {
                 name: "Guia do Hóspede - Meu Lugar Hospedagem",
                 short_name: "Guia Meu Lugar",
@@ -1631,8 +1633,8 @@
                 background_color: "#090f1d",
                 theme_color: "#090f1d",
                 icons: [
-                    { src: "logo.png", sizes: "192x192", type: "image/png" },
-                    { src: "logo.png", sizes: "512x512", type: "image/png" }
+                    { src: baseUrl + "icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
+                    { src: baseUrl + "icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
                 ]
             };
             const stringManifest = JSON.stringify(manifest);
@@ -1644,11 +1646,11 @@
         function setupServiceWorker() {
             if ('serviceWorker' in navigator) {
                 const swContent = `
-                    const CACHE_NAME = 'meu-lugar-guide-v184';
+                    const CACHE_NAME = 'meu-lugar-guide-v185';
                     self.addEventListener('install', event => {
                         event.waitUntil(
                             caches.open(CACHE_NAME).then(cache => {
-                                return cache.addAll(['/', '/logo.png', '/saopaulo.png', '/passaros.png', '/azure.png', '/concret.png', '/provance.png', '/manual-do-sofa-cama.jpg']);
+                                return cache.addAll(['/', '/logo.png', '/icon-192.png', '/icon-512.png', '/saopaulo.png', '/passaros.png', '/azure.png', '/concret.png', '/provance.png', '/manual-do-sofa-cama.jpg']);
                             }).catch(() => {})
                         );
                     });
