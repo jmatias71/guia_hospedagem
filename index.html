@@ -268,7 +268,7 @@
         <footer class="border-t border-slate-100 p-4 bg-slate-50 text-center text-xs text-slate-400 shrink-0 flex flex-col items-center justify-center gap-1">
             <p class="font-semibold text-slate-500">Meu Lugar Hospedagem</p>
             <button onclick="showUpdateModal()" class="text-[10px] text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 focus:outline-none">
-                <span>Versão 1.8.1</span> • <span id="txt-footer-updates" class="underline">Verificar atualizações & histórico</span>
+                <span>Versão 1.8.4</span> • <span id="txt-footer-updates" class="underline">Verificar atualizações & histórico</span>
             </button>
         </footer>
 
@@ -311,7 +311,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 id="txt-sync-title" class="text-base font-bold text-slate-800">Central de Sincronização</h3>
-                        <p class="text-[10px] text-slate-400">Versão instalada: v1.8.1</p>
+                        <p class="text-[10px] text-slate-400">Versão instalada: v1.8.4</p>
                     </div>
                     <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark text-lg"></i>
@@ -330,11 +330,38 @@
                         <i class="fa-solid fa-clock-rotate-left"></i> <span id="txt-version-history-title">Histórico de Versões</span>
                     </span>
                     <div class="space-y-3 max-h-48 overflow-y-auto pr-1 no-scrollbar text-left">
-                        <!-- v1.8.1 -->
+                        <!-- v1.8.4 -->
                         <div class="border-l-2 border-brand-gold pl-3 space-y-1">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold text-slate-800">v1.8.1</span>
+                                <span class="text-xs font-bold text-slate-800">v1.8.4</span>
                                 <span class="text-[9px] bg-amber-50 text-brand-gold px-1.5 py-0.5 rounded-full font-bold">Atual</span>
+                            </div>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Adicionado o horário padrão de check-in (a partir das 14h) em destaque para todos os espaços (em PT-BR, EN e ES).
+                            </p>
+                        </div>
+                        <!-- v1.8.3 -->
+                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-800">v1.8.3</span>
+                            </div>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Horário limite de check-out atualizado para as 10h da manhã no Be Urban 311 e no Today 415 (em PT-BR, EN e ES).
+                            </p>
+                        </div>
+                        <!-- v1.8.2 -->
+                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-800">v1.8.2</span>
+                            </div>
+                            <p class="text-[10px] text-slate-500 leading-normal">
+                                Resgatado o link do manual do sofá-cama do Today Moema e restaurada a lista completa de 11 dicas de Compras e Lazer para Azure, Concret Loft e Provance Pinheiros (em PT-BR, EN e ES).
+                            </p>
+                        </div>
+                        <!-- v1.8.1 -->
+                        <div class="border-l-2 border-slate-300 pl-3 space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-800">v1.8.1</span>
                             </div>
                             <p class="text-[10px] text-slate-500 leading-normal">
                                 Restauração das imagens de capa com fallback inteligente e tradução completa dos dados internos dos cards para PT-BR, EN e ES.
@@ -394,6 +421,7 @@
                 copyAddressBtn: "Copiar",
                 openGpsBtn: "Abrir GPS",
                 directionsTitle: "Dicas de Trajeto",
+                checkinTimeLimit: "Horário de Entrada (Check-in)",
                 checkoutTimeLimit: "Horário Limite de Saída",
                 noInfo: "Nenhuma informação cadastrada nesta categoria.",
 
@@ -439,6 +467,7 @@
                 copyAddressBtn: "Copy",
                 openGpsBtn: "Open GPS",
                 directionsTitle: "Route Tips",
+                checkinTimeLimit: "Check-in Time",
                 checkoutTimeLimit: "Checkout Deadline",
                 noInfo: "No information registered in this category.",
 
@@ -484,6 +513,7 @@
                 copyAddressBtn: "Copiar",
                 openGpsBtn: "Abrir GPS",
                 directionsTitle: "Consejos de Ruta",
+                checkinTimeLimit: "Horario de Entrada (Check-in)",
                 checkoutTimeLimit: "Hora Límite de Salida",
                 noInfo: "Sin información registrada en esta categoría.",
 
@@ -555,10 +585,10 @@
                             sections: [{ title: "Gestão de Visitas", items: ["Envio prévio de documentos de visitantes é obrigatório pelo chat."] }]
                         },
                         arrival: { address: "Rua Joaquim Guarani, 63 - Jardim das Acácias, Brooklin - São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo", instructions: "Deslocamento por táxi/Uber recomendado. Estação Brooklin do Metrô a duas quadras." },
-                        checkin: { items: [{ title: "Acesso à Portaria", desc: "Apresente documento com foto na recepção e identifique-se na unidade 311." }] },
+                        checkin: { time: "A partir das 14:00", items: [{ title: "Acesso à Portaria", desc: "Apresente documento com foto na recepção e identifique-se na unidade 311." }] },
                         shopping: { items: [{ name: "Shopping Morumbi", desc: "Shopping tradicional e completo.", dist: "~10 min de carro" }] },
                         general_info: { items: [{ title: "Academia", desc: "No 1º andar, equipada e aberta 24h." }] },
-                        checkout: { time: "Até as 10h da manhã", rules: [{ title: "Lixo", desc: "Descarte nas lixeiras seletivas no estacionamento térreo." }] },
+                        checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Lixo", desc: "Descarte nas lixeiras seletivas no estacionamento térreo." }] },
                         thankyou: { title: "Muito obrigado!", message: "Ficamos à sua disposição pelo chat.", action: "Avalie com 5 estrelas!" }
                     },
                     'en': {
@@ -579,10 +609,10 @@
                             sections: [{ title: "Visitor Policy", items: ["Pre-registration of visitor ID documents via chat is required."] }]
                         },
                         arrival: { address: "Rua Joaquim Guarani, 63 - Brooklin - São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo", instructions: "Taxi or Uber recommended. Brooklin Subway Station is just two blocks away." },
-                        checkin: { items: [{ title: "Front Desk Access", desc: "Present a photo ID at the reception and identify unit 311." }] },
+                        checkin: { time: "From 2:00 PM", items: [{ title: "Front Desk Access", desc: "Present a photo ID at the reception and identify unit 311." }] },
                         shopping: { items: [{ name: "Morumbi Shopping", desc: "Traditional shopping mall with complete options.", dist: "~10 min by car" }] },
                         general_info: { items: [{ title: "Gym", desc: "On the 1st floor, equipped and open 24/7." }] },
-                        checkout: { time: "Until 11:00 AM", rules: [{ title: "Trash", desc: "Dispose in selective trash bins on the ground parking floor." }] },
+                        checkout: { time: "Until 10:00 AM", rules: [{ title: "Trash", desc: "Dispose in selective trash bins on the ground parking floor." }] },
                         thankyou: { title: "Thank you very much!", message: "We are at your service via chat.", action: "Rate us 5 stars!" }
                     },
                     'es': {
@@ -602,10 +632,10 @@
                             sections: [{ title: "Gestión de Visitas", items: ["El registro previo de visitantes por chat es obligatorio."] }]
                         },
                         arrival: { address: "Rua Joaquim Guarani, 63 - Brooklin - São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Joaquim+Guarani+63+Sao+Paulo", instructions: "Se recomienda taxi o Uber. Estación de Metro Brooklin a dos calles." },
-                        checkin: { items: [{ title: "Entrada en Recepción", desc: "Presente identificación con foto en la recepción." }] },
+                        checkin: { time: "A partir de las 14:00", items: [{ title: "Entrada en Recepción", desc: "Presente identificación con foto en la recepción." }] },
                         shopping: { items: [{ name: "Shopping Morumbi", desc: "Centro comercial completo.", dist: "~10 min en coche" }] },
                         general_info: { items: [{ title: "Gimnasio", desc: "En el 1º piso, abierto 24h." }] },
-                        checkout: { time: "Hasta las 11:00 AM", rules: [{ title: "Basura", desc: "Deposite en los contenedores del estacionamiento." }] },
+                        checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Basura", desc: "Deposite en los contenedores del estacionamiento." }] },
                         thankyou: { title: "¡Muchas gracias!", message: "Estamos a su disposición por chat.", action: "¡Califíquenos con 5 estrellas!" }
                     }
                 }
@@ -648,10 +678,21 @@
                             ]
                         },
                         arrival: { address: "Avenida Pavão, 986, apto 415 - Moema, São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema", instructions: "Estação Eucaliptos a 2 quadras. Parque Ibirapuera a 15 min." },
-                        checkin: { items: [{ title: "Portaria", desc: "Identifique-se como hóspede da unidade 415 na portaria." }] },
+                        checkin: { time: "A partir das 14:00", items: [{ title: "Portaria", desc: "Identifique-se como hóspede da unidade 415 na portaria." }] },
                         shopping: { items: [{ name: "Shopping Ibirapuera", desc: "A poucos passos com ótimas lojas e gastronomia.", dist: "~10 min a pé" }] },
-                        general_info: { items: [{ title: "Sofá-Cama", desc: "Abra um lado de cada vez cuidadosamente." }] },
-                        checkout: { time: "Até as 10h da manhã", rules: [{ title: "Saída", desc: "Apague luzes e desligue ar-condicionado." }] },
+                        general_info: { 
+                            items: [
+                                { 
+                                    title: "Como Abrir o Sofá-Cama", 
+                                    desc: "1. Abra um lado de cada vez, conforme as orientações do manual.<br>2. Para uso de volta como sofá, faça o movimento inverso completo até que retorne à sua posição original.<br><br><a href='manual-do-sofa-cama.jpg' target='_blank' class='inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-100 text-emerald-800 rounded-lg hover:bg-emerald-200 transition-all font-bold text-[10px] mt-1'><i class='fa-solid fa-file-image text-emerald-600'></i> Ver Manual de Manuseio do Sofá-Cama</a>" 
+                                },
+                                { title: "Lavanderia OMO", desc: "Localizada no térreo do condomínio. É de autoatendimento mediante pagamento direto pelo aplicativo oficial da OMO." },
+                                { title: "Espaço de Coworking", desc: "Localizado no térreo, dispõe de mesas prontas para trabalho ou reuniões, equipadas com rede Wi-Fi." },
+                                { title: "Guarda-Bagagem / Maleiro", desc: "Serviço de maleiro pay-per-use disponível no térreo, acessível via QR Code na parede." },
+                                { title: "Utensílios do Estúdio", desc: "Os utensílios de limpeza (como vassouras) encontram-se no gavetão sob a pia da cozinha. O ferro de passar roupas está guardado no guarda-roupa." }
+                            ] 
+                        },
+                        checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Saída", desc: "Apague luzes e desligue ar-condicionado." }] },
                         thankyou: { title: "Desejamos boa viagem!", message: "Obrigado por se hospedar conosco em Moema.", action: "Siga no Instagram @meulugar.hospedagem" }
                     },
                     'en': {
@@ -668,10 +709,21 @@
                             ]
                         },
                         arrival: { address: "Avenida Pavão, 986, apt 415 - Moema, São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema", instructions: "Eucaliptos Station 2 blocks away. Ibirapuera Park 15 min drive." },
-                        checkin: { items: [{ title: "Front Desk", desc: "Identify yourself as guest of unit 415 at reception." }] },
+                        checkin: { time: "From 2:00 PM", items: [{ title: "Front Desk", desc: "Identify yourself as guest of unit 415 at reception." }] },
                         shopping: { items: [{ name: "Ibirapuera Mall", desc: "A short walk with great stores and food court.", dist: "~10 min walk" }] },
-                        general_info: { items: [{ title: "Sofa Bed", desc: "Open one side at a time carefully." }] },
-                        checkout: { time: "Until 11:00 AM", rules: [{ title: "Departure", desc: "Turn off lights and air conditioning." }] },
+                        general_info: { 
+                            items: [
+                                { 
+                                    title: "How to Open the Sofa Bed", 
+                                    desc: "1. Open one side at a time, following the manual instructions.<br>2. To fold it back into a sofa, perform the complete reverse movement until it returns to its original position.<br><br><a href='manual-do-sofa-cama.jpg' target='_blank' class='inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-100 text-emerald-800 rounded-lg hover:bg-emerald-200 transition-all font-bold text-[10px] mt-1'><i class='fa-solid fa-file-image text-emerald-600'></i> View Sofa Bed Handling Manual</a>" 
+                                },
+                                { title: "OMO Laundry", desc: "Located on the ground floor. Self-service with direct payment via the official OMO app." },
+                                { title: "Coworking Space", desc: "Located on the ground floor, featuring tables ready for work or meetings, equipped with Wi-Fi." },
+                                { title: "Luggage Storage / Lockers", desc: "Pay-per-use locker service available on the ground floor, accessible via QR Code on the wall." },
+                                { title: "Studio Utensils", desc: "Cleaning utensils (such as brooms) are in the large drawer under the kitchen sink. The clothes iron is kept inside the wardrobe." }
+                            ] 
+                        },
+                        checkout: { time: "Until 10:00 AM", rules: [{ title: "Departure", desc: "Turn off lights and air conditioning." }] },
                         thankyou: { title: "Have a safe trip!", message: "Thank you for staying with us in Moema.", action: "Follow us on Instagram @meulugar.hospedagem" }
                     },
                     'es': {
@@ -688,10 +740,21 @@
                             ]
                         },
                         arrival: { address: "Avenida Pavão, 986, apto 415 - Moema, São Paulo - SP", gps: "https://www.google.com/maps/search/?api=1&query=Av+Pavao+986+Moema", instructions: "Estación Eucaliptos a 2 calles. Parque Ibirapuera a 15 min." },
-                        checkin: { items: [{ title: "Recepción", desc: "Identifíquese como huésped de la unidad 415." }] },
+                        checkin: { time: "A partir de las 14:00", items: [{ title: "Recepción", desc: "Identifíquese como huésped de la unidad 415." }] },
                         shopping: { items: [{ name: "Shopping Ibirapuera", desc: "A pocos pasos con gran gastronomía y tiendas.", dist: "~10 min a pie" }] },
-                        general_info: { items: [{ title: "Sofá Cama", desc: "Abra un lado a la vez cuidadosamente." }] },
-                        checkout: { time: "Hasta las 11:00 AM", rules: [{ title: "Salida", desc: "Apague luces y aire acondicionado." }] },
+                        general_info: { 
+                            items: [
+                                { 
+                                    title: "Cómo Abrir el Sofá Cama", 
+                                    desc: "1. Abra un lado a la vez, según las indicaciones del manual.<br>2. Para volver a usarlo como sofá, realice el movimiento inverso completo hasta que regrese a su posición original.<br><br><a href='manual-do-sofa-cama.jpg' target='_blank' class='inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-100 text-emerald-800 rounded-lg hover:bg-emerald-200 transition-all font-bold text-[10px] mt-1'><i class='fa-solid fa-file-image text-emerald-600'></i> Ver Manual de Uso del Sofá Cama</a>" 
+                                },
+                                { title: "Lavandería OMO", desc: "Ubicada en la planta baja del condominio. Es de autoservicio mediante pago directo por la aplicación oficial de OMO." },
+                                { title: "Espacio de Coworking", desc: "Ubicado en la planta baja, dispone de mesas listas para trabajar o reunirse, equipadas con Wi-Fi." },
+                                { title: "Consigna / Guardaequipajes", desc: "Servicio de casilleros pay-per-use disponible en la planta baja, accesible mediante código QR en la pared." },
+                                { title: "Utensilios del Estudio", desc: "Los utensilios de limpieza (como escobas) se encuentran en el cajón grande bajo el fregadero. La plancha está guardada en el armario." }
+                            ] 
+                        },
+                        checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Salida", desc: "Apague luces y aire acondicionado." }] },
                         thankyou: { title: "¡Buen viaje!", message: "Gracias por hospedarse en Moema.", action: "Síganos en Instagram @meulugar.hospedagem" }
                     }
                 }
@@ -734,8 +797,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apto 23 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A apenas 150m da Estação Pinheiros do Metrô." },
-                        checkin: { items: [{ title: "Self Check-in", desc: "Portaria 24h. Apresente documento de identidade na recepção." }] },
-                        shopping: { items: [{ name: "Minimercado OXXO", desc: "Aberto 24h a 100m.", dist: "100 m" }] },
+                        checkin: { time: "A partir das 14:00", items: [{ title: "Self Check-in", desc: "Portaria 24h. Apresente documento de identidade na recepção." }] },
+                        shopping: { 
+                            items: [
+                                { name: "Minimercado OXXO", desc: "Super prático para compras rápidas do dia a dia. Aberto 24 horas.", dist: "100 m (saindo à esquerda)" },
+                                { name: "Pacco Restaurante", desc: "Almoço por quilo / buffet de excelente qualidade com pratos sempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar e Restaurante", desc: "Ótima opção para almoço, jantar e um Happy Hour muito animado ao fim do dia.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famoso pelas suas parmegianas espetaculares, ideal para almoço, jantar ou Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espaço de referência de cultura e lazer com excelente programação teatral, música e artes.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Lavanderia Fast Faria Lima", desc: "Lavanderia self-service rápida 24 horas, localizada de forma muito conveniente dentro do posto Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Excelente e amplo centro comercial, gastronômico e cultural com opções completas de compras e serviços.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Mercado Municipal de Pinheiros", desc: "Excelente para encontrar queijos finos, destilados, cafés especiais, frutas frescas e ótima gastronomia local. Fecha aos domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Centro comercial aconchegante, sofisticado e muito completo, com lojas, restaurantes e cinemas excelentes.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - Museu de Arte de SP", desc: "Museu de arte privado sem fins lucrativos, com acervo de relevância internacional. Fica situado na célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
+                                { name: "Parque Villa Lobos", desc: "Maravilhoso parque público arborizado, perfeito para caminhar, relaxar ou praticar esportes ao ar livre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Áreas Comuns", desc: "Áreas de lazer do prédio estão em fase de implantação." }] },
                         checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Lixo", desc: "Recolha o lixo e deixe no depósito ao lado da portaria." }] },
                         thankyou: { title: "Agradecemos sua visita!", message: "Esperamos ver você de volta em breve no Azure!", action: "Avalie com 5 estrelas!" }
@@ -754,8 +831,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apt 23 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "Just 150m from Pinheiros Subway Station." },
-                        checkin: { items: [{ title: "Self Check-in", desc: "24/7 reception. Show your photo ID upon arrival." }] },
-                        shopping: { items: [{ name: "OXXO Convenience Store", desc: "Open 24/7 just 100m away.", dist: "100 m" }] },
+                        checkin: { time: "From 2:00 PM", items: [{ title: "Self Check-in", desc: "24/7 reception. Show your photo ID upon arrival." }] },
+                        shopping: { 
+                            items: [
+                                { name: "OXXO Mini Market", desc: "Super convenient for quick daily groceries. Open 24 hours.", dist: "100 m (exit left)" },
+                                { name: "Pacco Restaurant", desc: "High-quality buffet / pay-by-weight lunch with fresh daily dishes.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar & Restaurant", desc: "Great option for lunch, dinner, and a lively Happy Hour at the end of the day.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famous for its spectacular parmigiana dishes, ideal for lunch, dinner, or Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Paulo Autran Theater", desc: "Cultural and leisure landmark with great theater, music, and arts programming.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Fast Laundry Faria Lima", desc: "Quick 24-hour self-service laundry, conveniently located inside the Flor de Goiás gas station.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Large shopping, dining, and cultural center with complete retail and service options.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Pinheiros Municipal Market", desc: "Great for artisanal cheeses, spirits, specialty coffees, fresh fruits, and local food. Closed on Sundays.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Cozy, sophisticated, and complete shopping mall with great stores, restaurants, and cinemas.", dist: "3.5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - São Paulo Museum of Art", desc: "Non-profit private art museum with an internationally renowned collection, located on iconic Paulista Avenue.", dist: "5.3 km (Av. Paulista, 1578)" },
+                                { name: "Villa Lobos Park", desc: "Wonderful tree-lined public park, perfect for walking, relaxing, or outdoor sports.", dist: "5.5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Common Areas", desc: "Leisure areas in the building are currently under setup." }] },
                         checkout: { time: "Until 10:00 AM", rules: [{ title: "Trash", desc: "Collect trash and leave it by the service entrance." }] },
                         thankyou: { title: "Thank you for staying!", message: "We hope to welcome you back soon at Azure!", action: "Rate us 5 stars!" }
@@ -774,8 +865,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apto 23 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A solo 150m de la Estación de Metro Pinheiros." },
-                        checkin: { items: [{ title: "Self Check-in", desc: "Recepción 24h. Presente identificación en entrada." }] },
-                        shopping: { items: [{ name: "Tienda OXXO", desc: "Abierta 24 horas a 100 metros.", dist: "100 m" }] },
+                        checkin: { time: "A partir de las 14:00", items: [{ title: "Self Check-in", desc: "Recepción 24h. Presente identificación en entrada." }] },
+                        shopping: { 
+                            items: [
+                                { name: "Minimercado OXXO", desc: "Súper práctico para compras rápidas del día a día. Abierto las 24 horas.", dist: "100 m (saliendo a la izquierda)" },
+                                { name: "Pacco Restaurante", desc: "Almuerzo por kilo / buffet de excelente calidad con platos siempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar y Restaurante", desc: "Excelente opción para almuerzo, cena y un Happy Hour muy animado al final del día.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famoso por sus espectaculares parmigianas, ideal para almuerzo, cena o Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espacio de referencia cultural y de ocio con excelente programación teatral, música y artes.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Lavandería Fast Faria Lima", desc: "Lavandería autoservicio rápida 24 horas, ubicada dentro de la gasolinera Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Amplio centro comercial, gastronómico y cultural con opciones completas de compras y servicios.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Mercado Municipal de Pinheiros", desc: "Ideal para encontrar quesos finos, licores, cafés especiales, frutas frescas y gastronomía local. Cierra los domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Centro comercial acogedor, sofisticado y muy completo, con excelentes tiendas, restaurantes y cines.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - Museo de Arte de SP", desc: "Museo de arte con acervo de relevancia internacional, ubicado en la célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
+                                { name: "Parque Villa Lobos", desc: "Maravilloso parque público arbolado, perfecto para caminar, relajarse o practicar deportes al aire libre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Áreas Comunes", desc: "Las áreas comunes se encuentran en fase de adecuación." }] },
                         checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Basura", desc: "Deposite la basura al lado de la entrada de servicio." }] },
                         thankyou: { title: "¡Gracias por su visita!", message: "¡Esperamos recibirle nuevamente en Azure!", action: "¡Califíquenos con 5 estrellas!" }
@@ -819,8 +924,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apto 29 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m da Estação Pinheiros." },
-                        checkin: { items: [{ title: "Check-in", desc: "Portaria 24h. Apresente documento na entrada." }] },
-                        shopping: { items: [{ name: "Shopping Eldorado", desc: "Opção completa de compras.", dist: "1 km" }] },
+                        checkin: { time: "A partir das 14:00", items: [{ title: "Check-in", desc: "Portaria 24h. Apresente documento na entrada." }] },
+                        shopping: { 
+                            items: [
+                                { name: "Minimercado OXXO", desc: "Super prático para compras rápidas do dia a dia. Aberto 24 horas.", dist: "100 m (saindo à esquerda)" },
+                                { name: "Pacco Restaurante", desc: "Almoço por quilo / buffet de excelente qualidade com pratos sempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar e Restaurante", desc: "Ótima opção para almoço, jantar e um Happy Hour muito animado ao fim do dia.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famoso pelas suas parmegianas espetaculares, ideal para almoço, jantar ou Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espaço de referência de cultura e lazer com excelente programação teatral, música e artes.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Lavanderia Fast Faria Lima", desc: "Lavanderia self-service rápida 24 horas, localizada de forma muito conveniente dentro do posto Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Excelente e amplo centro comercial, gastronômico e cultural com opções completas de compras e serviços.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Mercado Municipal de Pinheiros", desc: "Excelente para encontrar queijos finos, destilados, cafés especiais, frutas frescas e ótima gastronomia local. Fecha aos domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Centro comercial aconchegante, sofisticado e muito completo, com lojas, restaurantes e cinemas excelentes.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - Museu de Arte de SP", desc: "Museu de arte privado sem fins lucrativos, com acervo de relevância internacional. Fica situado na célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
+                                { name: "Parque Villa Lobos", desc: "Maravilhoso parque público arborizado, perfeito para caminhar, relaxar ou praticar esportes ao ar livre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Informações", desc: "Áreas comuns em implantação." }] },
                         checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Check-out", desc: "Feche janelas e desligue aparelhos ao sair." }] },
                         thankyou: { title: "Muito obrigado!", message: "Tenha um excelente retorno!", action: "Deixe sua avaliação 5 estrelas!" }
@@ -838,8 +957,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apt 29 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "150m from Pinheiros Station." },
-                        checkin: { items: [{ title: "Check-in", desc: "24h reception. Present photo ID." }] },
-                        shopping: { items: [{ name: "Eldorado Mall", desc: "Complete shopping option.", dist: "1 km" }] },
+                        checkin: { time: "From 2:00 PM", items: [{ title: "Check-in", desc: "24h reception. Present photo ID." }] },
+                        shopping: { 
+                            items: [
+                                { name: "OXXO Mini Market", desc: "Super convenient for quick daily groceries. Open 24 hours.", dist: "100 m (exit left)" },
+                                { name: "Pacco Restaurant", desc: "High-quality buffet / pay-by-weight lunch with fresh daily dishes.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar & Restaurant", desc: "Great option for lunch, dinner, and a lively Happy Hour at the end of the day.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famous for its spectacular parmigiana dishes, ideal for lunch, dinner, or Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Paulo Autran Theater", desc: "Cultural and leisure landmark with great theater, music, and arts programming.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Fast Laundry Faria Lima", desc: "Quick 24-hour self-service laundry, conveniently located inside the Flor de Goiás gas station.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Large shopping, dining, and cultural center with complete retail and service options.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Pinheiros Municipal Market", desc: "Great for artisanal cheeses, spirits, specialty coffees, fresh fruits, and local food. Closed on Sundays.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Cozy, sophisticated, and complete shopping mall with great stores, restaurants, and cinemas.", dist: "3.5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - São Paulo Museum of Art", desc: "Non-profit private art museum with an internationally renowned collection, located on iconic Paulista Avenue.", dist: "5.3 km (Av. Paulista, 1578)" },
+                                { name: "Villa Lobos Park", desc: "Wonderful tree-lined public park, perfect for walking, relaxing, or outdoor sports.", dist: "5.5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Information", desc: "Common areas under implementation." }] },
                         checkout: { time: "Until 10:00 AM", rules: [{ title: "Check-out", desc: "Close windows and switch off devices." }] },
                         thankyou: { title: "Thank you!", message: "Have a great trip back!", action: "Leave your 5-star review!" }
@@ -857,8 +990,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apto 29 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m de Estación Pinheiros." },
-                        checkin: { items: [{ title: "Check-in", desc: "Recepción 24h. Muestre documento al entrar." }] },
-                        shopping: { items: [{ name: "Shopping Eldorado", desc: "Compras completas.", dist: "1 km" }] },
+                        checkin: { time: "A partir de las 14:00", items: [{ title: "Check-in", desc: "Recepción 24h. Muestre documento al entrar." }] },
+                        shopping: { 
+                            items: [
+                                { name: "Minimercado OXXO", desc: "Súper práctico para compras rápidas del día a día. Abierto las 24 horas.", dist: "100 m (saliendo a la izquierda)" },
+                                { name: "Pacco Restaurante", desc: "Almuerzo por kilo / buffet de excelente calidad con platos siempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar y Restaurante", desc: "Excelente opción para almuerzo, cena y un Happy Hour muy animado al final del día.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famoso por sus espectaculares parmigianas, ideal para almuerzo, cena o Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espacio de referencia cultural y de ocio con excelente programación teatral, música y artes.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Lavandería Fast Faria Lima", desc: "Lavandería autoservicio rápida 24 horas, ubicada dentro de la gasolinera Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Amplio centro comercial, gastronómico y cultural con opciones completas de compras y servicios.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Mercado Municipal de Pinheiros", desc: "Ideal para encontrar quesos finos, licores, cafés especiales, frutas frescas y gastronomía local. Cierra los domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Centro comercial acogedor, sofisticado y muy completo, con excelentes tiendas, restaurantes y cines.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - Museo de Arte de SP", desc: "Museo de arte con acervo de relevancia internacional, ubicado en la célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
+                                { name: "Parque Villa Lobos", desc: "Maravilloso parque público arbolado, perfecto para caminar, relajarse o practicar deportes al aire libre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Información", desc: "Áreas comunes en implementación." }] },
                         checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Salida", desc: "Cierre ventanas y apague aparatos." }] },
                         thankyou: { title: "¡Muchas gracias!", message: "¡Que tenga un excelente regreso!", action: "¡Deje su reseña de 5 estrellas!" }
@@ -905,8 +1052,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apto 25 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m do Metrô Pinheiros." },
-                        checkin: { items: [{ title: "Check-in", desc: "A partir das 14h com portaria 24h." }] },
-                        shopping: { items: [{ name: "Giardino Pinheiros", desc: "Famoso pelas parmegianas.", dist: "120 m" }] },
+                        checkin: { time: "A partir das 14:00", items: [{ title: "Check-in", desc: "A partir das 14h com portaria 24h." }] },
+                        shopping: { 
+                            items: [
+                                { name: "Minimercado OXXO", desc: "Super prático para compras rápidas do dia a dia. Aberto 24 horas.", dist: "100 m (saindo à esquerda)" },
+                                { name: "Pacco Restaurante", desc: "Almoço por quilo / buffet de excelente qualidade com pratos sempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar e Restaurante", desc: "Ótima opção para almoço, jantar e um Happy Hour muito animado ao fim do dia.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famoso pelas suas parmegianas espetaculares, ideal para almoço, jantar ou Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espaço de referência de cultura e lazer com excelente programação teatral, música e artes.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Lavanderia Fast Faria Lima", desc: "Lavanderia self-service rápida 24 horas, localizada de forma muito conveniente dentro do posto Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Excelente e amplo centro comercial, gastronômico e cultural com opções completas de compras e serviços.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Mercado Municipal de Pinheiros", desc: "Excelente para encontrar queijos finos, destilados, cafés especiais, frutas frescas e ótima gastronomia local. Fecha aos domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Centro comercial aconchegante, sofisticado e muito completo, com lojas, restaurantes e cinemas excelentes.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - Museu de Arte de SP", desc: "Museu de arte privado sem fins lucrativos, com acervo de relevância internacional. Fica situado na célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
+                                { name: "Parque Villa Lobos", desc: "Maravilhoso parque público arborizado, perfeito para caminhar, relaxar ou praticar esportes ao ar livre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Observação", desc: "Áreas comuns em implantação." }] },
                         checkout: { time: "Até as 10:00 da manhã", rules: [{ title: "Instruções", desc: "Recolha o lixo e deixe no depósito do térreo." }] },
                         thankyou: { title: "Agradecemos sua escolha!", message: "Tenha uma estadia inesquecível no Provance!", action: "Avalie com 5 estrelas!" }
@@ -927,8 +1088,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apt 25 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "150m from Pinheiros Subway." },
-                        checkin: { items: [{ title: "Check-in", desc: "From 2:00 PM with 24/7 front desk." }] },
-                        shopping: { items: [{ name: "Giardino Pinheiros", desc: "Famous for parmigiana dishes.", dist: "120 m" }] },
+                        checkin: { time: "From 2:00 PM", items: [{ title: "Check-in", desc: "From 2:00 PM with 24/7 front desk." }] },
+                        shopping: { 
+                            items: [
+                                { name: "OXXO Mini Market", desc: "Super convenient for quick daily groceries. Open 24 hours.", dist: "100 m (exit left)" },
+                                { name: "Pacco Restaurant", desc: "High-quality buffet / pay-by-weight lunch with fresh daily dishes.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar & Restaurant", desc: "Great option for lunch, dinner, and a lively Happy Hour at the end of the day.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famous for its spectacular parmigiana dishes, ideal for lunch, dinner, or Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Paulo Autran Theater", desc: "Cultural and leisure landmark with great theater, music, and arts programming.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Fast Laundry Faria Lima", desc: "Quick 24-hour self-service laundry, conveniently located inside the Flor de Goiás gas station.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Large shopping, dining, and cultural center with complete retail and service options.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Pinheiros Municipal Market", desc: "Great for artisanal cheeses, spirits, specialty coffees, fresh fruits, and local food. Closed on Sundays.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Cozy, sophisticated, and complete shopping mall with great stores, restaurants, and cinemas.", dist: "3.5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - São Paulo Museum of Art", desc: "Non-profit private art museum with an internationally renowned collection, located on iconic Paulista Avenue.", dist: "5.3 km (Av. Paulista, 1578)" },
+                                { name: "Villa Lobos Park", desc: "Wonderful tree-lined public park, perfect for walking, relaxing, or outdoor sports.", dist: "5.5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Notice", desc: "Building leisure areas currently under setup." }] },
                         checkout: { time: "Until 10:00 AM", rules: [{ title: "Instructions", desc: "Collect trash and drop it at ground floor disposal." }] },
                         thankyou: { title: "Thank you for choosing us!", message: "Have an unforgettable stay at Provance!", action: "Rate us 5 stars!" }
@@ -949,8 +1124,22 @@
                             ]
                         },
                         arrival: { address: "Rua Eugênio de Medeiros, 321, apto 25 - Pinheiros - São Paulo", gps: "https://www.google.com/maps/search/?api=1&query=Rua+Eugenio+de+Medeiros+321+Pinheiros+Sao+Paulo", instructions: "A 150m del Metro Pinheiros." },
-                        checkin: { items: [{ title: "Check-in", desc: "A partir de las 14:00 con recepción 24h." }] },
-                        shopping: { items: [{ name: "Giardino Pinheiros", desc: "Famoso por sus parmigianas.", dist: "120 m" }] },
+                        checkin: { time: "A partir de las 14:00", items: [{ title: "Check-in", desc: "A partir de las 14:00 con recepción 24h." }] },
+                        shopping: { 
+                            items: [
+                                { name: "Minimercado OXXO", desc: "Súper práctico para compras rápidas del día a día. Abierto las 24 horas.", dist: "100 m (saliendo a la izquierda)" },
+                                { name: "Pacco Restaurante", desc: "Almuerzo por kilo / buffet de excelente calidad con platos siempre frescos.", dist: "30 m (Rua Eugênio de Medeiros, 315)" },
+                                { name: "Québec Bar y Restaurante", desc: "Excelente opción para almuerzo, cena y un Happy Hour muy animado al final del día.", dist: "68 m (Rua Eugênio de Medeiros, 413)" },
+                                { name: "Giardino Pinheiros", desc: "Famoso por sus espectaculares parmigianas, ideal para almuerzo, cena o Happy Hour.", dist: "120 m (Rua Gilberto Sabino, 215)" },
+                                { name: "Sesc Pinheiros - Teatro Paulo Autran", desc: "Espacio de referencia cultural y de ocio con excelente programación teatral, música y artes.", dist: "290 m (Rua Paes Leme, 195)" },
+                                { name: "Lavandería Fast Faria Lima", desc: "Lavandería autoservicio rápida 24 horas, ubicada dentro de la gasolinera Flor de Goiás.", dist: "950 m (Av. Brg. Faria Lima, 694)" },
+                                { name: "Shopping Eldorado", desc: "Amplio centro comercial, gastronómico y cultural con opciones completas de compras y servicios.", dist: "1 km (Av. Rebouças, 3970)" },
+                                { name: "Mercado Municipal de Pinheiros", desc: "Ideal para encontrar quesos finos, licores, cafés especiales, frutas frescas y gastronomía local. Cierra los domingos.", dist: "1 km (Rua Pedro Christi, 89)" },
+                                { name: "Shopping Villa Lobos", desc: "Centro comercial acogedor, sofisticado y muy completo, con excelentes tiendas, restaurantes y cines.", dist: "3,5 km (Av. Dra. Ruth Cardoso, 4777)" },
+                                { name: "MASP - Museo de Arte de SP", desc: "Museo de arte con acervo de relevancia internacional, ubicado en la célebre Avenida Paulista.", dist: "5,3 km (Av. Paulista, 1578)" },
+                                { name: "Parque Villa Lobos", desc: "Maravilloso parque público arbolado, perfecto para caminar, relajarse o practicar deportes al aire libre.", dist: "5,5 km (Av. Professor Fonseca Rodrigues, 2001)" }
+                            ]
+                        },
                         general_info: { items: [{ title: "Aviso", desc: "Áreas comunes en acondicionamiento." }] },
                         checkout: { time: "Hasta las 10:00 AM", rules: [{ title: "Instrucciones", desc: "Deposite la basura en el contenedor del piso inferior." }] },
                         thankyou: { title: "¡Gracias por su preferencia!", message: "¡Que tenga una estancia inolvidable!", action: "¡Deje su reseña de 5 estrellas!" }
@@ -1286,7 +1475,13 @@
                         `;
                     });
                 }
-                detailContent.innerHTML = `<div class="space-y-4">${itemsList}</div>`;
+                const timeBanner = (catId === 'checkin' && data.time) ? `
+                    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-xl text-center shadow-sm">
+                        <p class="text-[9px] uppercase font-bold tracking-wider text-slate-500">${texts.checkinTimeLimit}</p>
+                        <p class="text-base font-extrabold text-emerald-900 mt-0.5">${data.time}</p>
+                    </div>
+                ` : '';
+                detailContent.innerHTML = `<div class="space-y-4">${timeBanner}${itemsList}</div>`;
             }
             else if (catId === 'shopping') {
                 let itemsList = '';
@@ -1449,11 +1644,11 @@
         function setupServiceWorker() {
             if ('serviceWorker' in navigator) {
                 const swContent = `
-                    const CACHE_NAME = 'meu-lugar-guide-v181';
+                    const CACHE_NAME = 'meu-lugar-guide-v184';
                     self.addEventListener('install', event => {
                         event.waitUntil(
                             caches.open(CACHE_NAME).then(cache => {
-                                return cache.addAll(['/', '/logo.png', '/saopaulo.png', '/passaros.png', '/azure.png', '/concret.png', '/provance.png']);
+                                return cache.addAll(['/', '/logo.png', '/saopaulo.png', '/passaros.png', '/azure.png', '/concret.png', '/provance.png', '/manual-do-sofa-cama.jpg']);
                             }).catch(() => {})
                         );
                     });
