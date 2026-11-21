@@ -1228,19 +1228,19 @@
 
                 card.innerHTML = `
                     <img src="${apt.image}" alt="${apt.name}" 
-                         class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 z-0"
+                         class="pointer-events-none absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 z-0"
                          onerror="if(this.src!=='${apt.fallbackImage}'){this.src='${apt.fallbackImage}';}else{this.style.display='none';}">
                          
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent z-10"></div>
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent z-10"></div>
                     
-                    <div class="z-20 flex justify-between items-start w-full">
+                    <div class="pointer-events-none z-20 flex justify-between items-start w-full">
                         <div>
                             <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold/80 text-brand-dark px-2 py-0.5 rounded-full shadow-sm">${apt.city}</span>
                             <h3 class="text-base font-extrabold mt-1.5 tracking-tight text-white group-hover:text-brand-gold transition-colors">${apt.name}</h3>
                         </div>
                     </div>
                     
-                    <div class="z-20 flex items-center justify-between mt-2 pt-2 border-t border-white/10 w-full">
+                    <div class="pointer-events-none z-20 flex items-center justify-between mt-2 pt-2 border-t border-white/10 w-full">
                         <span class="text-[11px] text-slate-200 line-clamp-1 max-w-[80%] font-medium">${tagline}</span>
                         <span class="bg-brand-gold text-brand-dark w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold group-hover:translate-x-1 transition-transform">
                             <i class="fa-solid fa-arrow-right"></i>
@@ -1248,6 +1248,35 @@
                     </div>
                 `;
                 apartmentsList.appendChild(card);
+            });
+        }
+
+        function updateMiniCardTagline() {
+            const apt = APP_STATE.selectedApartment;
+            if (!apt) return;
+            const lang = APP_STATE.lang;
+            const tagline = apt.tagline[lang] || apt.tagline['pt-BR'];
+
+            const miniCards = [
+                apartmentMiniCard,
+                document.getElementById('apartment-mini-card-detail')
+            ];
+
+            miniCards.forEach(cardEl => {
+                if (!cardEl) return;
+                cardEl.className = `relative overflow-hidden bg-brand-charcoal rounded-2xl p-4 text-white shadow-sm flex items-center justify-between min-h-[100px]`;
+                cardEl.innerHTML = `
+                    <img src="${apt.image}" alt="Capa ${apt.name}" 
+                         class="pointer-events-none absolute inset-0 w-full h-full object-cover opacity-40 z-0" 
+                         onerror="if(this.src!=='${apt.fallbackImage}'){this.src='${apt.fallbackImage}';}else{this.style.display='none';}">
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/70 to-transparent z-10"></div>
+                    
+                    <div class="pointer-events-none z-20">
+                        <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold text-brand-dark px-2 py-0.5 rounded-full">${apt.city}</span>
+                        <h3 class="text-base font-bold mt-1.5">${apt.name}</h3>
+                        <p class="text-[10px] text-slate-200 mt-0.5 font-medium">${tagline}</p>
+                    </div>
+                `;
             });
         }
 
@@ -1270,36 +1299,6 @@
             screenDetail.classList.add('hidden');
         }
 
-        function updateMiniCardTagline() {
-            const apt = APP_STATE.selectedApartment;
-            if (!apt) return;
-            const lang = APP_STATE.lang;
-            const tagline = apt.tagline[lang] || apt.tagline['pt-BR'];
-
-            const cardContent = `
-                <img src="${apt.image}" alt="${apt.name}" class="absolute inset-0 w-full h-full object-cover opacity-40 z-0" onerror="if(this.src!=='${apt.fallbackImage}'){this.src='${apt.fallbackImage}';}else{this.style.display='none';}">
-                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/70 to-transparent z-10"></div>
-                
-                <div class="z-20">
-                    <span class="text-[9px] uppercase font-bold tracking-wider bg-brand-gold text-brand-dark px-2 py-0.5 rounded-full">${apt.city}</span>
-                    <h3 class="text-base font-bold mt-1.5">${apt.name}</h3>
-                    <p class="text-[10px] text-slate-200 mt-0.5 font-medium">${tagline}</p>
-                </div>
-            `;
-
-            if (apartmentMiniCard) {
-                apartmentMiniCard.className = `relative overflow-hidden bg-brand-charcoal rounded-2xl p-4 text-white shadow-sm flex items-center justify-between min-h-[100px]`;
-                apartmentMiniCard.innerHTML = cardContent;
-            }
-
-            const detailMiniCard = document.getElementById('apartment-mini-card-detail');
-            if (detailMiniCard) {
-                detailMiniCard.className = `relative overflow-hidden bg-brand-charcoal rounded-2xl p-4 text-white shadow-sm flex items-center justify-between min-h-[100px]`;
-                detailMiniCard.innerHTML = cardContent;
-            }
-        }
-
-        // RENDERIZAR BOTÕES DO MENU DO APARTAMENTO
         function renderMenuButtons(apt) {
             menuButtonsGrid.innerHTML = '';
             const texts = UI_TEXTS[APP_STATE.lang];
@@ -1309,22 +1308,24 @@
                 btn.className = `p-4 flex flex-col justify-between items-start text-left bg-slate-50 border border-slate-100 rounded-2xl hover:border-slate-200 hover:shadow-sm transition-all duration-300 h-26 group relative overflow-hidden`;
                 btn.onclick = () => openCategory(cat.id);
                 
+                const title = texts[cat.titleKey] || cat.id;
+                const desc = texts[cat.descKey] || '';
+
                 btn.innerHTML = `
-                    <div class="p-2 rounded-lg bg-white text-slate-600 border border-slate-100 shadow-sm transition-all dynamic-icon">
+                    <div class="pointer-events-none p-2 rounded-lg bg-white text-slate-600 border border-slate-100 shadow-sm transition-all dynamic-icon">
                         <i class="fa-solid ${cat.icon} text-xs"></i>
                     </div>
-                    <div class="mt-2">
+                    <div class="pointer-events-none mt-2">
                         <h4 class="font-bold text-xs text-slate-800 leading-tight flex items-center gap-1">
-                            ${texts[cat.titleKey] || cat.id}
+                            ${title}
                         </h4>
-                        <p class="text-[9px] text-slate-400 mt-0.5">${texts[cat.descKey] || ''}</p>
+                        <p class="text-[9px] text-slate-400 mt-0.5">${desc}</p>
                     </div>
                 `;
                 menuButtonsGrid.appendChild(btn);
             });
         }
 
-        // ABRIR TELA DE DETALHES DA CATEGORIA
         function openCategory(catId) {
             APP_STATE.currentCategory = catId;
             APP_STATE.currentScreen = 'detail';
@@ -1352,14 +1353,13 @@
             screenDetail.classList.remove('hidden');
         }
 
-        // RENDERIZAR CONTEÚDO ESPECÍFICO DA CATEGORIA
         function renderDetailContent(catId, apt) {
             detailContent.innerHTML = '';
             const lang = APP_STATE.lang;
             const texts = UI_TEXTS[lang];
             const langContent = apt.content[lang] || apt.content['pt-BR'];
             const data = langContent[catId];
-            
+
             if (!data) {
                 detailContent.innerHTML = `<p class="text-xs text-slate-400 font-semibold">${texts.noInfo}</p>`;
                 return;
@@ -1445,6 +1445,7 @@
                             </a>
                         </div>
                     </div>
+                    
                     <div class="bg-slate-50 border border-slate-100 p-4 rounded-2xl space-y-2">
                         <div class="flex items-center gap-2 text-slate-800 font-bold text-xs border-b border-slate-150 pb-2">
                             <i class="fa-solid fa-clock text-slate-500"></i>
@@ -1454,7 +1455,17 @@
                     </div>
                 `;
             } 
-            else if (catId === 'checkin') {
+            else if (catId === 'checkin' || catId === 'general_info') {
+                let timeBanner = '';
+                if (catId === 'checkin' && data.time) {
+                    timeBanner = `
+                        <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-xl text-center shadow-sm">
+                            <p class="text-[9px] uppercase font-bold tracking-wider text-emerald-600">${texts.checkinTimeLimit}</p>
+                            <p class="text-base font-extrabold text-emerald-900 mt-0.5">${data.time}</p>
+                        </div>
+                    `;
+                }
+
                 let itemsList = '';
                 data.items.forEach(item => {
                     itemsList += `
@@ -1467,28 +1478,7 @@
                         </div>
                     `;
                 });
-                const timeBanner = data.time ? `
-                    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-xl text-center shadow-sm">
-                        <p class="text-[9px] uppercase font-bold tracking-wider text-emerald-600">${texts.checkinTimeLimit}</p>
-                        <p class="text-base font-extrabold text-emerald-900 mt-0.5">${data.time}</p>
-                    </div>
-                ` : '';
                 detailContent.innerHTML = `<div class="space-y-4">${timeBanner}${itemsList}</div>`;
-            }
-            else if (catId === 'general_info') {
-                let itemsList = '';
-                data.items.forEach(item => {
-                    itemsList += `
-                        <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-2">
-                            <h4 class="font-bold text-slate-800 text-xs flex items-center gap-2">
-                                <i class="fa-solid fa-circle-check dynamic-icon"></i>
-                                ${item.title}
-                            </h4>
-                            <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">${item.desc}</p>
-                        </div>
-                    `;
-                });
-                detailContent.innerHTML = `<div class="space-y-4">${itemsList}</div>`;
             }
             else if (catId === 'shopping') {
                 let itemsList = '';
@@ -1546,7 +1536,6 @@
             }
         }
 
-        // EVENTOS DE NAVEGAÇÃO, MODAIS E UTILITÁRIOS
         btnChangeApartment.onclick = () => {
             APP_STATE.selectedApartment = null;
             APP_STATE.currentScreen = 'selection';
@@ -1582,7 +1571,7 @@
             tempInput.select();
             document.execCommand("copy");
             document.body.removeChild(tempInput);
-            showToast(successMsg || UI_TEXTS[APP_STATE.lang].toastCopied);
+            showToast(successMsg);
         }
 
         function showInstallInstructions() {
@@ -1601,6 +1590,7 @@
 
         function forceAppUpdate() {
             const btn = document.getElementById('btn-force-update');
+            const texts = UI_TEXTS[APP_STATE.lang];
             btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> ...';
             btn.disabled = true;
 
@@ -1609,12 +1599,11 @@
                     return Promise.all(names.map(name => caches.delete(name)));
                 }).then(() => {
                     setTimeout(() => {
-                        btn.innerHTML = '<i class="fa-solid fa-check"></i> OK!';
-                        showToast(UI_TEXTS[APP_STATE.lang].toastUpdated);
+                        showToast(texts.toastUpdated);
                         setTimeout(() => {
                             window.location.reload(true);
                         }, 1000);
-                    }, 1200);
+                    }, 1000);
                 }).catch(() => {
                     window.location.reload(true);
                 });
@@ -1627,7 +1616,10 @@
         function registerPhysicalServiceWorker() {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./sw.js')
-                    .then(() => console.log("PWA Service Worker registrado com sucesso."))
+                    .then(reg => {
+                        reg.update(); // Força a verificação de nova versão no servidor
+                        console.log("PWA Service Worker registrado e atualizado.");
+                    })
                     .catch(err => console.warn("Aviso SW:", err));
             }
         }
