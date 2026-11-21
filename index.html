@@ -1212,7 +1212,7 @@
         // INICIALIZAÇÃO
         document.addEventListener('DOMContentLoaded', () => {
             renderApartmentSelection();
-            registerPhysicalServiceWorker();
+            cleanupOldServiceWorkersAndRegister();
         });
 
         function renderApartmentSelection() {
@@ -1221,8 +1221,10 @@
 
             APARTMENTS.forEach(apt => {
                 const card = document.createElement('div');
-                card.className = `group relative overflow-hidden bg-brand-charcoal rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-500 transform hover:-translate-y-1 flex flex-col justify-between h-40`;
-                card.onclick = () => selectApartment(apt);
+                card.className = `group relative overflow-hidden bg-brand-charcoal rounded-2xl p-5 text-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-500 transform hover:-translate-y-1 flex flex-col justify-between h-40 select-none`;
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+                card.addEventListener('click', () => selectApartment(apt));
                 
                 const tagline = apt.tagline[lang] || apt.tagline['pt-BR'];
 
@@ -1587,38 +1589,38 @@
         function closeUpdateModal() {
             document.getElementById('update-modal').classList.add('hidden');
         }
+        // REGISTRO DE SERVICE WORKER COM LIMPEZA AUTOMÁTICA DE CACHE ANTIGO NA VERCEL
+        function cleanupOldServiceWorkersAndRegister() {
+            const CURRENT_APP_VERSION = '1.8.5';
+            const savedVersion = localStorage.getItem('meu_lugar_app_version');
 
-        function forceAppUpdate() {
-            const btn = document.getElementById('btn-force-update');
-            const texts = UI_TEXTS[APP_STATE.lang];
-            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> ...';
-            btn.disabled = true;
-
-            if ('caches' in window) {
-                caches.keys().then(names => {
-                    return Promise.all(names.map(name => caches.delete(name)));
-                }).then(() => {
-                    setTimeout(() => {
-                        showToast(texts.toastUpdated);
-                        setTimeout(() => {
-                            window.location.reload(true);
-                        }, 1000);
-                    }, 1000);
-                }).catch(() => {
-                    window.location.reload(true);
-                });
-            } else {
-                window.location.reload(true);
+            if (savedVersion !== CURRENT_APP_VERSION) {
+                localStorage.setItem('meu_lugar_app_version', CURRENT_APP_VERSION);
+                
+                // Desregistra Service Workers antigos e limpa caches presos da Vercel
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        for (let reg of registrations) {
+                            reg.unregister();
+                        }
+                    });
+                }
+                if ('caches' in window) {
+                    caches.keys().then(names => {
+                        return Promise.all(names.map(name => caches.delete(name)));
+                    }).then(() => {
+                        // Recarrega uma única vez para buscar os arquivos novos da Vercel
+                        if (savedVersion !== null) {
+                            window.location.reload();
+                        }
+                    });
+                }
             }
-        }
 
-        // REGISTRO DE SERVICE WORKER FÍSICO (Exigido pelo Chrome para o botão "Instalar Agora")
-        function registerPhysicalServiceWorker() {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./sw.js')
+                navigator.serviceWorker.register('./sw.js?v=' + CURRENT_APP_VERSION)
                     .then(reg => {
-                        reg.update(); // Força a verificação de nova versão no servidor
-                        console.log("PWA Service Worker registrado e atualizado.");
+                        reg.update();
                     })
                     .catch(err => console.warn("Aviso SW:", err));
             }
